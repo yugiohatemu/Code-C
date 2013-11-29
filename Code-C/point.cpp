@@ -10,9 +10,9 @@
 #include <math.h>
 
 Point::Point() {
-    x = 0;
-    y = 0;
-    z = 0;
+    x = 0.f;
+    y = 0.f;
+    z = 0.f;
 }
 
 Point::Point(float x, float y,float z):x(x),y(y),z(z){

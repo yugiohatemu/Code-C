@@ -8,7 +8,7 @@
 
 
 #include <GLUT/GLUT.h>
-#include <OpenGL/glext.h>
+#include <OpenGL/gl.h>
 #include "SDL/SDL.h"
 #include "SDL/SDL_opengl.h"
 
@@ -19,7 +19,8 @@
 ///////////////////////////////////////////////////////////////////
 
 #include "stopWatch.h"
-
+#include "protagonist.h"
+#include "track.h"
 //Screen attributes
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -95,6 +96,7 @@ void render(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor( 1.f, 1.f, 1.f, 1.f );
     
+    //Draw the x, y , z
     glPushMatrix();
     glTranslated(1, 1, 1);
     glBegin(GL_LINES);
@@ -106,48 +108,7 @@ void render(){
     glVertex3f(0, 0, 0); glVertex3f(0, 0, 1);
     glEnd();
     glPopMatrix();
-    
-    
-    glPushMatrix();
-    
-    glBegin(GL_QUADS);
-    glColor3f(1.0, 1.0, 0);
-    glNormal3f(0.0,1.0,0.0);
-    glVertex3f(0.0, 0.0,0.0 );
-    glVertex3f(0.0, 0.0,1.0);
-    glVertex3f(2.0, 0.0,1.0);
-    glVertex3f(2.0, 0.0,0.0);
-    glEnd();
-    
-    glBegin(GL_QUADS);
-    glColor3f(1.0, 0, 0);
-    glNormal3f(1, 1, 0);
-    glVertex3f(2.0, 0.0,1.0);
-    glVertex3f(2.0, 0.0,0.0);
-    glVertex3f(3.0, 1.0,0.0);
-    glVertex3f(3.0, 1.0,1.0);
-    glEnd();
-    
-    glBegin(GL_QUADS);
-    glColor3f(1.0, 0, 0);
-    glNormal3f(1, -1, 0);
-    glVertex3f(3.0, 1.0,0.0);
-    glVertex3f(3.0, 1.0,1.0);
-    glVertex3f(2.0, 2.0,1.0);
-    glVertex3f(2.0, 2.0,0.0);
-    glEnd();
-    
-    glBegin(GL_QUADS);
-    glColor3f(1.0, 1.0, 0);
-    glNormal3f(0.0,-1.0,0.0);
-    glVertex3f(0.0, 2.0,0.0 );
-    glVertex3f(0.0, 2.0,1.0);
-    glVertex3f(2.0, 2.0,1.0);
-    glVertex3f(2.0, 2.0,0.0);
-    glEnd();
-    
-    glPopMatrix();
-
+   
 }
 
 void clean_up(){
@@ -168,12 +129,11 @@ int main( int argc, char *argv[] )
     StopWatch fps(0.1);
     fps.start();
     
-	//Wait for user exit
     SDL_Event event;
-    
+    Protagonist * p = new Protagonist();
+    Track * t = new Track();
 	while( !quit ){
         
-        //While there are events to handle
 		while( SDL_PollEvent( &event ) ){
 			if( event.type == SDL_QUIT )quit = true;
             if (event.type == SDL_KEYDOWN) {
@@ -183,7 +143,9 @@ int main( int argc, char *argv[] )
         
         if (fps.is_timeup()){
             render();
-            //update
+            p->render();
+            t->render();
+            p->update(event);
             SDL_GL_SwapBuffers();
             fps.start();
         }
@@ -191,6 +153,8 @@ int main( int argc, char *argv[] )
     
 	//Clean up
 	clean_up();
+    delete p;
+    delete t;
     
 	return 0;
 }

@@ -11,8 +11,6 @@
 
 StopWatch::StopWatch(double count_down){
     this->count_down = count_down * 1000;
-    
-//    start_tick = SDL_GetTicks();
 }
 
 StopWatch::~StopWatch(){

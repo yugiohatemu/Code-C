@@ -16,6 +16,8 @@
 		B61B882E1847B47C009F75D5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61B882D1847B47C009F75D5 /* Cocoa.framework */; };
 		B61B88311847B614009F75D5 /* stopWatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B882F1847B614009F75D5 /* stopWatch.cpp */; };
 		B61B88341847B990009F75D5 /* point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B88321847B990009F75D5 /* point.cpp */; };
+		B61B8838184808F8009F75D5 /* protagonist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B8836184808F8009F75D5 /* protagonist.cpp */; };
+		B61B883B18480F4B009F75D5 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B883918480F4B009F75D5 /* track.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +47,11 @@
 		B61B88301847B614009F75D5 /* stopWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stopWatch.h; sourceTree = "<group>"; };
 		B61B88321847B990009F75D5 /* point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point.cpp; sourceTree = "<group>"; };
 		B61B88331847B990009F75D5 /* point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point.h; sourceTree = "<group>"; };
+		B61B883518480732009F75D5 /* sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sprite.h; sourceTree = "<group>"; };
+		B61B8836184808F8009F75D5 /* protagonist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = protagonist.cpp; sourceTree = "<group>"; };
+		B61B8837184808F8009F75D5 /* protagonist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = protagonist.h; sourceTree = "<group>"; };
+		B61B883918480F4B009F75D5 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
+		B61B883A18480F4B009F75D5 /* track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = track.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,14 +92,19 @@
 		B61B880D1847AD20009F75D5 /* Code-C */ = {
 			isa = PBXGroup;
 			children = (
+				B61B883518480732009F75D5 /* sprite.h */,
+				B61B8836184808F8009F75D5 /* protagonist.cpp */,
+				B61B8837184808F8009F75D5 /* protagonist.h */,
 				B61B88321847B990009F75D5 /* point.cpp */,
 				B61B88331847B990009F75D5 /* point.h */,
 				B61B882F1847B614009F75D5 /* stopWatch.cpp */,
 				B61B88301847B614009F75D5 /* stopWatch.h */,
-				B61B88241847B321009F75D5 /* SDLMain.h */,
-				B61B88251847B321009F75D5 /* SDLMain.m */,
 				B61B880E1847AD20009F75D5 /* main.cpp */,
 				B61B88101847AD20009F75D5 /* Code_C.1 */,
+				B61B88241847B321009F75D5 /* SDLMain.h */,
+				B61B88251847B321009F75D5 /* SDLMain.m */,
+				B61B883918480F4B009F75D5 /* track.cpp */,
+				B61B883A18480F4B009F75D5 /* track.h */,
 			);
 			path = "Code-C";
 			sourceTree = "<group>";
@@ -151,7 +163,9 @@
 				B61B88341847B990009F75D5 /* point.cpp in Sources */,
 				B61B88261847B321009F75D5 /* SDLMain.m in Sources */,
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,
+				B61B8838184808F8009F75D5 /* protagonist.cpp in Sources */,
 				B61B88311847B614009F75D5 /* stopWatch.cpp in Sources */,
+				B61B883B18480F4B009F75D5 /* track.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +285,7 @@
 				B61B88161847AD20009F75D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

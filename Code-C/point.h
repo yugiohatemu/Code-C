@@ -1,8 +1,8 @@
 //
 //  point.h
-//  Trilight
+//  from Trilight
 //
-//  Created by Yue on 9/2/13.
+//  Modified by Yue on 11/29/13.
 //  Copyright (c) 2013 Yue. All rights reserved.
 //
 
