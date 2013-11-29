@@ -13,9 +13,10 @@
 #include "SDL/SDL_opengl.h"
 
 ///////////////////////////////////////////////////////////////////
-//Several things needed
-//Deployment target is changed to OSX 10.8 to avoid warning for glut
-//Objective-Arc is disabled to allow combination of SDLMain
+//Several things changed in build setting
+//Build search path
+//Deployment target is changed to OSX 10.8 to surpress warning for glut
+//ARC is disabled to allow compilation of SDLMain
 ///////////////////////////////////////////////////////////////////
 
 #include "stopWatch.h"
@@ -111,14 +112,8 @@ void render(){
    
 }
 
-void clean_up(){
-    //Quit SDL
-    SDL_Quit();
-}
 
-
-int main( int argc, char *argv[] )
-{
+int main( int argc, char *argv[] ){
     //Quit flag
     bool quit = false;
     
@@ -152,7 +147,7 @@ int main( int argc, char *argv[] )
 	}
     
 	//Clean up
-	clean_up();
+	SDL_Quit();
     delete p;
     delete t;
     

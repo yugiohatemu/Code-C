@@ -9,15 +9,19 @@
 #ifndef __Code_C__plate__
 #define __Code_C__plate__
 
-
 #include "sprite.h"
 #include "point.h"
 #include "color.h"
+#include "vector.h"
+
 class Plate:public Sprite{
-    Point corner[4]; //or use bot_top_left_right
-    Point normal;
+    Point top_left, top_right, bot_left, bot_right;
+    Vector normal;
     Color color;
 public:
+    Plate();
+    Plate(Point tl, Point tr, Point bl, Point br, Vector n, Color c);
+    ~Plate();
     void render();
     void update(SDL_Event event);
 

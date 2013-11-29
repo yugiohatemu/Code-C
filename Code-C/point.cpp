@@ -60,9 +60,9 @@ std::ostream& operator<< (std::ostream& stream, const Point& p){
 
 ////////////////////////////////////////////////////
 //dot multiply
-float Point::dot(Point p){
-    return x*p.x + y*p.y + z*p.z;
-}
+//float Point::dot(Point p){
+//    return x*p.x + y*p.y + z*p.z;
+//}
 
 
 void Point::normalize(){

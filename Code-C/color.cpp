@@ -8,6 +8,9 @@
 
 #include "color.h"
 
+Color::Color(){
+    r = g = b = a = 1.0f;
+}
 
 Color::Color(float r, float g,float b,float a):r(r),g(g),b(b), a(a){
     //avoid nasty outcome
@@ -24,16 +27,16 @@ Color::Color(float c){
 }
 
 Color::Color(const Color & c){
-    this->r = c.r;
-    this->g = c.g;
-    this->b = c.b;
-    this->a = c.a;
+    r = c.r;
+    g = c.g;
+    b = c.b;
+    a = c.a;
 }
 
 Color& Color::operator=(const Color& c){
-    this->r = c.r;
-    this->g = c.g;
-    this->b = c.b;
-    this->a = c.a;
+    r = c.r;
+    g = c.g;
+    b = c.b;
+    a = c.a;
     return *this;
 }

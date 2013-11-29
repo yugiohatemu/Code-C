@@ -24,8 +24,6 @@ struct Point{
     friend std::ostream& operator<< (std::ostream& stream, const Point& p);
     
     void normalize();
-    float dot(Point p);
-    //float cross(Point p);
 };
 
 #endif /* defined(__Trilight__point__) */

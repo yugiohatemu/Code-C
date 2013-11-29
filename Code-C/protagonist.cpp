@@ -30,6 +30,8 @@ void Protagonist::render(){
 
 void Protagonist::update(SDL_Event event){
     float speed = 0.1f;
+    //going to be replaced by vector later
+    //use point + vector
     if (event.type == SDL_KEYDOWN) {
     
         if(event.key.keysym.sym == SDLK_UP) anchor.z -= speed;
