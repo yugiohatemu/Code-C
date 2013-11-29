@@ -19,19 +19,19 @@ Track::~Track(){
 
 void Track::render(){
     glPushMatrix();
-    //4 points per surface
-    //1 point for a normal
-    //1 point for a color?
+    for (Plate & p : platelist) {
+        p.render();
+    }
+    glPopMatrix();
     
-    //one track is a list of straight path
-    //one level is combined of several track?
+    glPushMatrix();
     
     glBegin(GL_QUADS);
     glColor3f(1.0, 1.0, 0); glNormal3f(0.0,1.0,0.0);
     glVertex3f(0.0, 0.0,0.0); glVertex3f(0.0, 0.0,1.0);
     glVertex3f(2.0, 0.0,1.0); glVertex3f(2.0, 0.0,0.0);
     glEnd();
-    
+
     glBegin(GL_QUADS);
     glColor3f(1.0, 0, 0);glNormal3f(1, 1, 0);
     glVertex3f(2.0, 0.0,1.0);glVertex3f(2.0, 0.0,0.0);

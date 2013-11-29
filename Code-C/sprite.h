@@ -10,26 +10,12 @@
 #define __Trilight__sprite__
 
 #include "SDL/SDL.h"
-/*
-struct T_Rect{
-    float x, y,w,h;
-    T_Rect(){ x = y = w = h = 0.0f; }
-    T_Rect& operator=(T_Rect t){
-        x = t.x;
-        y = t.y;
-        w = t.w;
-        h = t.h;
-        return *this;
-    }
-    ~T_Rect(){}
-};
-*/
 
+//pure virtual class for basic drawing and accepting user input
 class Sprite{
 
 public:
 
-    Sprite(){}
     virtual ~Sprite(){};
 
     virtual void render() = 0;

@@ -10,10 +10,12 @@
 #define __Code_C__track__
 
 //one track for a continuous one?
-#include "SDL/SDL.h"
+#include "sprite.h"
+#include "plate.h"
+#include <vector>
 
-class Track{
-    
+class Track:public Sprite{
+    std::vector<Plate> platelist;
 public:
     Track();
     ~Track();

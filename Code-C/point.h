@@ -14,7 +14,7 @@ struct Point{
     float x,y,z;
 	Point();
 	Point(float x, float y,float z);
-    Point (Point const &p);
+    Point (const Point &p);
 
     Point operator*(float s);
     Point operator/(float s);

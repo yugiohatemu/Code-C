@@ -10,7 +10,7 @@
 #include "SDL/SDL_opengl.h"
 #include <GLUT/GLUT.h>
 
-Protagonist::Protagonist():Sprite(){
+Protagonist::Protagonist(){
     
 }
 
