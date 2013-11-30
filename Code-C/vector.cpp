@@ -8,7 +8,7 @@
 
 #include "vector.h"
 #include <math.h>
-#define PI 3.14159265
+#define PI 3.1415
 
 Vector::Vector(){
     x = 0.f;
@@ -84,26 +84,31 @@ void Vector::set(float x, float y,float z){
 
 
 void Vector::rotate(char axis, float angel){
-    angel = angel * PI / 180;
+    angel = angel * PI / 180.0;
     float cos_angel = cosf(angel);
     float sin_angel = sinf(angel);
-    
+
+    float nx, ny, nz = 0.0f;
     switch (axis) {
         case 'x':case 'X':
-            y = cos_angel * y - sin_angel * z;
-            z = cos_angel * y + sin_angel * z;
+            ny = cos_angel * y - sin_angel * z;
+            nz = sin_angel * y + cos_angel * z;
+            y = ny; z = nz;
             break;
         case 'y':case 'Y':
-            x = cos_angel * x - sin_angel * z;
-            z = cos_angel * x + sin_angel * z;
+            nx = cos_angel * x - sin_angel * z;
+            nz = sin_angel * x + cos_angel * z;
+            x = nx; z = nz;
             break;
         case 'z':case 'Z':
-            x = cos_angel * x - sin_angel * y;
-            y = cos_angel * x + sin_angel * y;
+            nx = cos_angel * x - sin_angel * y;
+            ny = sin_angel * x + cos_angel * y;
+            x = nx; y = ny;
             break;
         default:
             break;
     }
+
 }
 //float Vector::get_angel(){
 //    return atan2f (y,x) * 180 / PI;

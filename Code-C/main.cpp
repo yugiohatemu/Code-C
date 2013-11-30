@@ -101,7 +101,7 @@ void render(){
     
     //Draw the x, y , z
     glPushMatrix();
-    glTranslated(1, 1, 1);
+//    glTranslated(1, 1, 1);
     glBegin(GL_LINES);
     glColor3f(1, 0, 0);
     glVertex3f(0, 0, 0); glVertex3f(1, 0, 0);
