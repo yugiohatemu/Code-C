@@ -10,9 +10,8 @@
 #define __Code_C__plate__
 
 #include "sprite.h"
-#include "point.h"
 #include "color.h"
-#include "vector.h"
+#include "algebra.h"
 
 class Plate:public Sprite{
     Point top_left, top_right, bot_left, bot_right;

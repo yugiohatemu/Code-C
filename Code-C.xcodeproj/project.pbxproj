@@ -21,6 +21,8 @@
 		B61B88411848E58A009F75D5 /* plate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B883F1848E58A009F75D5 /* plate.cpp */; };
 		B61B88441848E62C009F75D5 /* color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B88421848E62C009F75D5 /* color.cpp */; };
 		B61B88471848FED6009F75D5 /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B88451848FED6009F75D5 /* vector.cpp */; };
+		B61B884A184A5BD3009F75D5 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B8848184A5BD3009F75D5 /* camera.cpp */; };
+		B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B884C184A62C1009F75D5 /* algebra.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +63,10 @@
 		B61B88431848E62C009F75D5 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
 		B61B88451848FED6009F75D5 /* vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vector.cpp; sourceTree = "<group>"; };
 		B61B88461848FED6009F75D5 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		B61B8848184A5BD3009F75D5 /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
+		B61B8849184A5BD3009F75D5 /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
+		B61B884C184A62C1009F75D5 /* algebra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = algebra.cpp; sourceTree = "<group>"; };
+		B61B884D184A62C1009F75D5 /* algebra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = algebra.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,13 +107,10 @@
 		B61B880D1847AD20009F75D5 /* Code-C */ = {
 			isa = PBXGroup;
 			children = (
-				B61B88451848FED6009F75D5 /* vector.cpp */,
-				B61B88461848FED6009F75D5 /* vector.h */,
+				B61B884B184A6254009F75D5 /* algebra */,
 				B61B883518480732009F75D5 /* sprite.h */,
 				B61B8836184808F8009F75D5 /* protagonist.cpp */,
 				B61B8837184808F8009F75D5 /* protagonist.h */,
-				B61B88321847B990009F75D5 /* point.cpp */,
-				B61B88331847B990009F75D5 /* point.h */,
 				B61B882F1847B614009F75D5 /* stopWatch.cpp */,
 				B61B88301847B614009F75D5 /* stopWatch.h */,
 				B61B880E1847AD20009F75D5 /* main.cpp */,
@@ -115,13 +118,28 @@
 				B61B883A18480F4B009F75D5 /* track.h */,
 				B61B883F1848E58A009F75D5 /* plate.cpp */,
 				B61B88401848E58A009F75D5 /* plate.h */,
-				B61B88421848E62C009F75D5 /* color.cpp */,
-				B61B88431848E62C009F75D5 /* color.h */,
 				B61B88101847AD20009F75D5 /* Code_C.1 */,
 				B61B88241847B321009F75D5 /* SDLMain.h */,
 				B61B88251847B321009F75D5 /* SDLMain.m */,
+				B61B8848184A5BD3009F75D5 /* camera.cpp */,
+				B61B8849184A5BD3009F75D5 /* camera.h */,
 			);
 			path = "Code-C";
+			sourceTree = "<group>";
+		};
+		B61B884B184A6254009F75D5 /* algebra */ = {
+			isa = PBXGroup;
+			children = (
+				B61B884C184A62C1009F75D5 /* algebra.cpp */,
+				B61B884D184A62C1009F75D5 /* algebra.h */,
+				B61B88321847B990009F75D5 /* point.cpp */,
+				B61B88331847B990009F75D5 /* point.h */,
+				B61B88421848E62C009F75D5 /* color.cpp */,
+				B61B88431848E62C009F75D5 /* color.h */,
+				B61B88451848FED6009F75D5 /* vector.cpp */,
+				B61B88461848FED6009F75D5 /* vector.h */,
+			);
+			name = algebra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +197,8 @@
 				B61B88441848E62C009F75D5 /* color.cpp in Sources */,
 				B61B88411848E58A009F75D5 /* plate.cpp in Sources */,
 				B61B88261847B321009F75D5 /* SDLMain.m in Sources */,
+				B61B884A184A5BD3009F75D5 /* camera.cpp in Sources */,
+				B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */,
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,
 				B61B88471848FED6009F75D5 /* vector.cpp in Sources */,
 				B61B8838184808F8009F75D5 /* protagonist.cpp in Sources */,

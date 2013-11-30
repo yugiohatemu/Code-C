@@ -36,8 +36,8 @@ bool initGL(){
     gluPerspective(40, 1, 1.0, 100.0);
     
     glMatrixMode(GL_MODELVIEW);
-    gluLookAt(0.0, 5.0, 10.0,0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-    
+    gluLookAt(0.0, 5.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    //5 ,10,/ -5, 10 / -5, -10 / 5 - 10
     //Initialize clear color
     glClearColor( 1.f, 1.f, 1.f, 1.f );
     
@@ -127,12 +127,25 @@ int main( int argc, char *argv[] ){
     SDL_Event event;
     Protagonist * p = new Protagonist();
     Track * t = new Track();
+    //camera should be similar to that, with the application of some animation transition
+    //and based on character location
+    GLfloat camera[4][3] = {{0, 5 ,10}, {5 ,10, 0}, {0, -5 ,-10}, {5 ,-10, 0}};
+    int i = 0;
+    //TODO: move based on global orientation
 	while( !quit ){
         
 		while( SDL_PollEvent( &event ) ){
 			if( event.type == SDL_QUIT )quit = true;
             if (event.type == SDL_KEYDOWN) {
                 if(event.key.keysym.sym == SDLK_ESCAPE) quit = true;
+                if(event.key.keysym.sym == SDLK_TAB) {
+                    //switch rotation
+                    i += 1;
+                    if ( i == 4) i = 0;
+                    glLoadIdentity();
+                    gluLookAt(camera[i][0], camera[i][1], camera[i][2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+                    
+                }
             }
 		}
         

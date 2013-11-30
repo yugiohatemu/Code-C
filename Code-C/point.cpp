@@ -63,7 +63,11 @@ std::ostream& operator<< (std::ostream& stream, const Point& p){
 //float Point::dot(Point p){
 //    return x*p.x + y*p.y + z*p.z;
 //}
-
+void Point::set(float x, float y,float z){
+    this->x = x;
+    this->y = y;
+    this->z = z;
+}
 
 void Point::normalize(){
     float n = sqrt(x*x + y*y + z*z);

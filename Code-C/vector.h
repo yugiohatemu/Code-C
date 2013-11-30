@@ -30,6 +30,8 @@ struct Vector{
     Vector normalize();
     float get_norm();
     friend std::ostream& operator<< (std::ostream& stream, const Vector& vec);
+    
+    void set(float x, float y,float z);
 //    float get_angel();
 };
 

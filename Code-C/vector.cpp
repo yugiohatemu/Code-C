@@ -76,6 +76,11 @@ Vector Vector::cross(Vector vec){
     return Vector(y * vec.z - z * vec.y, z * vec.x - x * vec.z, x * vec.y - y * vec.x);
 }
 
+void Vector::set(float x, float y,float z){
+    this->x = x;
+    this->y = y;
+    this->z = z;
+}
 //float Vector::get_angel(){
 //    return atan2f (y,x) * 180 / PI;
 //}

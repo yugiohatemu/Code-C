@@ -23,6 +23,7 @@ struct Point{
     bool operator!= (const Point &p);
     friend std::ostream& operator<< (std::ostream& stream, const Point& p);
     
+    void set(float x, float y,float z);
     void normalize();
 };
 
