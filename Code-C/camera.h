@@ -12,6 +12,7 @@
 //singelton
 
 #include "algebra.h"
+#include "SDL/SDL_keysym.h"
 
 class Camera{
 public:
@@ -25,7 +26,8 @@ public:
     
     static Camera& Instance();
     void init_camera();
-    void switch_view();
+    void switch_view(Point p);
+    Vector get_direction(SDLKey dir);
     
 private:
     Camera();  // Private so that it can  not be called
@@ -33,6 +35,8 @@ private:
     Camera& operator=(Camera const&);
     
     Vector views[TOTAL_VIEW];
+    int current_view = FRONT_VIEW;
+    
 };
 
 #endif /* defined(__Code_C__camera__) */

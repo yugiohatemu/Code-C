@@ -9,6 +9,7 @@
 #include "protagonist.h"
 #include "SDL/SDL_opengl.h"
 #include <GLUT/GLUT.h>
+#include "camera.h"
 
 Protagonist::Protagonist(){
     
@@ -22,7 +23,7 @@ void Protagonist::render(){
     glPushMatrix();
 
     glTranslatef(anchor.x, anchor.y, anchor.z);
-    glColor3f(1.0, 1.0, 0);
+    glColor3f(0, 0, 1.0);
     glutSolidCube(0.5);
     
     glPopMatrix();
@@ -30,13 +31,19 @@ void Protagonist::render(){
 
 void Protagonist::update(SDL_Event event){
     float speed = 0.1f;
-    //going to be replaced by vector later
-    //use point + vector
-    if (event.type == SDL_KEYDOWN) {
+    //movement vector is based on global orientation
     
-        if(event.key.keysym.sym == SDLK_UP) anchor.z -= speed;
-        if(event.key.keysym.sym == SDLK_DOWN) anchor.z += speed;
-        if(event.key.keysym.sym == SDLK_LEFT) anchor.x -= speed;
-        if(event.key.keysym.sym == SDLK_RIGHT) anchor.x += speed;
+    if (event.type == SDL_KEYDOWN) {
+        Vector dir = Camera::Instance().get_direction(event.key.keysym.sym) * speed;
+        anchor = anchor + dir;
+        
+//        if(event.key.keysym.sym == SDLK_UP) anchor.z -= speed;
+//        if(event.key.keysym.sym == SDLK_DOWN) anchor.z += speed;
+//        if(event.key.keysym.sym == SDLK_LEFT) anchor.x -= speed;
+//        if(event.key.keysym.sym == SDLK_RIGHT) anchor.x += speed;
     }
+}
+
+Point Protagonist::get_anchor(){
+    return anchor;
 }

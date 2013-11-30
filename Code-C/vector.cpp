@@ -81,6 +81,30 @@ void Vector::set(float x, float y,float z){
     this->y = y;
     this->z = z;
 }
+
+
+void Vector::rotate(char axis, float angel){
+    angel = angel * PI / 180;
+    float cos_angel = cosf(angel);
+    float sin_angel = sinf(angel);
+    
+    switch (axis) {
+        case 'x':case 'X':
+            y = cos_angel * y - sin_angel * z;
+            z = cos_angel * y + sin_angel * z;
+            break;
+        case 'y':case 'Y':
+            x = cos_angel * x - sin_angel * z;
+            z = cos_angel * x + sin_angel * z;
+            break;
+        case 'z':case 'Z':
+            x = cos_angel * x - sin_angel * y;
+            y = cos_angel * x + sin_angel * y;
+            break;
+        default:
+            break;
+    }
+}
 //float Vector::get_angel(){
 //    return atan2f (y,x) * 180 / PI;
 //}

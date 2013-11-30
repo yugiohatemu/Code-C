@@ -10,7 +10,7 @@
 #define __Code_C__protagonist__
 
 #include "sprite.h"
-#include "point.h"
+#include "algebra.h"
 
 class Protagonist:public Sprite{
     Point anchor;
@@ -19,6 +19,7 @@ public:
     ~Protagonist();
     void render();
     void update(SDL_Event event);
+    Point get_anchor();
 };
 
 #endif /* defined(__Code_C__protagonist__) */

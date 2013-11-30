@@ -32,6 +32,7 @@ struct Vector{
     friend std::ostream& operator<< (std::ostream& stream, const Vector& vec);
     
     void set(float x, float y,float z);
+    void rotate(char axis, float angel);
 //    float get_angel();
 };
 

@@ -22,6 +22,8 @@
 #include "stopWatch.h"
 #include "protagonist.h"
 #include "track.h"
+#include "camera.h"
+
 //Screen attributes
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -127,10 +129,8 @@ int main( int argc, char *argv[] ){
     SDL_Event event;
     Protagonist * p = new Protagonist();
     Track * t = new Track();
-    //camera should be similar to that, with the application of some animation transition
-    //and based on character location
-    GLfloat camera[4][3] = {{0, 5 ,10}, {5 ,10, 0}, {0, -5 ,-10}, {5 ,-10, 0}};
-    int i = 0;
+ 
+    Camera::Instance().init_camera();
     //TODO: move based on global orientation
 	while( !quit ){
         
@@ -140,11 +140,7 @@ int main( int argc, char *argv[] ){
                 if(event.key.keysym.sym == SDLK_ESCAPE) quit = true;
                 if(event.key.keysym.sym == SDLK_TAB) {
                     //switch rotation
-                    i += 1;
-                    if ( i == 4) i = 0;
-                    glLoadIdentity();
-                    gluLookAt(camera[i][0], camera[i][1], camera[i][2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-                    
+                    Camera::Instance().switch_view(p->get_anchor());
                 }
             }
 		}
