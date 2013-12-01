@@ -36,11 +36,6 @@ void Protagonist::update(SDL_Event event){
     if (event.type == SDL_KEYDOWN) {
         Vector dir = Camera::Instance().get_direction(event.key.keysym.sym) * speed;
         anchor = anchor + dir;
-        
-//        if(event.key.keysym.sym == SDLK_UP) anchor.z -= speed;
-//        if(event.key.keysym.sym == SDLK_DOWN) anchor.z += speed;
-//        if(event.key.keysym.sym == SDLK_LEFT) anchor.x -= speed;
-//        if(event.key.keysym.sym == SDLK_RIGHT) anchor.x += speed;
     }
 }
 

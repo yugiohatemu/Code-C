@@ -9,7 +9,7 @@
 #ifndef __Trilight__sprite__
 #define __Trilight__sprite__
 
-#include "SDL/SDL.h"
+#include "SDL/SDL_events.h"
 
 //pure virtual class for basic drawing and accepting user input
 class Sprite{

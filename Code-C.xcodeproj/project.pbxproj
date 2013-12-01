@@ -23,6 +23,7 @@
 		B61B88471848FED6009F75D5 /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B88451848FED6009F75D5 /* vector.cpp */; };
 		B61B884A184A5BD3009F75D5 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B8848184A5BD3009F75D5 /* camera.cpp */; };
 		B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B884C184A62C1009F75D5 /* algebra.cpp */; };
+		B61B8851184AB879009F75D5 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B884F184AB879009F75D5 /* path.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,6 +68,8 @@
 		B61B8849184A5BD3009F75D5 /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
 		B61B884C184A62C1009F75D5 /* algebra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = algebra.cpp; sourceTree = "<group>"; };
 		B61B884D184A62C1009F75D5 /* algebra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = algebra.h; sourceTree = "<group>"; };
+		B61B884F184AB879009F75D5 /* path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path.cpp; sourceTree = "<group>"; };
+		B61B8850184AB879009F75D5 /* path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = path.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,16 +111,13 @@
 			isa = PBXGroup;
 			children = (
 				B61B884B184A6254009F75D5 /* algebra */,
+				B61B8852184ABD94009F75D5 /* path */,
 				B61B883518480732009F75D5 /* sprite.h */,
 				B61B8836184808F8009F75D5 /* protagonist.cpp */,
 				B61B8837184808F8009F75D5 /* protagonist.h */,
 				B61B882F1847B614009F75D5 /* stopWatch.cpp */,
 				B61B88301847B614009F75D5 /* stopWatch.h */,
 				B61B880E1847AD20009F75D5 /* main.cpp */,
-				B61B883918480F4B009F75D5 /* track.cpp */,
-				B61B883A18480F4B009F75D5 /* track.h */,
-				B61B883F1848E58A009F75D5 /* plate.cpp */,
-				B61B88401848E58A009F75D5 /* plate.h */,
 				B61B88101847AD20009F75D5 /* Code_C.1 */,
 				B61B88241847B321009F75D5 /* SDLMain.h */,
 				B61B88251847B321009F75D5 /* SDLMain.m */,
@@ -140,6 +140,19 @@
 				B61B88461848FED6009F75D5 /* vector.h */,
 			);
 			name = algebra;
+			sourceTree = "<group>";
+		};
+		B61B8852184ABD94009F75D5 /* path */ = {
+			isa = PBXGroup;
+			children = (
+				B61B883918480F4B009F75D5 /* track.cpp */,
+				B61B883A18480F4B009F75D5 /* track.h */,
+				B61B883F1848E58A009F75D5 /* plate.cpp */,
+				B61B88401848E58A009F75D5 /* plate.h */,
+				B61B884F184AB879009F75D5 /* path.cpp */,
+				B61B8850184AB879009F75D5 /* path.h */,
+			);
+			name = path;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +208,7 @@
 			files = (
 				B61B88341847B990009F75D5 /* point.cpp in Sources */,
 				B61B88441848E62C009F75D5 /* color.cpp in Sources */,
+				B61B8851184AB879009F75D5 /* path.cpp in Sources */,
 				B61B88411848E58A009F75D5 /* plate.cpp in Sources */,
 				B61B88261847B321009F75D5 /* SDLMain.m in Sources */,
 				B61B884A184A5BD3009F75D5 /* camera.cpp in Sources */,

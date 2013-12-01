@@ -7,7 +7,7 @@
 //
 
 #include "stopWatch.h"
-#include "SDL/SDL.h"
+#include "SDL/SDL_timer.h"
 
 StopWatch::StopWatch(double count_down){
     this->count_down = count_down * 1000;

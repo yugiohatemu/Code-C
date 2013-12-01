@@ -29,10 +29,12 @@ Camera& Camera::Instance(){
 //////////////////////////////////////////////////////////////////////
 
 void Camera::init_camera(){
-    views[FRONT_VIEW].set(0, 5, 10);
-    views[RIGHT_VIEW].set(5, 10, 0);
-    views[BACK_VIEW].set(0, -5, -10);
-    views[LEFT_VIEW].set(-5, 10, 0);
+    Vector pos(0,5,8);
+    //TODO:pos rotate 90, 
+    views[FRONT_VIEW] = pos;
+    views[RIGHT_VIEW].set(5, 8, 0);
+    views[BACK_VIEW].set(0, 5, -8);
+    views[LEFT_VIEW].set(-5, 8, 0);
 }
 
 void Camera::switch_view(Point p){
