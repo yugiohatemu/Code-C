@@ -21,7 +21,7 @@
 
 #include "stopWatch.h"
 #include "protagonist.h"
-#include "track.h"
+#include "path.h"
 #include "camera.h"
 
 //Screen attributes
@@ -128,8 +128,21 @@ int main( int argc, char *argv[] ){
     
     SDL_Event event;
     Protagonist * p = new Protagonist();
-    Track * t = new Track();
- 
+
+    std::vector<Point> point_list;
+    std::vector<Vector> normal_list;
+    
+    point_list.push_back(Point());
+    point_list.push_back(Point(1,0,-1));
+    point_list.push_back(Point(3,1,-2));
+    point_list.push_back(Point(2,2,-2));
+    
+    normal_list.push_back(Vector(0,1,0));
+    normal_list.push_back(Vector(-1,1,0));
+    normal_list.push_back(Vector(-1,-1,0));
+    
+    Path * path = create_path(point_list,normal_list);
+    
     Camera::Instance().init_camera();
     //TODO: move based on global orientation
 	while( !quit ){
@@ -147,18 +160,22 @@ int main( int argc, char *argv[] ){
         
         if (fps.is_timeup()){
             render();
-            p->render();
-            t->render();
-            p->update(event);
+            render_path(path);
+            
+            if (p) {
+                p->render();
+                p->update(event);
+            }
             SDL_GL_SwapBuffers();
             fps.start();
         }
 	}
     
+    delete_path(path);
 	//Clean up
 	SDL_Quit();
     delete p;
-    delete t;
+//    delete t;
     
 	return 0;
 }

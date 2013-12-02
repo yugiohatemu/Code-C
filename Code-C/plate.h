@@ -17,9 +17,11 @@ class Plate:public Sprite{
     Point top_left, top_right, bot_left, bot_right;
     Vector normal;
     Color color;
+    Point start, end;
 public:
     Plate();
     Plate(Point tl, Point tr, Point bl, Point br, Vector n, Color c);
+    Plate(Point start, Point end, Vector n);
     ~Plate();
     void render();
     void update(SDL_Event event);

@@ -19,9 +19,14 @@ Plate::Plate(Point tl, Point tr, Point bl, Point br, Vector n, Color c):
     
 }
 
+Plate::Plate(Point start, Point end, Vector n):start(start), end(end), normal(n){
+    color = Color(1,0,0);
+}
+
 Plate::~Plate(){
     
 }
+
 void Plate::render(){
     glPushMatrix();
     glBegin(GL_QUADS);

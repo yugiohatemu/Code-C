@@ -110,6 +110,7 @@ void Vector::rotate(char axis, float angel){
     }
 
 }
+
 //float Vector::get_angel(){
 //    return atan2f (y,x) * 180 / PI;
 //}

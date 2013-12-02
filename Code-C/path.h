@@ -17,9 +17,10 @@ class Path:public Sprite{
 private:
     Point start, end;
     Vector to_next, to_prev;
-    
+    Vector normal; //angel of the plane!
+    Vector surface;
 public:
-    Path(Point start, Point end);
+    Path(Point start, Point end, Vector normal);
     ~Path();
     void render();
     void update(SDL_Event event);
@@ -28,8 +29,8 @@ public:
     Path * next;
 };
 
-Path* create_path(std::vector<Point> point_list);
+Path* create_path(std::vector<Point> point_list,std::vector<Vector> normal_list);
 void delete_path(Path * p);
-
+void render_path(Path * p);
 
 #endif /* defined(__Code_C__path__) */
