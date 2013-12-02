@@ -10,6 +10,8 @@
 #include "SDL/SDL_opengl.h"
 #include <GLUT/GLUT.h>
 #include "camera.h"
+#include "path.h"
+#include "utility.h"
 
 Protagonist::Protagonist(){
     
@@ -31,11 +33,21 @@ void Protagonist::render(){
 
 void Protagonist::update(SDL_Event event){
     float speed = 0.1f;
-    //movement vector is based on global orientation
-    
+    //cos(angle)=dot(a,b)/(length(a)length(b))
+    //so calculate based on each 3 axis
     if (event.type == SDL_KEYDOWN) {
-        Vector dir = Camera::Instance().get_direction(event.key.keysym.sym) * speed;
-        anchor = anchor + dir;
+        Path * current = dynamic_cast<Path *>(path);
+        Point next_anchor = anchor + current->get_to_next() * speed;
+        //now, get angel?, vector<1, 0, -1>
+        //how do we rotate to that?
+        //for each plane, rotate respectively, I guess?
+        //so for 1, -1, will be 45 degree around y axis
+        if (next_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
+            anchor = next_anchor;
+        }else{
+            anchor = current->get_end();
+            if (current->next) path = current->next;
+        }
     }
 }
 

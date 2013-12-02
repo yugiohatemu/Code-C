@@ -8,6 +8,7 @@
 
 #include "point.h"
 #include <math.h>
+#include "utility.h"
 
 Point::Point() {
     x = 0.f;
@@ -76,5 +77,9 @@ void Point::normalize(){
         y = y/n;
         z = z/n;
     }
+}
+
+bool Point::is_whithin(Point a, Point b){
+    return is_num_whithin(x, a.x, b.x) && is_num_whithin(y, a.y, b.y) && is_num_whithin(z, a.z, b.z);
 }
 

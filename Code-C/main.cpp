@@ -138,10 +138,11 @@ int main( int argc, char *argv[] ){
     point_list.push_back(Point(2,2,-2));
     
     normal_list.push_back(Vector(0,1,0));
-    normal_list.push_back(Vector(-1,1,0));
-    normal_list.push_back(Vector(-1,-1,0));
+    normal_list.push_back(Vector(1,1,0));
+    normal_list.push_back(Vector(1,-1,1));
     
     Path * path = create_path(point_list,normal_list);
+    p->path = path;
     
     Camera::Instance().init_camera();
     //TODO: move based on global orientation

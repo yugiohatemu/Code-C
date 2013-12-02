@@ -10,7 +10,7 @@
 #include "SDL/SDL_opengl.h"
 
 Path::Path(Point start, Point end, Vector normal):start(start), end(end), normal(normal){
-    to_next = start - end;
+    to_next = end - start;
     to_next.normalize();
     to_prev = to_next * -1;
     prev = next = NULL;
@@ -27,7 +27,7 @@ void Path::render(){
     glPushMatrix();
     
     glBegin(GL_LINES);
-    glColor3f(1, 0, 0);
+    glColor3f(1, 1, 1);
     glVertex3f(start.x, start.y, start.z);
     glVertex3f(end.x, end.y, end.z);
     glEnd();
@@ -35,10 +35,10 @@ void Path::render(){
     glBegin(GL_QUADS);
     glColor3f(1, 0, 0);
     glNormal3f(normal.x, normal.y, normal.z);
-    Point p1 = start + surface; glVertex3f(p1.x, p1.y, p1.z);
-    Point p2 = end + surface; glVertex3f(p2.x, p2.y, p2.z);
-    Point p3 = end + (surface * -1); glVertex3f(p3.x, p3.y, p3.z);
-    Point p4 = start + (surface * -1); glVertex3f(p4.x, p4.y, p4.z);
+    Point p1 = start + surface * 0.5; glVertex3f(p1.x, p1.y, p1.z);
+    Point p2 = end + surface* 0.5; glVertex3f(p2.x, p2.y, p2.z);
+    Point p3 = end + (surface * -0.5); glVertex3f(p3.x, p3.y, p3.z);
+    Point p4 = start + (surface * -0.5); glVertex3f(p4.x, p4.y, p4.z);
     glEnd();
     
     glPopMatrix();
@@ -46,6 +46,25 @@ void Path::render(){
 
 void Path::update(SDL_Event event){
     
+}
+
+Point Path::get_end(){
+    return end;
+}
+Point Path::get_start(){
+    return start;
+}
+
+Vector Path::get_to_next(){
+    return to_next;
+}
+
+Vector Path::get_to_prev(){
+    return to_prev;
+}
+
+Vector Path::get_normal(){
+    return normal;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,4 +120,5 @@ void render_path(Path * p){
         }
     }
 }
+
 

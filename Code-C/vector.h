@@ -27,13 +27,13 @@ struct Vector{
     bool operator==(const Vector & vec);
     bool operator!=(const Vector & vec);
 //    Vector rotate(float angel);
-    Vector normalize();
+    void normalize();
     float get_norm();
     friend std::ostream& operator<< (std::ostream& stream, const Vector& vec);
     
     void set(float x, float y,float z);
     void rotate(char axis, float angel);
-//    float get_angel();
+    float get_angel_to(Vector vec);
 };
 
 //bool is_vector_parallel(Vector a, Vector b);

@@ -19,6 +19,8 @@ private:
     Vector to_next, to_prev;
     Vector normal; //angel of the plane!
     Vector surface;
+    //actually we have 3 angels
+    //though I would definately like to approximate them to int
 public:
     Path(Point start, Point end, Vector normal);
     ~Path();
@@ -27,10 +29,17 @@ public:
     
     Path * prev;
     Path * next;
+    
+    Vector get_to_next();
+    Vector get_to_prev();
+    Vector get_normal();
+    Point get_end();
+    Point get_start();
 };
 
 Path* create_path(std::vector<Point> point_list,std::vector<Vector> normal_list);
 void delete_path(Path * p);
 void render_path(Path * p);
+
 
 #endif /* defined(__Code_C__path__) */

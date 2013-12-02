@@ -24,6 +24,7 @@
 		B61B884A184A5BD3009F75D5 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B8848184A5BD3009F75D5 /* camera.cpp */; };
 		B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B884C184A62C1009F75D5 /* algebra.cpp */; };
 		B61B8851184AB879009F75D5 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B884F184AB879009F75D5 /* path.cpp */; };
+		B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C9053184D205B00B9D7E2 /* utility.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,6 +71,8 @@
 		B61B884D184A62C1009F75D5 /* algebra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = algebra.h; sourceTree = "<group>"; };
 		B61B884F184AB879009F75D5 /* path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path.cpp; sourceTree = "<group>"; };
 		B61B8850184AB879009F75D5 /* path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = path.h; sourceTree = "<group>"; };
+		B65C9053184D205B00B9D7E2 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
+		B65C9054184D205B00B9D7E2 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +141,8 @@
 				B61B88431848E62C009F75D5 /* color.h */,
 				B61B88451848FED6009F75D5 /* vector.cpp */,
 				B61B88461848FED6009F75D5 /* vector.h */,
+				B65C9053184D205B00B9D7E2 /* utility.cpp */,
+				B65C9054184D205B00B9D7E2 /* utility.h */,
 			);
 			name = algebra;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 				B61B88411848E58A009F75D5 /* plate.cpp in Sources */,
 				B61B88261847B321009F75D5 /* SDLMain.m in Sources */,
 				B61B884A184A5BD3009F75D5 /* camera.cpp in Sources */,
+				B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */,
 				B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */,
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,
 				B61B88471848FED6009F75D5 /* vector.cpp in Sources */,

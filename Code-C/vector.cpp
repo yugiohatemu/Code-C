@@ -55,12 +55,12 @@ std::ostream& operator<< (std::ostream& stream, const Vector& vec){
 }
 
 //////////////////////////////////
-Vector Vector::normalize(){
+void Vector::normalize(){
     float n = get_norm();
     if (n != 0) {
-        return Vector(x/n, y/n,z/n);
-    }else{
-        return Vector(); //must be 0 0 then
+        x = x/n;
+        y = y/n;
+        z = z/n;
     }
 }
 
@@ -110,7 +110,13 @@ void Vector::rotate(char axis, float angel){
     }
 
 }
-
+float Vector::get_angel_to(Vector vec){
+    float dot_prod = dot(vec);
+    float norm_prod = get_norm() * vec.get_norm();
+    //shouldnt be 0 anyway
+    if (norm_prod == 0) return 0; //should give a errror message
+    else return acosf(dot_prod/norm_prod);
+}
 //float Vector::get_angel(){
 //    return atan2f (y,x) * 180 / PI;
 //}

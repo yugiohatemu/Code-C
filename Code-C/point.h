@@ -25,6 +25,7 @@ struct Point{
     
     void set(float x, float y,float z);
     void normalize();
+    bool is_whithin(Point a, Point b);
 };
 
 #endif /* defined(__Trilight__point__) */
