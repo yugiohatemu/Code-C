@@ -19,10 +19,18 @@ private:
     Vector to_next, to_prev;
     Vector normal; //angel of the plane!
     Vector surface;
-    //a lazy way to store angels
-    //actually we have 3 angels
-    //though I would definately like to approximate them to int
 public:
+    struct Rotation{
+        float sin_p, cos_p, sin_t, cos_t;
+        float X();
+        float Y();
+        float Z();
+        Rotation(float p, float t);
+        Rotation(const Rotation & r);
+        Rotation &operator=(const Rotation & r);
+    };
+    
+    
     Path(Point start, Point end, Vector normal);
     ~Path();
     void render();

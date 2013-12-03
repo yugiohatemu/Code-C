@@ -18,18 +18,15 @@ Path::Path(Point start, Point end, Vector normal):start(start), end(end), normal
     surface = to_next.cross(normal);
     surface.normalize();
     
-    //so test for perpendicular 1st
-    //if not, then test for angel for the other axis
-//    angle.x = to_next.get_angel_to(Vector(0,1,1)); //y, z plane
-//    angle.y = to_next.get_angel_to(Vector(1,0,1)); //x, z plane
-//    angle.z = 0; //x, y plane
+    angle.y = to_next.get_angel_to(Vector(1,0,0)); //y, z plane
+    angle.z = to_next.get_angel_to(Vector(to_next.x,0,to_next.z)); //x, z plane
+   
+    to_next.compute_angle();
     
-    //do we test for parallel 1st then do angel testing
-    
-    
+    debug(angle);
 //    debug(surface);
-//    debug(angle);
-    //how do I divide that into 3 axis
+//    debug(to_next);
+
 }
 
 Path::~Path(){

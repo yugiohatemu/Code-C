@@ -9,7 +9,7 @@
 #include "vector.h"
 #include <math.h>
 #define PI 3.1415
-
+#include <iostream>
 Vector::Vector(){
     x = 0.f;
     y = 0.f;
@@ -114,15 +114,24 @@ float Vector::get_angel_to(Vector vec){
     float dot_prod = dot(vec);
     float norm_prod = get_norm() * vec.get_norm();
     //shouldnt be 0 anyway
-    
-    if (norm_prod == 0) return 0; //should give a errror message
-    else return (int)(asinf(dot_prod/norm_prod)*180.0 / PI);
+    if (norm_prod == 0) return 0;
+    int angle = (acosf(dot_prod/norm_prod)*180.0 / PI); //asin or acos?
+    //should give a errror message
+    if (angle > 180  || angle < -180) angle = 0;
+    return angle;
 }
 
-Vector Vector::get_angel(){
-    //test perpendicular
-    //every rotation can be done using only two rotation
-    //using z && y or x && y
+void Vector::compute_angle(){
+    float r = get_norm();
+    if (r == 0) return ;
+    //special case?
+    int t = atan2f(y, x) * 180 / PI;
+    int p = acosf(z / r) * 180 / PI;
+//    std::cout<<x<<" "<<y<<" "<<z<<std::endl;
+    std::cout<<t<<" "<<p<<std::endl;
+    //what kind of format
+//    float angles[4] = {sinf(p * PI / 180.0), cosf(p* PI / 180.0), sinf(t* PI / 180.0), cosf(t* PI / 180.0)};
+    //something like custom in path,
     
-    return Vector();
 }
+

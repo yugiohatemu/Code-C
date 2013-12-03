@@ -28,12 +28,13 @@ void Protagonist::render(){
     //added
     Path * current = dynamic_cast<Path *>(path);
     Point angle = current->get_angle();
-    glRotatef(angle.x, 1, 0, 0);
+    Vector vec = current->get_to_next();
     glRotatef(angle.y, 0, 1, 0);
-    glRotatef(angle.z, 0, 0, 1);
-    
+    glRotatef(angle.z, vec.x, 0, vec.z);
+
+//    glRotatef(45, 0, 1, 0);
     glColor3f(0, 0, 1.0);
-    glutSolidCube(0.5);
+    glutSolidTeapot(0.5);
     
     glPopMatrix();
 }

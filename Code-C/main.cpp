@@ -143,10 +143,10 @@ int main( int argc, char *argv[] ){
     normal_list.push_back(Vector(1,-1,1));
     
     angle_list.push_back(Point(0,45,0));
-    angle_list.push_back(Point(0,-45,-90));
+    angle_list.push_back(Point(0,-45,45));
     angle_list.push_back(Point(0,0,45));
     
-    Path * path = create_path(point_list,normal_list, angle_list);
+    Path * path = create_path(point_list,normal_list);
     p->path = path;
     //rotate is counter clockwise?
     Camera::Instance().init_camera();

@@ -34,7 +34,8 @@ struct Vector{
     void set(float x, float y,float z);
     void rotate(char axis, float angel);
     float get_angel_to(Vector vec);
-    Vector get_angel();
+    
+    void compute_angle();
 };
 
 //bool is_vector_parallel(Vector a, Vector b);
