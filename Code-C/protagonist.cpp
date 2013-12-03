@@ -23,8 +23,15 @@ Protagonist::~Protagonist(){
 
 void Protagonist::render(){
     glPushMatrix();
-
+    
     glTranslatef(anchor.x, anchor.y, anchor.z);
+    //added
+    Path * current = dynamic_cast<Path *>(path);
+    Point angle = current->get_angle();
+    glRotatef(angle.x, 1, 0, 0);
+    glRotatef(angle.y, 0, 1, 0);
+    glRotatef(angle.z, 0, 0, 1);
+    
     glColor3f(0, 0, 1.0);
     glutSolidCube(0.5);
     
@@ -36,17 +43,26 @@ void Protagonist::update(SDL_Event event){
     //cos(angle)=dot(a,b)/(length(a)length(b))
     //so calculate based on each 3 axis
     if (event.type == SDL_KEYDOWN) {
-        Path * current = dynamic_cast<Path *>(path);
-        Point next_anchor = anchor + current->get_to_next() * speed;
-        //now, get angel?, vector<1, 0, -1>
-        //how do we rotate to that?
-        //for each plane, rotate respectively, I guess?
-        //so for 1, -1, will be 45 degree around y axis
-        if (next_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
-            anchor = next_anchor;
-        }else{
-            anchor = current->get_end();
-            if (current->next) path = current->next;
+        if(event.key.keysym.sym == SDLK_UP){
+            Path * current = dynamic_cast<Path *>(path);
+            Point next_anchor = anchor + current->get_to_next() * speed;
+        
+            if (next_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
+                anchor = next_anchor;
+            }else{
+                anchor = current->get_end();
+                if (current->next) path = current->next;
+            }
+        }else if(event.key.keysym.sym == SDLK_DOWN){
+            Path * current = dynamic_cast<Path *>(path);
+            Point prev_anchor = anchor + current->get_to_prev() * speed;
+            
+            if (prev_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
+                anchor = prev_anchor;
+            }else{
+                anchor = current->get_start();
+                if (current->prev) path = current->prev;
+            }
         }
     }
 }

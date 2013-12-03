@@ -83,3 +83,9 @@ bool Point::is_whithin(Point a, Point b){
     return is_num_whithin(x, a.x, b.x) && is_num_whithin(y, a.y, b.y) && is_num_whithin(z, a.z, b.z);
 }
 
+void Point::clamp_angle(){
+    //0 to 180, >= 90, we set it to 9
+    if (x >= 90) x = 0;
+    if (y >= 90) y = 0;
+    if (z >= 90) z = 0;
+}

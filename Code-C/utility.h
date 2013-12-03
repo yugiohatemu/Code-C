@@ -16,10 +16,17 @@ bool is_num_whithin(NUM n, NUM a, NUM b){
 }
 
 template<class PRINT>
-
 void debug(PRINT s){
     std::cout<<"DEBUG: "<<s<<std::endl;
 }
 
+template<class CNUM>
+CNUM clamp(CNUM n, CNUM a, CNUM b){
+    CNUM small = std::min(a, b);
+    CNUM big = std::max(a,b);
+    if (is_num_whithin(n,a,b)) return n;
+    else if (n < small) return small;
+    else return big;
+}
 
 #endif /* defined(__Code_C__utility__) */

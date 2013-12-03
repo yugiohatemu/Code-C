@@ -131,6 +131,7 @@ int main( int argc, char *argv[] ){
 
     std::vector<Point> point_list;
     std::vector<Vector> normal_list;
+    std::vector<Point> angle_list;
     
     point_list.push_back(Point());
     point_list.push_back(Point(1,0,-1));
@@ -141,9 +142,13 @@ int main( int argc, char *argv[] ){
     normal_list.push_back(Vector(1,1,0));
     normal_list.push_back(Vector(1,-1,1));
     
-    Path * path = create_path(point_list,normal_list);
-    p->path = path;
+    angle_list.push_back(Point(0,45,0));
+    angle_list.push_back(Point(0,-45,-90));
+    angle_list.push_back(Point(0,0,45));
     
+    Path * path = create_path(point_list,normal_list, angle_list);
+    p->path = path;
+    //rotate is counter clockwise?
     Camera::Instance().init_camera();
     //TODO: move based on global orientation
 	while( !quit ){
@@ -154,7 +159,7 @@ int main( int argc, char *argv[] ){
                 if(event.key.keysym.sym == SDLK_ESCAPE) quit = true;
                 if(event.key.keysym.sym == SDLK_TAB) {
                     //switch rotation
-                    Camera::Instance().switch_view(p->get_anchor());
+                    Camera::Instance().switch_view(Point(0, 0, 0));
                 }
             }
 		}

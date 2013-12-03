@@ -114,27 +114,15 @@ float Vector::get_angel_to(Vector vec){
     float dot_prod = dot(vec);
     float norm_prod = get_norm() * vec.get_norm();
     //shouldnt be 0 anyway
+    
     if (norm_prod == 0) return 0; //should give a errror message
-    else return acosf(dot_prod/norm_prod);
+    else return (int)(asinf(dot_prod/norm_prod)*180.0 / PI);
 }
-//float Vector::get_angel(){
-//    return atan2f (y,x) * 180 / PI;
-//}
-//Vector Vector::rotate(float angel){
-//    angel = angel * PI / 180;
-//    float cos_angel = cosf(angel);
-//    float sin_angel = sinf(angel);
-//    //[cos -sin ][x]
-//    //[sin cos  ][y]
-//    return Vector(cos_angel * x - sin_angel * y, sin_angel * x + cos_angel * y );
-//}
-//
-////////////////////////////////////////////
-//bool is_vector_parallel(Vector a, Vector b){
-//    return a.cross(b) == 0;
-//}
-//
-//Vector get_perpendicular(Vector a){
-//    return Vector(-a.y, a.x);
-//}
 
+Vector Vector::get_angel(){
+    //test perpendicular
+    //every rotation can be done using only two rotation
+    //using z && y or x && y
+    
+    return Vector();
+}
