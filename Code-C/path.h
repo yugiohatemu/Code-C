@@ -20,18 +20,19 @@ private:
     Vector normal; //angel of the plane!
     Vector surface;
 public:
-    struct Rotation{
-        float sin_p, cos_p, sin_t, cos_t;
-        float X();
-        float Y();
-        float Z();
-        Rotation(float p, float t);
-        Rotation(const Rotation & r);
-        Rotation &operator=(const Rotation & r);
-    };
+//    struct Rotation{
+//        float sin_p, cos_p, sin_t, cos_t;
+//        float X();
+//        float Y();
+//        float Z();
+//        Rotation(float p, float t);
+//        Rotation(const Rotation & r);
+//        Rotation &operator=(const Rotation & r);
+//    };
     
     
     Path(Point start, Point end, Vector normal);
+    Path(Point start, Point end, Vector normal, Vector surface);
     ~Path();
     void render();
     void update(SDL_Event event);
@@ -47,10 +48,13 @@ public:
     Point get_angle();
     
     Point angle;
+    void mult_matrix();
+    float * matrix;
 };
 
 Path* create_path(std::vector<Point> point_list,std::vector<Vector> normal_list);
 Path* create_path(std::vector<Point> point_list, std::vector<Vector> normal_list, std::vector<Point> angle_list);
+Path* create_path(std::vector<Point> point_list, std::vector<Vector> normal_list, std::vector<Vector> surface_list);
 void delete_path(Path * p);
 void render_path(Path * p);
 

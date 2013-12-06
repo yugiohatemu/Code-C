@@ -9,7 +9,7 @@
 #include "vector.h"
 #include <math.h>
 #define PI 3.1415
-#include <iostream>
+
 Vector::Vector(){
     x = 0.f;
     y = 0.f;
@@ -121,17 +121,12 @@ float Vector::get_angel_to(Vector vec){
     return angle;
 }
 
-void Vector::compute_angle(){
-    float r = get_norm();
-    if (r == 0) return ;
-    //special case?
-    int t = atan2f(y, x) * 180 / PI;
-    int p = acosf(z / r) * 180 / PI;
-//    std::cout<<x<<" "<<y<<" "<<z<<std::endl;
-    std::cout<<t<<" "<<p<<std::endl;
-    //what kind of format
-//    float angles[4] = {sinf(p * PI / 180.0), cosf(p* PI / 180.0), sinf(t* PI / 180.0), cosf(t* PI / 180.0)};
-    //something like custom in path,
-    
-}
+//void compute_angle(){
+//    float r = get_norm();
+//    if (r == 0) return ;
+//    //special case?
+//    int t = atan2f(y, x) * 180 / PI;
+//    int p = acosf(z / r) * 180 / PI;
+//    std::cout<<t<<" "<<p<<std::endl;
+//}
 

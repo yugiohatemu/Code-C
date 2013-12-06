@@ -35,10 +35,7 @@ struct Vector{
     void rotate(char axis, float angel);
     float get_angel_to(Vector vec);
     
-    void compute_angle();
 };
 
-//bool is_vector_parallel(Vector a, Vector b);
-//Vector get_perpendicular(Vector a);
 
 #endif /* defined(__Trilight__vector__) */

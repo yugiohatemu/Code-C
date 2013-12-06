@@ -23,16 +23,11 @@ Protagonist::~Protagonist(){
 
 void Protagonist::render(){
     glPushMatrix();
-    
     glTranslatef(anchor.x, anchor.y, anchor.z);
     //added
     Path * current = dynamic_cast<Path *>(path);
-    Point angle = current->get_angle();
-    Vector vec = current->get_to_next();
-    glRotatef(angle.y, 0, 1, 0);
-    glRotatef(angle.z, vec.x, 0, vec.z);
-
-//    glRotatef(45, 0, 1, 0);
+    current->mult_matrix();
+    
     glColor3f(0, 0, 1.0);
     glutSolidTeapot(0.5);
     
