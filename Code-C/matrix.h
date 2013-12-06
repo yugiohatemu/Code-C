@@ -20,7 +20,9 @@ public:
     Matrix(const Matrix & m);
     Matrix(float * values);
     Matrix(Vector c1, Vector c2, Vector c3, Vector c4);
-    Matrix(float angle, Vector vec);
+    Matrix translate(Vector vec);
+    Matrix roatate(Vector vec, float angle);
+    Matrix scale(Vector vec);
     
     Matrix& operator= (const Matrix & m);
     Matrix operator *(const Matrix& m);
@@ -29,9 +31,7 @@ public:
     float* begin() const;
     Matrix invert();
     Matrix transpose();
-    Matrix translate();
-    Matrix roatate();
-    Matrix scale();
+    
 };
 
 

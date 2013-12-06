@@ -30,9 +30,13 @@ Matrix::Matrix(Vector c1, Vector c2, Vector c3, Vector c4){
     v[3] = 0 ; v[7] = 0; v[11] = 0 ; v[15] = 1;
 }
 
-Matrix::Matrix(float angle, Vector vec){
-    vec.normalize();
+Matrix Matrix::translate(Vector vec){
+    return Matrix(Vector(1,0,0), Vector(0,1,0), Vector(0,0,1), vec);
+}
 
+Matrix Matrix::roatate(Vector vec, float angle){
+    vec.normalize();
+    
     float c = cosf(angle * 3.1415926 / 180.0);
     float s = sinf(angle * 3.1415926 / 180.0);
     float x = vec.x; float y = vec.y; float z = vec.z;
@@ -41,18 +45,16 @@ Matrix::Matrix(float angle, Vector vec){
     v[1] = y*x*(1-c)+z*s; v[5] = y*y*(1-c)+c; v[9] = y*z*(1-c)-x*s; v[13] = 0;
     v[2] = x*z*(1-c)-y*s; v[6] = y*z*(1-c)+x*s; v[10] = z*z*(1-c)+c; v[14] = 0;
     v[3] = 0;  v[7] = 0 ;  v[11] = 0;  v[15] = 1;
+
+    return Matrix(v);
 }
 
-Matrix Matrix::translate(){
-    return Matrix();
-}
-
-Matrix Matrix::roatate(){
-    return Matrix();
-}
-
-Matrix Matrix::scale(){
-    return Matrix();
+Matrix Matrix::scale(Vector vec){
+    if (vec.x != 0 && vec.y != 0 && vec.z != 0) {
+        return Matrix(Vector(vec.x,0,0), Vector(0,vec.y,0), Vector(0,0,vec.z), Vector(0,0,0));
+    }else{
+        return Matrix();
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////

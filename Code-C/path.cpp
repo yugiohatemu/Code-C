@@ -19,16 +19,14 @@ Path::Path(Point start, Point end, Vector n):start(start), end(end), normal(n){
     surface = to_next.cross(normal);
     surface.normalize();
     //test for waht?
-    matrix= basis_matrix(to_next, normal, surface, start);
-    //debug(normal);
-    debug(surface);
+    matrix= basis_matrix(surface, normal, to_next, Point());
     
-//    for (int i = 0; i < 4; i++){
-//        for (int j = 0; j < 4; j++)
-//            std::cout<<matrix[4*j+i]<<" ";
+//    for (int i = 0; i < 4; i += 1) {
+//        for (int j = 0; j < 4; j += 1) {
+//            std::cout<<matrix[4*j + i]<<" ";
+//        }
 //        std::cout<<std::endl;
 //    }
-//    std::cout<<"matrix end"<<std::endl;
 }
 
 
@@ -40,13 +38,23 @@ Path::Path(Point start, Point end, Vector nor, Vector sur):start(start), end(end
     normal.normalize();
     surface.normalize();
     //this one should be correct
-    matrix= basis_matrix(to_next, normal, surface, start);
+    matrix= basis_matrix(surface, normal, to_next, Point());
+//    debug(surface); debug(normal), debug(to_next);
+//    for (int i = 0; i < 4; i += 1) {
+//        for (int j = 0; j < 4; j += 1) {
+//            std::cout<<matrix[4*j + i]<<" ";
+//        }
+//        std::cout<<std::endl;
+//    }
 }
 
 void Path::mult_matrix(){
+//    glRotatef(angle.x, normal.x, normal.y, normal.z);
 //    glMultMatrixf(matrix);
-//    glTranslatef(start.x, start.y, start.z);
     //shouldnt need to do this translation be this one
+//    glTranslatef(start.x, start.y, start.z);
+//    glRotatef(angle.y, 0, 1, 0);
+//    glRotatef(angle.x, to_next.x, to_next.y, to_next.z);
 }
 
 Path::~Path(){
@@ -64,11 +72,9 @@ void Path::render(){
     glEnd();
     
     glTranslatef(start.x, start.y, start.z);
-    glRotatef(angle.x, to_next.x, to_next.y, to_next.z);
+//    glRotatef(angle.x, to_next.x, to_next.y, to_next.z);
     glTranslatef(-start.x, -start.y, -start.z);
-//    glRotatef(angle.x, 1, 0, 0);
-//    glRotatef(angle.y, 0, 1, 0);
-//    glRotatef(angle.z, 0, 0, 1);
+
     //add rotation here
     glBegin(GL_QUADS);
     glColor3f(1, 0, 0);
@@ -79,10 +85,6 @@ void Path::render(){
     glVertex3f(end.x + 0.5, end.y, end.z);
     glVertex3f(end.x - 0.5, end.y, end.z);
     //if we get angels, then we dont need to calculate that again
-//    Point p1 = start + surface * 0.5; glVertex3f(p1.x, p1.y, p1.z);
-//    Point p2 = end + surface* 0.5; glVertex3f(p2.x, p2.y, p2.z);
-//    Point p3 = end + (surface * -0.5); glVertex3f(p3.x, p3.y, p3.z);
-//    Point p4 = start + (surface * -0.5); glVertex3f(p4.x, p4.y, p4.z);
     glEnd();
     
     glPopMatrix();

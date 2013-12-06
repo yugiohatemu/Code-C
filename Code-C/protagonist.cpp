@@ -23,8 +23,9 @@ Protagonist::~Protagonist(){
 
 void Protagonist::render(){
     glPushMatrix();
+    
     glTranslatef(anchor.x, anchor.y, anchor.z);
-    //added
+   
     Path * current = dynamic_cast<Path *>(path);
     current->mult_matrix();
     

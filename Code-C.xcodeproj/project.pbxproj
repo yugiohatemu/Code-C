@@ -25,6 +25,7 @@
 		B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B884C184A62C1009F75D5 /* algebra.cpp */; };
 		B61B8851184AB879009F75D5 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B884F184AB879009F75D5 /* path.cpp */; };
 		B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C9053184D205B00B9D7E2 /* utility.cpp */; };
+		B65C90581852426F00B9D7E2 /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C90561852426F00B9D7E2 /* matrix.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,6 +74,8 @@
 		B61B8850184AB879009F75D5 /* path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = path.h; sourceTree = "<group>"; };
 		B65C9053184D205B00B9D7E2 /* utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility.cpp; sourceTree = "<group>"; };
 		B65C9054184D205B00B9D7E2 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
+		B65C90561852426F00B9D7E2 /* matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix.cpp; sourceTree = "<group>"; };
+		B65C90571852426F00B9D7E2 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 				B61B88461848FED6009F75D5 /* vector.h */,
 				B65C9053184D205B00B9D7E2 /* utility.cpp */,
 				B65C9054184D205B00B9D7E2 /* utility.h */,
+				B65C90561852426F00B9D7E2 /* matrix.cpp */,
+				B65C90571852426F00B9D7E2 /* matrix.h */,
 			);
 			name = algebra;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 				B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */,
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,
 				B61B88471848FED6009F75D5 /* vector.cpp in Sources */,
+				B65C90581852426F00B9D7E2 /* matrix.cpp in Sources */,
 				B61B8838184808F8009F75D5 /* protagonist.cpp in Sources */,
 				B61B88311847B614009F75D5 /* stopWatch.cpp in Sources */,
 				B61B883B18480F4B009F75D5 /* track.cpp in Sources */,

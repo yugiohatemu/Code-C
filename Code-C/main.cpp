@@ -143,8 +143,8 @@ int main( int argc, char *argv[] ){
     normal_list.push_back(Vector(1,-1,1));
     
     angle_list.push_back(Point(45,0,0));
-    angle_list.push_back(Point(-90,0,0));
-    angle_list.push_back(Point(45,0,0));
+    angle_list.push_back(Point(80,0,0));
+    angle_list.push_back(Point(60,0,0));
     
     std::vector<Vector> surface_list;
     surface_list.push_back(Vector(1,0,1));
@@ -155,6 +155,8 @@ int main( int argc, char *argv[] ){
     p->path = path;
     //rotate is counter clockwise?
     Camera::Instance().init_camera();
+//    Vector p1(-0.5, 0, -0.5); Vector p2(-0.5, 0, 0.5); Vector p3(0.5, 0, 0.5); Vector p4(0.5, 0, -0.5);
+
     //TODO: move based on global orientation
 	while( !quit ){
         
@@ -171,18 +173,21 @@ int main( int argc, char *argv[] ){
         
         if (fps.is_timeup()){
             render();
-            render_path(path);
+//            render_path(path);
+//            
+//            if (p) {
+//                p->render();
+//                p->update(event);
+//            }
             
-            if (p) {
-                p->render();
-                p->update(event);
-            }
+            
             SDL_GL_SwapBuffers();
             fps.start();
         }
 	}
     
     delete_path(path);
+
 	//Clean up
 	SDL_Quit();
     delete p;

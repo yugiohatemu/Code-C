@@ -26,7 +26,7 @@ struct Vector{
     Vector operator=(const Vector & vec);
     bool operator==(const Vector & vec);
     bool operator!=(const Vector & vec);
-//    Vector rotate(float angel);
+
     void normalize();
     float get_norm();
     friend std::ostream& operator<< (std::ostream& stream, const Vector& vec);
