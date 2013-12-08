@@ -19,7 +19,7 @@ Path::Path(Point start, Point end, Vector n):start(start), end(end), normal(n){
     surface = to_next.cross(normal);
     surface.normalize();
     //test for waht?
-    matrix= basis_matrix(surface, normal, to_next, Point());
+//    matrix= basis_matrix(surface, normal, to_next, Point());
     
 //    for (int i = 0; i < 4; i += 1) {
 //        for (int j = 0; j < 4; j += 1) {
@@ -38,7 +38,7 @@ Path::Path(Point start, Point end, Vector nor, Vector sur):start(start), end(end
     normal.normalize();
     surface.normalize();
     //this one should be correct
-    matrix= basis_matrix(surface, normal, to_next, Point());
+//    matrix= basis_matrix(surface, normal, to_next, Point());
 //    debug(surface); debug(normal), debug(to_next);
 //    for (int i = 0; i < 4; i += 1) {
 //        for (int j = 0; j < 4; j += 1) {
@@ -59,7 +59,6 @@ void Path::mult_matrix(){
 
 Path::~Path(){
     prev = next = NULL;
-    delete [] matrix;
 }
 
 void Path::render(){

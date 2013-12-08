@@ -23,6 +23,7 @@
 #include "protagonist.h"
 #include "path.h"
 #include "camera.h"
+#include "test.h"
 
 //Screen attributes
 const int SCREEN_WIDTH = 640;
@@ -155,9 +156,8 @@ int main( int argc, char *argv[] ){
     p->path = path;
     //rotate is counter clockwise?
     Camera::Instance().init_camera();
-//    Vector p1(-0.5, 0, -0.5); Vector p2(-0.5, 0, 0.5); Vector p3(0.5, 0, 0.5); Vector p4(0.5, 0, -0.5);
-
-    //TODO: move based on global orientation
+    Prim test;
+    p->path = &test;
 	while( !quit ){
         
 		while( SDL_PollEvent( &event ) ){
@@ -175,11 +175,11 @@ int main( int argc, char *argv[] ){
             render();
 //            render_path(path);
 //            
-//            if (p) {
-//                p->render();
-//                p->update(event);
-//            }
-            
+            if (p) {
+                p->render();
+                p->update(event);
+            }
+            test.render();
             
             SDL_GL_SwapBuffers();
             fps.start();

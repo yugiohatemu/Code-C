@@ -26,6 +26,7 @@
 		B61B8851184AB879009F75D5 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B884F184AB879009F75D5 /* path.cpp */; };
 		B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C9053184D205B00B9D7E2 /* utility.cpp */; };
 		B65C90581852426F00B9D7E2 /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C90561852426F00B9D7E2 /* matrix.cpp */; };
+		B65C905B1853CD8300B9D7E2 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C90591853CD8300B9D7E2 /* test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,6 +77,8 @@
 		B65C9054184D205B00B9D7E2 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
 		B65C90561852426F00B9D7E2 /* matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix.cpp; sourceTree = "<group>"; };
 		B65C90571852426F00B9D7E2 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		B65C90591853CD8300B9D7E2 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		B65C905A1853CD8300B9D7E2 /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +164,8 @@
 				B61B88401848E58A009F75D5 /* plate.h */,
 				B61B884F184AB879009F75D5 /* path.cpp */,
 				B61B8850184AB879009F75D5 /* path.h */,
+				B65C90591853CD8300B9D7E2 /* test.cpp */,
+				B65C905A1853CD8300B9D7E2 /* test.h */,
 			);
 			name = path;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				B61B884A184A5BD3009F75D5 /* camera.cpp in Sources */,
 				B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */,
 				B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */,
+				B65C905B1853CD8300B9D7E2 /* test.cpp in Sources */,
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,
 				B61B88471848FED6009F75D5 /* vector.cpp in Sources */,
 				B65C90581852426F00B9D7E2 /* matrix.cpp in Sources */,

@@ -20,16 +20,6 @@ private:
     Vector normal; //angel of the plane!
     Vector surface;
 public:
-//    struct Rotation{
-//        float sin_p, cos_p, sin_t, cos_t;
-//        float X();
-//        float Y();
-//        float Z();
-//        Rotation(float p, float t);
-//        Rotation(const Rotation & r);
-//        Rotation &operator=(const Rotation & r);
-//    };
-    
     
     Path(Point start, Point end, Vector normal);
     Path(Point start, Point end, Vector normal, Vector surface);
@@ -49,7 +39,6 @@ public:
     
     Point angle;
     void mult_matrix();
-    float * matrix;
 };
 
 Path* create_path(std::vector<Point> point_list,std::vector<Vector> normal_list);

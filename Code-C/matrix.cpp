@@ -41,12 +41,14 @@ Matrix Matrix::roatate(Vector vec, float angle){
     float s = sinf(angle * 3.1415926 / 180.0);
     float x = vec.x; float y = vec.y; float z = vec.z;
     
-    v[0] = x*x*(1-c)+c; v[4] = x*y*(1-c)-z*s; v[8] = x*z*(1-c)+y*s; v[12] = 0;
-    v[1] = y*x*(1-c)+z*s; v[5] = y*y*(1-c)+c; v[9] = y*z*(1-c)-x*s; v[13] = 0;
-    v[2] = x*z*(1-c)-y*s; v[6] = y*z*(1-c)+x*s; v[10] = z*z*(1-c)+c; v[14] = 0;
-    v[3] = 0;  v[7] = 0 ;  v[11] = 0;  v[15] = 1;
+    float mat[16];
+    
+    mat[0] = x*x*(1-c)+c; mat[4] = x*y*(1-c)-z*s; mat[8] = x*z*(1-c)+y*s; mat[12] = 0;
+    mat[1] = y*x*(1-c)+z*s; mat[5] = y*y*(1-c)+c; mat[9] = y*z*(1-c)-x*s; mat[13] = 0;
+    mat[2] = x*z*(1-c)-y*s; mat[6] = y*z*(1-c)+x*s; mat[10] = z*z*(1-c)+c; mat[14] = 0;
+    mat[3] = 0;  mat[7] = 0 ;  mat[11] = 0;  mat[15] = 1;
 
-    return Matrix(v);
+    return Matrix(mat);
 }
 
 Matrix Matrix::scale(Vector vec){
@@ -71,7 +73,7 @@ Matrix Matrix::operator *(const Matrix& m){
     for (int i = 0; i < 4; i ++) {
         for (int j = 0; j <4 ; j++) {
             for (int c = 0; c < 4; c++) {
-                ret[4*i + j] += v[4*i + c] * v[4*j + c];
+                ret[4*i + j] += v[j + c * 4] * m.v[4* i + c];
             }
         }
     }
