@@ -12,7 +12,7 @@
 #include "camera.h"
 #include "path.h"
 #include "utility.h"
-#include "test.h"
+
 
 Protagonist::Protagonist(){
     
@@ -25,8 +25,8 @@ Protagonist::~Protagonist(){
 void Protagonist::render(){
     glPushMatrix();
    
-    Prim * current = dynamic_cast<Prim *>(path);
-    current->to_test();
+//    Prim * current = dynamic_cast<Prim *>(path);
+//    current->to_test();
     glTranslatef(anchor.x, anchor.y, anchor.z);
     
     glColor3f(0, 0, 1.0);
@@ -37,10 +37,6 @@ void Protagonist::render(){
 
 void Protagonist::update(SDL_Event event){
     float speed = 0.1f;
-    //cos(angle)=dot(a,b)/(length(a)length(b))
-    //so calculate based on each 3 axis
-//    Prim * current = dynamic_cast<Prim *>(path);
-//    Vector to_next = current->end - current->start;
     
     if (event.type == SDL_KEYDOWN) {
         if(event.key.keysym.sym == SDLK_UP){
@@ -58,6 +54,7 @@ void Protagonist::update(SDL_Event event){
 //                if (current->next) path = current->next;
 //            }
         }else if(event.key.keysym.sym == SDLK_DOWN){
+            anchor = anchor + Vector(1,0,0) * -0.1;
 //            Path * current = dynamic_cast<Path *>(path);
 //            Point prev_anchor = anchor + current->get_to_prev() * speed;
             

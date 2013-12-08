@@ -17,12 +17,12 @@ class Path:public Sprite{
 private:
     Point start, end;
     Vector to_next, to_prev;
-    Vector normal; //angel of the plane!
-    Vector surface;
+    Vector normal;
+    Matrix prod;
+    
 public:
     
-    Path(Point start, Point end, Vector normal);
-    Path(Point start, Point end, Vector normal, Vector surface);
+    Path(Vector trans, Vector scale, Vector roatate);
     ~Path();
     void render();
     void update(SDL_Event event);
@@ -35,15 +35,9 @@ public:
     Vector get_normal();
     Point get_end();
     Point get_start();
-    Point get_angle();
-    
-    Point angle;
-    void mult_matrix();
+    Matrix get_transform();
 };
 
-Path* create_path(std::vector<Point> point_list,std::vector<Vector> normal_list);
-Path* create_path(std::vector<Point> point_list, std::vector<Vector> normal_list, std::vector<Point> angle_list);
-Path* create_path(std::vector<Point> point_list, std::vector<Vector> normal_list, std::vector<Vector> surface_list);
 void delete_path(Path * p);
 void render_path(Path * p);
 

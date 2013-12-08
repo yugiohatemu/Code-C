@@ -129,31 +129,9 @@ int main( int argc, char *argv[] ){
     
     SDL_Event event;
     Protagonist * p = new Protagonist();
-
-    std::vector<Point> point_list;
-    std::vector<Vector> normal_list;
-    std::vector<Point> angle_list;
     
-    point_list.push_back(Point());
-    point_list.push_back(Point(1,0,-1));
-    point_list.push_back(Point(3,1,-2));
-    point_list.push_back(Point(2,2,-2));
-    
-    normal_list.push_back(Vector(0,1,0)); 
-    normal_list.push_back(Vector(1,1,0));
-    normal_list.push_back(Vector(1,-1,1));
-    
-    angle_list.push_back(Point(45,0,0));
-    angle_list.push_back(Point(80,0,0));
-    angle_list.push_back(Point(60,0,0));
-    
-    std::vector<Vector> surface_list;
-    surface_list.push_back(Vector(1,0,1));
-    surface_list.push_back(Vector(1,-1,1));
-    surface_list.push_back(Vector(1,1,1));
-    
-    Path * path = create_path(point_list,normal_list,angle_list);
-    p->path = path;
+    Path * path ;//= create_path(point_list,normal_list,angle_list);
+//    p->path = path;
     //rotate is counter clockwise?
     Camera::Instance().init_camera();
     Prim test;
