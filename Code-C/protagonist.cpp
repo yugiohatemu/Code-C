@@ -22,6 +22,7 @@ Protagonist::~Protagonist(){
     
 }
 
+//TODO: test for null situation to avoid crush
 void Protagonist::render(){
     glPushMatrix();
    

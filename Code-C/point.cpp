@@ -60,10 +60,7 @@ std::ostream& operator<< (std::ostream& stream, const Point& p){
 }
 
 ////////////////////////////////////////////////////
-//dot multiply
-//float Point::dot(Point p){
-//    return x*p.x + y*p.y + z*p.z;
-//}
+
 void Point::set(float x, float y,float z){
     this->x = x;
     this->y = y;
@@ -88,4 +85,8 @@ void Point::clamp_angle(){
     if (x >= 90) x = 0;
     if (y >= 90) y = 0;
     if (z >= 90) z = 0;
+}
+
+Point Point::get_mid(Point a, Point b){
+    return Point(a.x + b.x, a.y + b.y, a.z + b.z) * 0.5f;
 }

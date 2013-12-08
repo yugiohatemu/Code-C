@@ -130,12 +130,11 @@ int main( int argc, char *argv[] ){
     SDL_Event event;
     Protagonist * p = new Protagonist();
     
-    Path * path ;//= create_path(point_list,normal_list,angle_list);
+    Path * path ;
 //    p->path = path;
     //rotate is counter clockwise?
     Camera::Instance().init_camera();
-    Prim test;
-    p->path = &test;
+    
 	while( !quit ){
         
 		while( SDL_PollEvent( &event ) ){
@@ -151,20 +150,19 @@ int main( int argc, char *argv[] ){
         
         if (fps.is_timeup()){
             render();
-//            render_path(path);
+//          Path::render_path(path);
 //            
             if (p) {
                 p->render();
                 p->update(event);
             }
-            test.render();
             
             SDL_GL_SwapBuffers();
             fps.start();
         }
 	}
     
-    delete_path(path);
+    Path::delete_path(path);
 
 	//Clean up
 	SDL_Quit();

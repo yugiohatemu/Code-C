@@ -16,6 +16,7 @@
 class Path:public Sprite{
 private:
     Point start, end;
+    Point vertexs[4];
     Vector to_next, to_prev;
     Vector normal;
     Matrix prod;
@@ -36,10 +37,13 @@ public:
     Point get_end();
     Point get_start();
     Matrix get_transform();
+    
+    static void delete_path(Path * p);
+    static void render_path(Path * p);
+    static Path* make_consecutive_path(Vector start, std::vector<Vector> trans_list);
 };
 
-void delete_path(Path * p);
-void render_path(Path * p);
+
 
 
 #endif /* defined(__Code_C__path__) */

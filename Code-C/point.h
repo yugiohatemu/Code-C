@@ -27,6 +27,7 @@ struct Point{
     void normalize();
     bool is_whithin(Point a, Point b);
     void clamp_angle();
+    static Point get_mid(Point a, Point b);
 };
 
 #endif /* defined(__Trilight__point__) */

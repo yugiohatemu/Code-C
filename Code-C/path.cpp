@@ -15,9 +15,17 @@ Path::Path(Vector trans, Vector rotate, Vector scale){
     prod = Matrix::translate(trans) * Matrix::roatate(Vector(1,0,0), rotate.x)
         * Matrix::roatate(Vector(0,1,0), rotate.y) * Matrix::roatate(Vector(0,0,1), rotate.z);
 
+    vertexs[0] = Point(-0.5, 0, -0.5);
+    vertexs[1] = Point(-0.5, 0, 0.5);
+    vertexs[2] = Point(0.5, 0, 0.5);
+    vertexs[3] = Point(0.5, 0, -0.5);
+    
+    for (int i = 0; i < 4; i++)
+        vertexs[i] =  Matrix::scale(scale) * vertexs[i];
+    
     //actually, if there is scale here, I want to scale first and seperate the matrix from scalling
-    end =  prod * Matrix::scale(scale) * Point(0.5,0,0);
-    start = prod * Matrix::scale(scale) * Point(-0.5,0,0);
+    end =  prod * Point::get_mid(vertexs[0], vertexs[1]);    //Matrix::scale(scale) * Point(0.5,0,0);
+    start = prod * Point::get_mid(vertexs[2], vertexs[3]);
     normal = prod * Vector(0,1,0);
     
     to_next = end - start;
@@ -40,21 +48,20 @@ void Path::render(){
     glPushMatrix();
     glBegin(GL_LINES);
     glColor3f(0, 0, 0);
-    glVertex3f(start.x, start.y, start.z);
-    glVertex3f(end.x, end.y, end.z);
+    glVertex3f(start.x, start.y, start.z); glVertex3f(end.x, end.y, end.z);
     glEnd();
     glPopMatrix();
     
     //use gldrawarray later
     glPushMatrix();
     glMultMatrixf(prod.begin());
-    
     glColor3f(1, 0, 0);
     
     glBegin(GL_QUADS);
     glNormal3f(normal.x, normal.y, normal.z);
-    glVertex3f(-0.5, 0, -0.5);glVertex3f(-0.5, 0, 0.5);
-    glVertex3f(0.5, 0, 0.5);glVertex3f(0.5, 0, -0.5);
+    for (int i = 0; i < 4; i++)
+        glVertex3f(vertexs[i].x, vertexs[i].y, vertexs[i].z);
+    
     glEnd();
 }
 
@@ -83,9 +90,7 @@ Vector Path::get_normal(){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-void delete_path(Path * p){
+void Path::delete_path(Path * p){
     if (p){
         Path * prev = p->prev;
         Path * next = p;
@@ -102,7 +107,7 @@ void delete_path(Path * p){
         }
     }
 }
-void render_path(Path * p){
+void Path::render_path(Path * p){
     
     if (p){
         Path * prev = p->prev;
@@ -121,4 +126,24 @@ void render_path(Path * p){
     }
 }
 
+Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list){ //in rotate, scale
+    ////not enough for a head or not even #
+    if (trans_list.size() < 2 || trans_list.size() % 2 != 0) return NULL;
+    
+    Path * head = new Path(start, trans_list[0], trans_list[1]);
+    Path * prev = head;
+    
+    for (int i = 2; i < trans_list.size(); i += 2) {
+        Point p = head->get_end();
+        Vector next_start(p.x,p.y,p.z);
+        Path * next = new Path(next_start, trans_list[i], trans_list[i+1]);
+        
+        prev->next = next;
+        next->prev = prev;
+        prev = next;
+        
+    }
+    
+    return head;
+}
 
