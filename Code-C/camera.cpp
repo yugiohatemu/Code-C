@@ -30,23 +30,23 @@ Camera& Camera::Instance(){
 
 void Camera::init_camera(){
     Vector pos(0,5,8);
-    //TODO:pos rotate 90, 
+    
+    //TODO:pos rotate 90,
+    //now we have matrix, it is much easier to do rotation
     views[FRONT_VIEW] = pos;
     views[RIGHT_VIEW].set(5, 8, 0);
     views[BACK_VIEW].set(0, 5, -8);
     views[LEFT_VIEW].set(-5, 8, 0);
 }
 
-void Camera::switch_view(Point p){
-    current_view += 1;
-    if (current_view == TOTAL_VIEW) current_view = FRONT_VIEW;
-    
-    Point new_pos = p + views[current_view];
-//    Vector dir = new_pos - p;
-//    dir.normalize();
-//    std::cout<<dir;
+void Camera::switch_view(Point p, Vector vec){
+    //how to apply an animation transition to that?
+    Point new_pos = p  + Vector(-10, 1, 0);
     glLoadIdentity();
-    gluLookAt(new_pos.x, new_pos.y, new_pos.z, p.x, p.y, p.z, 0,1,0);
+    gluLookAt(new_pos.x, new_pos.y, new_pos.z, p.x, p.y, p.z, vec.x,vec.y,vec.z);
+    //the up vector seems to be the same as normal vector
+    //1st of all, only protagonist knows that vector
+    
 }
 
 Vector Camera::get_direction(SDLKey dir){

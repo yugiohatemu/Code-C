@@ -75,5 +75,13 @@ void Protagonist::update(SDL_Event event){
 }
 
 Point Protagonist::get_anchor(){
-    return anchor;
+    Path * current = dynamic_cast<Path *>(path);
+    Matrix m = current->get_transform();
+    return m * anchor;
+}
+
+//Simple hack to give normal to camera, might be replaced latter
+Vector Protagonist::get_normal(){
+    Path * current = dynamic_cast<Path *>(path);
+    return current->get_normal();
 }

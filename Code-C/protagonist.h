@@ -21,6 +21,7 @@ public:
     void render();
     void update(SDL_Event event);
     Point get_anchor();
+    Vector get_normal();
     Sprite * path;
 };
 

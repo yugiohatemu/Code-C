@@ -96,8 +96,7 @@ bool init(){
 }
 
 void render(){
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor( 1.f, 1.f, 1.f, 1.f );
+    
     
     //Draw the x, y, z
     glPushMatrix();
@@ -127,14 +126,14 @@ int main( int argc, char *argv[] ){
     
     SDL_Event event;
     Protagonist * p = new Protagonist();
-    //should apply that on the start point...need additional translation
+    
     std::vector<Vector> trans_list;
     trans_list.push_back(Vector(0,0,45));trans_list.push_back(Vector(2,1,1));
     trans_list.push_back(Vector(45,0,0));trans_list.push_back(Vector(1,1,1));
     trans_list.push_back(Vector(0,0,0));trans_list.push_back(Vector(1,1,1));
     Path * path  = Path::make_consecutive_path(Vector(.5,0,0), trans_list);
     p->path = path;
-    //rotate is counter clockwise?
+    
     Camera::Instance().init_camera();
     
 	while( !quit ){
@@ -145,12 +144,15 @@ int main( int argc, char *argv[] ){
                 if(event.key.keysym.sym == SDLK_ESCAPE) quit = true;
                 if(event.key.keysym.sym == SDLK_TAB) {
                     //switch rotation
-                    Camera::Instance().switch_view(Point(0, 0, 0));
+                    
                 }
             }
 		}
         
         if (fps.is_timeup()){
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            glClearColor( 1.f, 1.f, 1.f, 1.f );
+            Camera::Instance().switch_view(p->get_anchor(), p->get_normal());
             render();
             Path::render_path(path);
 

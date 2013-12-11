@@ -26,7 +26,7 @@ public:
     
     static Camera& Instance();
     void init_camera();
-    void switch_view(Point p);
+    void switch_view(Point p, Vector vec);
     Vector get_direction(SDLKey dir);
     
 private:
