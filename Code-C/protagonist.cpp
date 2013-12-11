@@ -26,8 +26,10 @@ Protagonist::~Protagonist(){
 void Protagonist::render(){
     glPushMatrix();
    
-//    Prim * current = dynamic_cast<Prim *>(path);
-//    current->to_test();
+    Path * current = dynamic_cast<Path *>(path);
+    Matrix m = current->get_transform();
+    glMultMatrixf(m.begin());
+    
     glTranslatef(anchor.x, anchor.y, anchor.z);
     
     glColor3f(0, 0, 1.0);
@@ -41,7 +43,7 @@ void Protagonist::update(SDL_Event event){
     
     if (event.type == SDL_KEYDOWN) {
         if(event.key.keysym.sym == SDLK_UP){
-            anchor = anchor + Vector(1,0,0) * 0.1;
+            anchor = anchor + Vector(1,0,0) * speed;
             //we can use the accurate matrix to do the calculation for anchor
             //and then use start and end to test if we need to go next
             
@@ -55,7 +57,7 @@ void Protagonist::update(SDL_Event event){
 //                if (current->next) path = current->next;
 //            }
         }else if(event.key.keysym.sym == SDLK_DOWN){
-            anchor = anchor + Vector(1,0,0) * -0.1;
+            anchor = anchor + Vector(1,0,0) * -speed;
 //            Path * current = dynamic_cast<Path *>(path);
 //            Point prev_anchor = anchor + current->get_to_prev() * speed;
             

@@ -13,6 +13,10 @@ Vector operator* (float t, const Vector & a){
     return Vector(t * a.x, t * a.y, t * a.z);
 }
 
+Vector operator* (const Vector& a,float t){
+    return Vector(t * a.x, t * a.y, t * a.z);
+}
+
 Vector operator- (const Point &a, const Point &b){
     return Vector(a.x - b.x, a.y - b.y, a.z - b.z);
 }
@@ -43,4 +47,12 @@ Point operator* (const Matrix&m, const Point &p){
     float z = p.x * v[2] + p.y * v[6] + p.z* v[10] + v[14];
     
     return Point(x,y,z);
+}
+
+Matrix operator* (const Matrix& m, float t){
+    float v[16];
+    std::copy(m.begin(), m.begin() + 16, v);
+    for (int i = 0; i < 16; i++) v[i] *= t;
+    
+    return Matrix(v);
 }

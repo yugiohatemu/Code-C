@@ -14,9 +14,16 @@
 #include "matrix.h"
 
 Vector operator* (float t, const Vector & a);
+Vector operator* (const Vector& a,float t);
+
 Vector operator- (const Point &a, const Point &b);
 Point operator+ (const Vector &a, const Point &b);
+
 Point operator+ (const Point &b, const Vector &a);
-Vector operator* (const Matrix& m, const Vector &vec);
-Point operator* (const Matrix&m, const Point &p);
+
+Vector operator* (const Matrix &m, const Vector &vec);
+Point operator* (const Matrix &m, const Point &p);
+
+Matrix operator* (const Matrix& m, float t);
+
 #endif /* defined(__Trilight__algebra__) */

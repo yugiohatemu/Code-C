@@ -23,7 +23,6 @@
 #include "protagonist.h"
 #include "path.h"
 #include "camera.h"
-#include "test.h"
 
 //Screen attributes
 const int SCREEN_WIDTH = 640;
@@ -100,9 +99,8 @@ void render(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor( 1.f, 1.f, 1.f, 1.f );
     
-    //Draw the x, y , z
+    //Draw the x, y, z
     glPushMatrix();
-//    glTranslated(1, 1, 1);
     glBegin(GL_LINES);
     glColor3f(1, 0, 0);
     glVertex3f(0, 0, 0); glVertex3f(1, 0, 0);
@@ -129,9 +127,13 @@ int main( int argc, char *argv[] ){
     
     SDL_Event event;
     Protagonist * p = new Protagonist();
-    
-    Path * path ;
-//    p->path = path;
+    //should apply that on the start point...need additional translation
+    std::vector<Vector> trans_list;
+    trans_list.push_back(Vector(0,0,45));trans_list.push_back(Vector(2,1,1));
+    trans_list.push_back(Vector(45,0,0));trans_list.push_back(Vector(1,1,1));
+    trans_list.push_back(Vector(0,0,0));trans_list.push_back(Vector(1,1,1));
+    Path * path  = Path::make_consecutive_path(Vector(.5,0,0), trans_list);
+    p->path = path;
     //rotate is counter clockwise?
     Camera::Instance().init_camera();
     
@@ -150,8 +152,8 @@ int main( int argc, char *argv[] ){
         
         if (fps.is_timeup()){
             render();
-//          Path::render_path(path);
-//            
+            Path::render_path(path);
+
             if (p) {
                 p->render();
                 p->update(event);
