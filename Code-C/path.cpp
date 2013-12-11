@@ -91,6 +91,11 @@ Vector Path::get_normal(){
     return normal;
 }
 
+Point Path::get_length_point(){
+    return Point::get_mid(vertexs[2], vertexs[3]);
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Path::delete_path(Path * p){

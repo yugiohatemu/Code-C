@@ -29,7 +29,6 @@ void Protagonist::render(){
     Path * current = dynamic_cast<Path *>(path);
     Matrix m = current->get_transform();
     glMultMatrixf(m.begin());
-    
     glTranslatef(anchor.x, anchor.y, anchor.z);
     
     glColor3f(0, 0, 1.0);
@@ -43,30 +42,34 @@ void Protagonist::update(SDL_Event event){
     
     if (event.type == SDL_KEYDOWN) {
         if(event.key.keysym.sym == SDLK_UP){
-            anchor = anchor + Vector(1,0,0) * speed;
-            //we can use the accurate matrix to do the calculation for anchor
-            //and then use start and end to test if we need to go next
+
+            Path * current = dynamic_cast<Path *>(path);
+            Point next_anchor = current->get_transform() * (anchor + Vector(1,0,0) * speed);
             
-//            Path * current = dynamic_cast<Path *>(path);
-//            Point next_anchor = anchor + current->get_to_next() * speed;
-        
-//            if (next_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
-//                anchor = next_anchor;
-//            }else{
-//                anchor = current->get_end();
-//                if (current->next) path = current->next;
-//            }
+            if (next_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
+                anchor = anchor+ Vector(1,0,0) * speed;
+            }else{
+                //reset anchor to avoid over multiply translation
+                if (current->next) {
+                    path = current->next;
+                    anchor = Point(); //current->prev->get_start, before multiplicaton
+                }
+            }
         }else if(event.key.keysym.sym == SDLK_DOWN){
-            anchor = anchor + Vector(1,0,0) * -speed;
-//            Path * current = dynamic_cast<Path *>(path);
-//            Point prev_anchor = anchor + current->get_to_prev() * speed;
+           
+            Path * current = dynamic_cast<Path *>(path);
+            Point prev_anchor = current->get_transform() * ( anchor + Vector(1,0,0) * -speed);
             
-//            if (prev_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
-//                anchor = prev_anchor;
-//            }else{
-//                anchor = current->get_start();
-//                if (current->prev) path = current->prev;
-//            }
+            if (prev_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
+                anchor = anchor + Vector(1,0,0) * -speed;
+            }else{
+                //reset anchor point
+                if (current->prev) {
+                    //one way is to get ,or say scale, because invert is inaccurate
+                    path= current->prev;
+                    anchor = current->prev->get_length_point();
+                }
+            }
         }
     }
 }
