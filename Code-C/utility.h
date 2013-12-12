@@ -29,4 +29,10 @@ CNUM clamp(CNUM n, CNUM a, CNUM b){
     else return big;
 }
 
+
+std::string readFile(std::string filename);
+int printOglError(char *file, int line);
+void printShaderInfoLog(GLuint obj);
+void printProgramInfoLog(GLuint obj);
+
 #endif /* defined(__Code_C__utility__) */

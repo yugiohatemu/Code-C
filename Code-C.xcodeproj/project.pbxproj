@@ -25,6 +25,9 @@
 		B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C9053184D205B00B9D7E2 /* utility.cpp */; };
 		B65C90581852426F00B9D7E2 /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C90561852426F00B9D7E2 /* matrix.cpp */; };
 		B67D983B18594D710029AF82 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D983918594D710029AF82 /* scene.cpp */; };
+		B67D983E185A01C90029AF82 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D983C185A01C90029AF82 /* shader.cpp */; };
+		B67D9844185A03680029AF82 /* loadPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9840185A03680029AF82 /* loadPNG.cpp */; };
+		B67D9845185A03680029AF82 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9842185A03680029AF82 /* texture.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,6 +76,12 @@
 		B65C90571852426F00B9D7E2 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
 		B67D983918594D710029AF82 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scene.cpp; sourceTree = "<group>"; };
 		B67D983A18594D710029AF82 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
+		B67D983C185A01C90029AF82 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
+		B67D983D185A01C90029AF82 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
+		B67D9840185A03680029AF82 /* loadPNG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loadPNG.cpp; sourceTree = "<group>"; };
+		B67D9841185A03680029AF82 /* loadPNG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loadPNG.h; sourceTree = "<group>"; };
+		B67D9842185A03680029AF82 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
+		B67D9843185A03680029AF82 /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +124,11 @@
 			children = (
 				B61B884B184A6254009F75D5 /* algebra */,
 				B61B8852184ABD94009F75D5 /* path */,
+				B67D983F185A02660029AF82 /* shader */,
 				B61B883518480732009F75D5 /* sprite.h */,
+				B67D983C185A01C90029AF82 /* shader.cpp */,
+				B67D983D185A01C90029AF82 /* shader.h */,
+				B67D9846185A03A50029AF82 /* texture */,
 				B61B8836184808F8009F75D5 /* protagonist.cpp */,
 				B61B8837184808F8009F75D5 /* protagonist.h */,
 				B67D983918594D710029AF82 /* scene.cpp */,
@@ -158,6 +171,24 @@
 				B61B8850184AB879009F75D5 /* path.h */,
 			);
 			name = path;
+			sourceTree = "<group>";
+		};
+		B67D983F185A02660029AF82 /* shader */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = shader;
+			sourceTree = "<group>";
+		};
+		B67D9846185A03A50029AF82 /* texture */ = {
+			isa = PBXGroup;
+			children = (
+				B67D9840185A03680029AF82 /* loadPNG.cpp */,
+				B67D9841185A03680029AF82 /* loadPNG.h */,
+				B67D9842185A03680029AF82 /* texture.cpp */,
+				B67D9843185A03680029AF82 /* texture.h */,
+			);
+			name = texture;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +242,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B67D983E185A01C90029AF82 /* shader.cpp in Sources */,
+				B67D9844185A03680029AF82 /* loadPNG.cpp in Sources */,
 				B61B88341847B990009F75D5 /* point.cpp in Sources */,
 				B61B88441848E62C009F75D5 /* color.cpp in Sources */,
 				B61B8851184AB879009F75D5 /* path.cpp in Sources */,
@@ -222,6 +255,7 @@
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,
 				B61B88471848FED6009F75D5 /* vector.cpp in Sources */,
 				B65C90581852426F00B9D7E2 /* matrix.cpp in Sources */,
+				B67D9845185A03680029AF82 /* texture.cpp in Sources */,
 				B61B8838184808F8009F75D5 /* protagonist.cpp in Sources */,
 				B61B88311847B614009F75D5 /* stopWatch.cpp in Sources */,
 			);
