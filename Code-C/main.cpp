@@ -20,8 +20,7 @@
 ///////////////////////////////////////////////////////////////////
 
 #include "stopWatch.h"
-#include "protagonist.h"
-#include "path.h"
+#include "scene.h"
 #include "camera.h"
 
 //Screen attributes
@@ -96,8 +95,6 @@ bool init(){
 }
 
 void render(){
-    
-    
     //Draw the x, y, z
     glPushMatrix();
     glBegin(GL_LINES);
@@ -109,7 +106,6 @@ void render(){
     glVertex3f(0, 0, 0); glVertex3f(0, 0, 1);
     glEnd();
     glPopMatrix();
-   
 }
 
 
@@ -124,17 +120,9 @@ int main( int argc, char *argv[] ){
     StopWatch fps(0.1);
     fps.start();
     
-    SDL_Event event;
-    Protagonist * p = new Protagonist();
-    
-    std::vector<Vector> trans_list;
-    trans_list.push_back(Vector(0,0,45));trans_list.push_back(Vector(2,1,1));
-    trans_list.push_back(Vector(45,0,0));trans_list.push_back(Vector(1,1,1));
-    trans_list.push_back(Vector(0,0,0));trans_list.push_back(Vector(1,1,1));
-    Path * path  = Path::make_consecutive_path(Vector(.5,0,0), trans_list);
-    p->path = path;
-    
     Camera::Instance().init_camera();
+    Scene::Instance().new_scene();
+    SDL_Event event;
     
 	while( !quit ){
         
@@ -142,37 +130,25 @@ int main( int argc, char *argv[] ){
 			if( event.type == SDL_QUIT )quit = true;
             if (event.type == SDL_KEYDOWN) {
                 if(event.key.keysym.sym == SDLK_ESCAPE) quit = true;
-                if(event.key.keysym.sym == SDLK_TAB) {
-                    //switch rotation
-                    
-                }
+                
             }
 		}
         
         if (fps.is_timeup()){
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             glClearColor( 1.f, 1.f, 1.f, 1.f );
-            Camera::Instance().switch_view(p->get_anchor(), p->get_normal());
+            Camera::Instance().set_camera();
             render();
-            Path::render_path(path);
-
-            if (p) {
-                p->render();
-                p->update(event);
-            }
-            
+            Scene::Instance().render();
+            Scene::Instance().update(event);
             SDL_GL_SwapBuffers();
             fps.start();
         }
 	}
     
-    Path::delete_path(path);
-
+    Scene::Instance().delete_scene();
 	//Clean up
 	SDL_Quit();
-    delete p;
-//    delete t;
-    
 	return 0;
 }
 

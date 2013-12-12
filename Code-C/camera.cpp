@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Yue. All rights reserved.
 //
 
-#include "camera.h"
 #include "SDL/SDL_opengl.h"
+#include "SDL/SDL_thread.h"
+#include "camera.h"
+#include "stopWatch.h"
 
 Camera::Camera(){
     
@@ -37,16 +39,62 @@ void Camera::init_camera(){
     views[RIGHT_VIEW].set(5, 8, 0);
     views[BACK_VIEW].set(0, 5, -8);
     views[LEFT_VIEW].set(-5, 8, 0);
+    
+    up = Vector(1, 0, 0);
+    eye = center + Vector(-10,3,0);
 }
 
-void Camera::switch_view(Point p, Vector vec){
-    //how to apply an animation transition to that?
-    Point new_pos = p  + Vector(-10, 1, 0);
-    glLoadIdentity();
-    gluLookAt(new_pos.x, new_pos.y, new_pos.z, p.x, p.y, p.z, vec.x,vec.y,vec.z);
-    //the up vector seems to be the same as normal vector
-    //1st of all, only protagonist knows that vector
+//do the one without timer now, use timer?
+Vector animate_view(Vector cur, Vector next){
     
+    float move = 0.05f;
+    
+    if (next.x >= cur.x){
+        if(next.x >= cur.x + move) cur.x += move;
+        else cur.x = next.x;
+    }else{
+        if (next.x <= cur.x - move) cur.x -= move;
+        else cur.x = next.x;
+    }
+    
+    if (next.y >= cur.y){
+        if(next.y >= cur.y + move) cur.y += move;
+        else cur.y = next.y;
+    }else{
+        if (next.y <= cur.y - move) cur.y -= move;
+        else cur.y = next.y;
+    }
+    
+    if (next.z >= cur.z){
+        if(next.z >= cur.z + move) cur.z += move;
+        else cur.z = next.z;
+    }else{
+        if (next.z <= cur.z - move) cur.z -= move;
+        else cur.z = next.z;
+    }
+    //there should be a utility function for something like this
+    //clamping
+    return cur;
+    
+}
+
+void Camera::anime_camera(Vector next){
+    StopWatch timer(0.1);
+    
+    while (up != next) { //the two vector are not the same, keep calling
+        if (timer.is_timeup()) {
+            up = animate_view(up, next);
+            timer.reset();
+        }
+    }
+    //we need to force a render......
+}
+
+
+void Camera::set_camera(){
+    glLoadIdentity();
+    eye = center + Vector(-10,3,0);
+    gluLookAt(eye.x, eye.y, eye.z, center.x, center.y, center.z, up.x, up.y, up.z);
 }
 
 Vector Camera::get_direction(SDLKey dir){

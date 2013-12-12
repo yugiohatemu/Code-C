@@ -26,8 +26,12 @@ public:
     
     static Camera& Instance();
     void init_camera();
-    void switch_view(Point p, Vector vec);
+    void set_camera();
     Vector get_direction(SDLKey dir);
+    void anime_camera(Vector next);
+    
+    Point eye, center;
+    Vector up;
     
 private:
     Camera();  // Private so that it can  not be called
@@ -36,6 +40,7 @@ private:
     
     Vector views[TOTAL_VIEW];
     int current_view = FRONT_VIEW;
+   
     
 };
 
