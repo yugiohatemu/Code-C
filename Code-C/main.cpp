@@ -21,7 +21,6 @@
 
 #include "stopWatch.h"
 #include "scene.h"
-#include "camera.h"
 
 //Screen attributes
 const int SCREEN_WIDTH = 640;
@@ -94,21 +93,6 @@ bool init(){
     return true;
 }
 
-void render(){
-    //Draw the x, y, z
-    glPushMatrix();
-    glBegin(GL_LINES);
-    glColor3f(1, 0, 0);
-    glVertex3f(0, 0, 0); glVertex3f(1, 0, 0);
-    glColor3f(0, 1, 0);
-    glVertex3f(0, 0, 0); glVertex3f(0, 1, 0);
-    glColor3f(0, 0, 1);
-    glVertex3f(0, 0, 0); glVertex3f(0, 0, 1);
-    glEnd();
-    glPopMatrix();
-}
-
-
 int main( int argc, char *argv[] ){
     //Quit flag
     bool quit = false;
@@ -120,7 +104,6 @@ int main( int argc, char *argv[] ){
     StopWatch fps(0.1);
     fps.start();
     
-    Camera::Instance().init_camera();
     Scene::Instance().new_scene();
     SDL_Event event;
     
@@ -130,18 +113,12 @@ int main( int argc, char *argv[] ){
 			if( event.type == SDL_QUIT )quit = true;
             if (event.type == SDL_KEYDOWN) {
                 if(event.key.keysym.sym == SDLK_ESCAPE) quit = true;
-                
             }
 		}
         
         if (fps.is_timeup()){
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            glClearColor( 1.f, 1.f, 1.f, 1.f );
-            Camera::Instance().set_camera();
-            render();
             Scene::Instance().render();
             Scene::Instance().update(event);
-            SDL_GL_SwapBuffers();
             fps.start();
         }
 	}

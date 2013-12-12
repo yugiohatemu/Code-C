@@ -53,7 +53,8 @@ void Protagonist::update(SDL_Event event){
                     anchor = Point();
                     
                     Camera::Instance().center = current->get_start();
-                    Camera::Instance().up = current->get_normal();
+//                    Camera::Instance().up = current->get_normal();
+                    Camera::Instance().anime_camera(current->get_normal());
                 }
             }
         }else if(event.key.keysym.sym == SDLK_DOWN){
@@ -71,7 +72,8 @@ void Protagonist::update(SDL_Event event){
                     anchor = current->get_length_point();
                     
                     Camera::Instance().center = current->get_end();
-                    Camera::Instance().up = current->get_normal();
+//                    Camera::Instance().up = current->get_normal();
+                    Camera::Instance().anime_camera(current->get_normal());
                 }
             }
         }

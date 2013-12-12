@@ -10,7 +10,7 @@
 #include "SDL/SDL_thread.h"
 #include "camera.h"
 #include "stopWatch.h"
-
+#include "scene.h"
 Camera::Camera(){
     
 }
@@ -79,15 +79,15 @@ Vector animate_view(Vector cur, Vector next){
 }
 
 void Camera::anime_camera(Vector next){
-    StopWatch timer(0.1);
+    StopWatch timer(0.05);
     
     while (up != next) { //the two vector are not the same, keep calling
         if (timer.is_timeup()) {
             up = animate_view(up, next);
-            timer.reset();
+            Scene::Instance().render(); //force the scene to render
+            timer.start();
         }
     }
-    //we need to force a render......
 }
 
 
