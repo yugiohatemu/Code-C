@@ -126,6 +126,7 @@ int main( int argc, char *argv[] ){
 	}
     
     Scene::Instance().delete_scene();
+    Texture::Instance().clean_texture();
 	//Clean up
 	SDL_Quit();
 	return 0;

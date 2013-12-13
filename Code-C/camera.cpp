@@ -47,7 +47,7 @@ void Camera::init_camera(){
 //do the one without timer now, use timer?
 Vector animate_view(Vector cur, Vector next){
     
-    float move = 0.05f;
+    float move = 0.1f;
     
     if (next.x >= cur.x){
         if(next.x >= cur.x + move) cur.x += move;

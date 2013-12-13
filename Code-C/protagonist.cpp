@@ -28,6 +28,8 @@ Protagonist::Protagonist(){
     gluSphere(sphere, 0.5, 15, 15);
     glEndList();
     gluDeleteQuadric(sphere);
+    
+    orien.z = 360;
 
 }
 
@@ -42,13 +44,23 @@ void Protagonist::render(){
     Matrix m = current->get_transform();
     glMultMatrixf(m.begin());
     glTranslatef(anchor.x, anchor.y, anchor.z);
-    glTranslatef(0, 0.25, 0); //the distance from center to bottom
+    glTranslatef(0, 0.25, 0);
+    //rotate , not important for now
+//    Vector z_cor = m * Vector(0,0,1);
+//    
+//    glBegin(GL_LINES);
+//    glColor3f(1, 0, 0);glVertex3f(0, 0, 0); glVertex3f(0, 0, 1);
+//    glColor3f(0, 0, 1);glVertex3f(0, 0, 0); glVertex3f(z_cor.x, z_cor.y, z_cor.z); //same? not sure
+//    glEnd();
+    
+    
+    glRotatef(orien.z, 0 , 0, 1);
+    //the distance from center to bottom
     glBindTexture(GL_TEXTURE_2D, Texture::Instance().get_texture(Texture::MARBLE));
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glCallList(mysphereID);
     glBindTexture(GL_TEXTURE_2D, NULL);
-//    glColor3f(0, 0, 1.0);
-//    glutSolidSphere(0.5, 10, 10);
+
     glPopMatrix();
 }
 
@@ -57,9 +69,12 @@ void Protagonist::update(SDL_Event event){
     float speed = 0.1f;
     
     if (event.type == SDL_KEYDOWN) {
-        if(event.key.keysym.sym == SDLK_UP){
+        SDLKey key_press = event.key.keysym.sym;
+        if(key_press == SDLK_UP){
 
             Point next_anchor = current->get_transform() * (anchor + Vector(1,0,0) * speed);
+            orien.z -= 5; if (orien.z <= 0) orien.z = 360;
+            //Problem, we need to use the surface normal to do that?
             
             if (next_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
                 anchor = anchor+ Vector(1,0,0) * speed;
@@ -75,9 +90,10 @@ void Protagonist::update(SDL_Event event){
                     Camera::Instance().anime_camera(current->get_normal());
                 }
             }
-        }else if(event.key.keysym.sym == SDLK_DOWN){
+        }else if(key_press == SDLK_DOWN){
            
             Point prev_anchor = current->get_transform() * ( anchor + Vector(1,0,0) * -speed);
+            orien.z += 5; if (orien.z >= 360) orien.z = 0;
             
             if (prev_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
                 anchor = anchor + Vector(1,0,0) * -speed;
@@ -94,6 +110,10 @@ void Protagonist::update(SDL_Event event){
                     Camera::Instance().anime_camera(current->get_normal());
                 }
             }
+        }else if(key_press == SDLK_LEFT){
+        
+        }else if(key_press == SDLK_RIGHT){
+            
         }
     }
 }

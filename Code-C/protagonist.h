@@ -16,7 +16,7 @@ class Path;
 
 class Protagonist:public Sprite{
     Point anchor;
-    
+    Vector orien;
 public:
     Protagonist();
     ~Protagonist();
