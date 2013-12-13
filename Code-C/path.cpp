@@ -10,11 +10,58 @@
 #include "SDL/SDL_opengl.h"
 #include "utility.h"
 
+//    v3----- v2
+//   /|      /|
+//  v0------v1|
+//  | |     | |
+//  | |v7---|-|v6
+//  |/      |/
+//  v4------v5
+
+//v0 0, 0, -0.5
+//v1 0, 0, 0.5
+//v2 1, 0, 0.5
+//v3 1, 0, -0.5
+//v4 0, -0.1, -0.5
+//v5 0, -0.1, 0.5
+//v6 1, -0.1, 0.5
+//v7 1, -0.1, -0.5
+//I understand how draw array work..
+//but what about draw element?
+
+GLfloat vertices[] = {
+    0, 0, -0.5,  0, 0, 0.5,  0, -0.1, -0.5,   0, -0.1, 0.5,   // 0, 1, 4, 5 (front)
+    0, 0, 0.5,   1, 0, 0.5,  1, -0.1, 0.5,   0, -0.1, 0.5,   // 1, 2, 6, 5 (right)
+    0, 0, -0.5,   0, 0, 0.5,  1, 0, 0.5,  1, 0, -0.5,   // 0, 1, 2, 3 (top)
+    0, 0, -0.5,  1, 0, -0.5,  1, -0.1, -0.5,  0, -0.1, -0.5,   // 0, 3, 7, 4 (left)
+    0, -0.1, -0.5,   0, -0.1, 0.5,   1, -0.1, 0.5,  1, -0.1, -0.5,   // 4, 5, 6, 7 (bottom)
+    1, 0, 0.5,  1, 0, -0.5,  1, -0.1, -0.5,   1, -0.1, 0.5 }; // 2, 3, 7, 6 (back)
+
+// normal array
+GLfloat normals[]  = { 0, 0, 1,   0, 0, 1,   0, 0, 1,   0, 0, 1,   // 0, 1, 4, 5 (front)
+    1, 0, 0,   1, 0, 0,   1, 0, 0,   1, 0, 0,   // 1, 2, 6, 5 (right)
+    0, 1, 0,   0, 1, 0,   0, 1, 0,   0, 1, 0,   // v0,v5,v6,v1 (top)
+    -1, 0, 0,  -1, 0, 0,  -1, 0, 0,  -1, 0, 0,   // v1,v6,v7,v2 (left)
+    0,-1, 0,   0,-1, 0,   0,-1, 0,   0,-1, 0,   // v7,v4,v3,v2 (bottom)
+    0, 0,-1,   0, 0,-1,   0, 0,-1,   0, 0,-1 }; // v4,v7,v6,v5 (back)
+
+// index array of vertex array for glDrawElements() & glDrawRangeElement()
+GLubyte indices[]  = { 0, 1, 2,   2, 3, 0,      // front
+    4, 5, 6,   6, 7, 4,      // right
+    8, 9,10,  10,11, 8,      // top
+    12,13,14,  14,15,12,      // left
+    16,17,18,  18,19,16,      // bottom
+    20,21,22,  22,23,20 };    // back
+
 Path::Path(Vector trans, Vector rotate, Vector scale){
     
     //seperate scale matrix from directional matrix
     vertexs[0] = Point(0, 0, -0.5);vertexs[1] = Point(0, 0, 0.5);
     vertexs[2] = Point(1, 0, 0.5);vertexs[3] = Point(1, 0, -0.5);
+    for (int i = 4; i < 8; i++) {
+        vertexs[i] = vertexs[i-4]; vertexs[i].y = -0.1;
+    }
+    
     for (int i = 0; i < 4; i++) vertexs[i] = Matrix::scale(scale) * vertexs[i];
     start = Point::get_mid(vertexs[0], vertexs[1]);
     end = Point::get_mid(vertexs[2], vertexs[3]);
@@ -48,23 +95,34 @@ Matrix Path::get_transform(){
 
 void Path::render(){
     //use gldrawarray later
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
+   
+    glColor3f(1, 0, 0);
+    glNormalPointer(GL_FLOAT, 0, normals);
+    glVertexPointer(3, GL_FLOAT, 0, vertices);
+    
     glPushMatrix();
     glMultMatrixf(prod.begin());
-    glColor3f(1, 0, 0);
-    
-    glBegin(GL_QUADS);
-    glNormal3f(normal.x, normal.y, normal.z);
-    for (int i = 0; i < 4; i++) glVertex3f(vertexs[i].x, vertexs[i].y, vertexs[i].z);
-    
-    glEnd();
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, indices);
     glPopMatrix();
     
-    glPushMatrix();
-    glBegin(GL_LINES);
-    glColor3f(0, 0, 0);
-    glVertex3f(start.x, start.y, start.z); glVertex3f(end.x, end.y, end.z);
-    glEnd();
-    glPopMatrix();
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+    
+    
+//    glBegin(GL_QUADS);
+//    glNormal3f(normal.x, normal.y, normal.z);
+//    for (int i = 0; i < 4; i++) glVertex3f(vertexs[i].x, vertexs[i].y, vertexs[i].z);
+//
+//    glEnd();
+    
+//    glPushMatrix();
+//    glBegin(GL_LINES);
+//    glColor3f(0, 0, 0);
+//    glVertex3f(start.x, start.y, start.z); glVertex3f(end.x, end.y, end.z);
+//    glEnd();
+//    glPopMatrix();
 
 }
 
