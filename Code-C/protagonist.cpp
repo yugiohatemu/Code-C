@@ -28,6 +28,7 @@ void Protagonist::render(){
     Matrix m = current->get_transform();
     glMultMatrixf(m.begin());
     glTranslatef(anchor.x, anchor.y, anchor.z);
+    glTranslatef(0, 0.25, 0); //the distance from center to bottom
     
     glColor3f(0, 0, 1.0);
     glutSolidTeapot(0.5);

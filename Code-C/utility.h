@@ -9,7 +9,7 @@
 #ifndef __Code_C__utility__
 #define __Code_C__utility__
 #include <iostream>
-
+#include "SDL/SDL_opengl.h"
 template<class NUM>
 bool is_num_whithin(NUM n, NUM a, NUM b){
     return (a <= n && n <= b) || (b <= n && n <= a) ;

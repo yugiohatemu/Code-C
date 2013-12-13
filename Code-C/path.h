@@ -17,6 +17,8 @@ class Path:public Sprite{
 private:
     Point start, end;
     Point vertexs[8];
+    Vector normals[6];
+    
     Vector to_next, to_prev;
     Vector normal;
     Matrix prod;
