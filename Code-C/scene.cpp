@@ -33,6 +33,10 @@ void Scene::new_scene(){
     trans_list.push_back(Vector(0,0,45));trans_list.push_back(Vector(2,1,1));
     trans_list.push_back(Vector(45,0,0));trans_list.push_back(Vector(1,1,1));
     trans_list.push_back(Vector(0,0,0));trans_list.push_back(Vector(1,1,1));
+    trans_list.push_back(Vector(0,45,0)); trans_list.push_back(Vector(2,1,1));
+    trans_list.push_back(Vector(0,90,0)); trans_list.push_back(Vector(1,1,1));
+    trans_list.push_back(Vector(0,135,0)); trans_list.push_back(Vector(1,1,1));
+    trans_list.push_back(Vector(0,180,0)); trans_list.push_back(Vector(1,1,1));
     path  = Path::make_consecutive_path(Vector(.5,0,0), trans_list);
     pro->current = path;
     

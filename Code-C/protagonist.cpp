@@ -73,7 +73,7 @@ void Protagonist::update(SDL_Event event){
         if(key_press == SDLK_UP){
 
             Point next_anchor = current->get_transform() * (anchor + Vector(1,0,0) * speed);
-            orien.z -= 5; if (orien.z <= 0) orien.z = 360;
+            orien.z -= 10; if (orien.z <= 0) orien.z = 360;
             //Problem, we need to use the surface normal to do that?
             
             if (next_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
@@ -86,18 +86,20 @@ void Protagonist::update(SDL_Event event){
                     anchor = Point();
                     
                     Camera::Instance().center = current->get_start();
-//                    Camera::Instance().up = current->get_normal();
-                    Camera::Instance().anime_camera(current->get_normal());
+                    
+                    Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
+                    Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
                 }
             }
         }else if(key_press == SDLK_DOWN){
            
             Point prev_anchor = current->get_transform() * ( anchor + Vector(1,0,0) * -speed);
-            orien.z += 5; if (orien.z >= 360) orien.z = 0;
+            orien.z += 10; if (orien.z >= 360) orien.z = 0;
             
             if (prev_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
                 anchor = anchor + Vector(1,0,0) * -speed;
                 Camera::Instance().center = prev_anchor;
+                
             }else{
                 //reset anchor point
                 if (current->prev) {
@@ -106,8 +108,10 @@ void Protagonist::update(SDL_Event event){
                     anchor = current->get_length_point();
                     
                     Camera::Instance().center = current->get_end();
-//                    Camera::Instance().up = current->get_normal();
-                    Camera::Instance().anime_camera(current->get_normal());
+                    
+                    Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
+                    Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
+
                 }
             }
         }else if(key_press == SDLK_LEFT){

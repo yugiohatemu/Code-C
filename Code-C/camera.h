@@ -28,9 +28,11 @@ public:
     void init_camera();
     void set_camera();
     Vector get_direction(SDLKey dir);
-    void anime_camera(Vector next);
+    void anime_camera(Vector new_up, Vector new_eye_to_center);
+    Vector get_eye_to_center();
     
     Point eye, center;
+    Vector eye_to_center;
     Vector up;
     
 private:

@@ -40,62 +40,55 @@ void Camera::init_camera(){
     views[BACK_VIEW].set(0, 5, -8);
     views[LEFT_VIEW].set(-5, 8, 0);
     
+    eye_to_center = Vector(-10, 3, 0); //need to applt rotation?
     up = Vector(1, 0, 0);
     eye = center + Vector(-10,3,0);
 }
 
-//do the one without timer now, use timer?
-Vector animate_view(Vector cur, Vector next){
-    
-    float move = 0.1f;
-    
-    if (next.x >= cur.x){
-        if(next.x >= cur.x + move) cur.x += move;
-        else cur.x = next.x;
+
+//routine for clamping cur to next using step
+float adjust(float cur, float next, float step){
+    if (next >= cur){
+        if(next >= cur + step) cur += step;
+        else cur = next;
     }else{
-        if (next.x <= cur.x - move) cur.x -= move;
-        else cur.x = next.x;
+        if (next <= cur - step) cur -= step;
+        else cur = next;
     }
-    
-    if (next.y >= cur.y){
-        if(next.y >= cur.y + move) cur.y += move;
-        else cur.y = next.y;
-    }else{
-        if (next.y <= cur.y - move) cur.y -= move;
-        else cur.y = next.y;
-    }
-    
-    if (next.z >= cur.z){
-        if(next.z >= cur.z + move) cur.z += move;
-        else cur.z = next.z;
-    }else{
-        if (next.z <= cur.z - move) cur.z -= move;
-        else cur.z = next.z;
-    }
-    //there should be a utility function for something like this
-    //clamping
     return cur;
-    
 }
 
-void Camera::anime_camera(Vector next){
+void Camera::anime_camera(Vector new_up, Vector new_eye_to_center){
     StopWatch timer(0.05);
     
-    while (up != next) { //the two vector are not the same, keep calling
+    while (up != new_up || eye_to_center != new_eye_to_center) { //the two vector are not the same, keep calling
         if (timer.is_timeup()) {
-            up = animate_view(up, next);
+            
+            up.x = adjust(up.x, new_up.x, 0.1f);
+            up.y = adjust(up.y, new_up.y, 0.1f);
+            up.z = adjust(up.z, new_up.z, 0.1f);
+            
+            //If want to rotation to be more elegant, maybe need to calculate step
+            eye_to_center.x = adjust(eye_to_center.x, new_eye_to_center.x, 0.5f);
+            eye_to_center.y = adjust(eye_to_center.y, new_eye_to_center.y, 0.5f);
+            eye_to_center.z = adjust(eye_to_center.z, new_eye_to_center.z, 0.5f);
+            
             Scene::Instance().render(); //force the scene to render
             timer.start();
         }
     }
 }
 
+Vector Camera::get_eye_to_center(){
+    return Vector(-10,3,0);
+}
 
 void Camera::set_camera(){
     glLoadIdentity();
-    eye = center + Vector(-10,3,0);
+    eye = center + eye_to_center;
     gluLookAt(eye.x, eye.y, eye.z, center.x, center.y, center.z, up.x, up.y, up.z);
 }
+
 
 Vector Camera::get_direction(SDLKey dir){
 
