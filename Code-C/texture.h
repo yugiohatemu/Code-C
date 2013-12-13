@@ -27,7 +27,7 @@ private:
     
 public:
     enum{
-        NPC,
+        MARBLE,
         TILE,
         FONT,
         TOTAL_TEXTURE,

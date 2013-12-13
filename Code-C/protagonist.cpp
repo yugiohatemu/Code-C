@@ -12,9 +12,23 @@
 #include "camera.h"
 #include "path.h"
 #include "utility.h"
+#include "texture.h"
+
+GLuint mysphereID;
 
 Protagonist::Protagonist(){
-    
+    GLUquadricObj *sphere=NULL;
+    sphere = gluNewQuadric();
+    gluQuadricDrawStyle(sphere, GLU_FILL);
+    gluQuadricTexture(sphere, true);
+    gluQuadricNormals(sphere, GLU_SMOOTH);
+    //Making a display list
+    mysphereID = glGenLists(1);
+    glNewList(mysphereID, GL_COMPILE);
+    gluSphere(sphere, 0.5, 15, 15);
+    glEndList();
+    gluDeleteQuadric(sphere);
+
 }
 
 Protagonist::~Protagonist(){
@@ -29,12 +43,15 @@ void Protagonist::render(){
     glMultMatrixf(m.begin());
     glTranslatef(anchor.x, anchor.y, anchor.z);
     glTranslatef(0, 0.25, 0); //the distance from center to bottom
-    
-    glColor3f(0, 0, 1.0);
-    glutSolidTeapot(0.5);
-    
+    glBindTexture(GL_TEXTURE_2D, Texture::Instance().get_texture(Texture::MARBLE));
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+    glCallList(mysphereID);
+    glBindTexture(GL_TEXTURE_2D, NULL);
+//    glColor3f(0, 0, 1.0);
+//    glutSolidSphere(0.5, 10, 10);
     glPopMatrix();
 }
+
 
 void Protagonist::update(SDL_Event event){
     float speed = 0.1f;

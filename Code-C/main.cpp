@@ -21,6 +21,7 @@
 
 #include "stopWatch.h"
 #include "scene.h"
+#include "texture.h"
 
 //Screen attributes
 const int SCREEN_WIDTH = 640;
@@ -105,6 +106,7 @@ int main( int argc, char *argv[] ){
     fps.start();
     
     Scene::Instance().new_scene();
+    Texture::Instance().load_file("/Users/wei/Desktop/Code-C/Code-C/marble.png", 256, 256);
     SDL_Event event;
     
 	while( !quit ){

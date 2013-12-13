@@ -82,6 +82,7 @@
 		B67D9841185A03680029AF82 /* loadPNG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loadPNG.h; sourceTree = "<group>"; };
 		B67D9842185A03680029AF82 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		B67D9843185A03680029AF82 /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
+		B67D9848185B8F4C0029AF82 /* marble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marble.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +123,7 @@
 		B61B880D1847AD20009F75D5 /* Code-C */ = {
 			isa = PBXGroup;
 			children = (
+				B67D9847185B8F410029AF82 /* image */,
 				B61B884B184A6254009F75D5 /* algebra */,
 				B61B8852184ABD94009F75D5 /* path */,
 				B67D983F185A02660029AF82 /* shader */,
@@ -189,6 +191,14 @@
 				B67D9843185A03680029AF82 /* texture.h */,
 			);
 			name = texture;
+			sourceTree = "<group>";
+		};
+		B67D9847185B8F410029AF82 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				B67D9848185B8F4C0029AF82 /* marble.png */,
+			);
+			name = image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
