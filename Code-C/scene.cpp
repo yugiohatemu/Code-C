@@ -27,6 +27,7 @@ Scene& Scene::Instance(){
 
 void Scene::new_scene(){
     Camera::Instance().init_camera();
+    Camera::Instance().anime = false;
     
     pro = new Protagonist();
     std::vector<Vector> trans_list;
@@ -37,6 +38,13 @@ void Scene::new_scene(){
     trans_list.push_back(Vector(0,90,0)); trans_list.push_back(Vector(1,1,1));
     trans_list.push_back(Vector(0,135,0)); trans_list.push_back(Vector(1,1,1));
     trans_list.push_back(Vector(0,180,0)); trans_list.push_back(Vector(1,1,1));
+    //the orientation does not seperate
+    trans_list.push_back(Vector(45,180,0)); trans_list.push_back(Vector(2,1,1));
+    trans_list.push_back(Vector(60,180,-30)); trans_list.push_back(Vector(1,1,1));
+    trans_list.push_back(Vector(75,180,-60)); trans_list.push_back(Vector(1,1,1));
+    trans_list.push_back(Vector(90,180,-90)); trans_list.push_back(Vector(1,1,1));
+    
+    //need to change the make
     path  = Path::make_consecutive_path(Vector(.5,0,0), trans_list);
     pro->current = path;
     
@@ -70,5 +78,9 @@ void Scene::render(){
 }
 
 void Scene::update(SDL_Event event){
+    if (event.type == SDL_KEYDOWN) {
+        if(event.key.keysym.sym == SDLK_TAB) Camera::Instance().switch_view();
+    }
+
     if (pro) pro->update(event);
 }

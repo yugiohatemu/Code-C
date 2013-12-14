@@ -66,7 +66,7 @@ void Protagonist::render(){
 
 
 void Protagonist::update(SDL_Event event){
-    float speed = 0.1f;
+    float speed = 0.2f;
     
     if (event.type == SDL_KEYDOWN) {
         SDLKey key_press = event.key.keysym.sym;

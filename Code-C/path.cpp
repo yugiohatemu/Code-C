@@ -50,7 +50,7 @@ Path::Path(Vector trans, Vector rotate, Vector scale){
     normals[2] = Vector(0, 0, 1); normals[3] = Vector(0, 0, -1);
     normals[4] = Vector(1, 0, 0); normals[5] = Vector(-1, 0, 0);
     
-    for (int i = 0; i < 4; i++) vertexs[i] = Matrix::scale(scale) * vertexs[i];
+    for (int i = 0; i < 8; i++) vertexs[i] = Matrix::scale(scale) * vertexs[i];
     start = Point::get_mid(vertexs[0], vertexs[1]);
     end = Point::get_mid(vertexs[2], vertexs[3]);
     

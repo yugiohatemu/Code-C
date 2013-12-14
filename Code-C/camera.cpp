@@ -31,16 +31,16 @@ Camera& Camera::Instance(){
 //////////////////////////////////////////////////////////////////////
 
 void Camera::init_camera(){
-    Vector pos(0,5,8);
+    Vector pos(-10, 3, 0);
     
     //TODO:pos rotate 90,
     //now we have matrix, it is much easier to do rotation
-    views[FRONT_VIEW] = pos;
-    views[RIGHT_VIEW].set(5, 8, 0);
-    views[BACK_VIEW].set(0, 5, -8);
-    views[LEFT_VIEW].set(-5, 8, 0);
+    views[FRONT_VIEW] = Vector(-10, 3, 0);;
+    views[RIGHT_VIEW] = Vector(0, 3, 10);
+    views[BACK_VIEW] = Vector(10, 3, 0);
+    views[LEFT_VIEW] = Vector(0, 3, -10);
     
-    eye_to_center = Vector(-10, 3, 0); //need to applt rotation?
+    eye_to_center =  views[FRONT_VIEW]; //need to applt rotation?
     up = Vector(1, 0, 0);
     eye = center + Vector(-10,3,0);
 }
@@ -59,8 +59,12 @@ float adjust(float cur, float next, float step){
 }
 
 void Camera::anime_camera(Vector new_up, Vector new_eye_to_center){
-    StopWatch timer(0.05);
+    if (!anime) {
+        up = new_up;
+        eye_to_center = new_eye_to_center;
+    }
     
+    StopWatch timer(0.05);
     while (up != new_up || eye_to_center != new_eye_to_center) { //the two vector are not the same, keep calling
         if (timer.is_timeup()) {
             
@@ -80,7 +84,7 @@ void Camera::anime_camera(Vector new_up, Vector new_eye_to_center){
 }
 
 Vector Camera::get_eye_to_center(){
-    return Vector(-10,3,0);
+    return views[current_view];
 }
 
 void Camera::set_camera(){
@@ -109,3 +113,10 @@ Vector Camera::get_direction(SDLKey dir){
     return vec;
 }
 
+void Camera::switch_view(){
+    current_view += 1;
+    if (current_view > LEFT_VIEW) {
+        current_view = FRONT_VIEW;
+    }
+    eye_to_center = views[current_view];
+}

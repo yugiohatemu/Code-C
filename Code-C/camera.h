@@ -29,12 +29,14 @@ public:
     void set_camera();
     Vector get_direction(SDLKey dir);
     void anime_camera(Vector new_up, Vector new_eye_to_center);
+    void switch_view();
     Vector get_eye_to_center();
     
     Point eye, center;
     Vector eye_to_center;
     Vector up;
     
+    bool anime = true;
 private:
     Camera();  // Private so that it can  not be called
     Camera(Camera const&);             // copy constructor is private
