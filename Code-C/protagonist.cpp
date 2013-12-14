@@ -29,7 +29,7 @@ Protagonist::Protagonist(){
     glEndList();
     gluDeleteQuadric(sphere);
     
-    orien.z = 360;
+    orien.z = 360; orien.x = 360;
 
 }
 
@@ -53,8 +53,9 @@ void Protagonist::render(){
 //    glColor3f(0, 0, 1);glVertex3f(0, 0, 0); glVertex3f(z_cor.x, z_cor.y, z_cor.z); //same? not sure
 //    glEnd();
     
-    
+    glRotatef(orien.x, 1, 0, 0);
     glRotatef(orien.z, 0 , 0, 1);
+    
     //the distance from center to bottom
     glBindTexture(GL_TEXTURE_2D, Texture::Instance().get_texture(Texture::MARBLE));
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
@@ -72,53 +73,49 @@ void Protagonist::update(SDL_Event event){
         SDLKey key_press = event.key.keysym.sym;
         if(key_press == SDLK_UP){
 
-            Point next_anchor = current->get_transform() * (anchor + Vector(1,0,0) * speed);
+            Point next_anchor = anchor + Vector(1,0,0) * speed;
             orien.z -= 10; if (orien.z <= 0) orien.z = 360;
-            //Problem, we need to use the surface normal to do that?
             
-            if (next_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
-                anchor = anchor+ Vector(1,0,0) * speed;
-                Camera::Instance().center = next_anchor;
-            }else{
-                //reset anchor to avoid over multiply translation
-                if (current->next) {
-                    current = current->next;
-                    anchor = Point();
-                    
-                    Camera::Instance().center = current->get_start();
-                    
-                    Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
-                    Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
-                }
+            if (current->is_on_surface(next_anchor)) { //if within
+                anchor = next_anchor;
+            }
+            if (current->next && next_anchor.is_within_dis(current->get_end(), speed) ) {
+                current = current->next;
+                anchor = Point();
+        
+                Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
+                Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
             }
         }else if(key_press == SDLK_DOWN){
            
-            Point prev_anchor = current->get_transform() * ( anchor + Vector(1,0,0) * -speed);
+            Point prev_anchor =  anchor + Vector(1,0,0) * -speed;
             orien.z += 10; if (orien.z >= 360) orien.z = 0;
             
-            if (prev_anchor.is_whithin(current->get_start(), current->get_end())) { //if within
-                anchor = anchor + Vector(1,0,0) * -speed;
-                Camera::Instance().center = prev_anchor;
-                
-            }else{
-                //reset anchor point
-                if (current->prev) {
-                    //one way is to get ,or say scale, because invert is inaccurate
-                    current = current->prev;
-                    anchor = current->get_length_point();
-                    
-                    Camera::Instance().center = current->get_end();
-                    
-                    Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
-                    Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
-
-                }
+            if (current->is_on_surface(prev_anchor)) { //this one can use the one before transform...
+                anchor = prev_anchor;
             }
-        }else if(key_press == SDLK_LEFT){
-        
+            if (current->prev && prev_anchor.is_within_dis(current->get_start(), speed) ){ //) {
+                    
+                current = current->prev;
+                anchor = current->get_length_point();
+                    
+                Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
+                Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
+                
+            }
+        }else if(key_press == SDLK_LEFT){ //need to get z size
+            Point left_anchor = anchor + Vector(0,0,1) * -speed;
+            orien.x -= 10; if (orien.x <= 0) orien.x = 360;
+            
+            if (current->is_on_surface(left_anchor)) anchor = left_anchor;
+            
         }else if(key_press == SDLK_RIGHT){
+            Point right_anchor = anchor + Vector(0,0,1) * speed;
+            orien.x += 10; if (orien.x >= 360) orien.x = 0;
+            if (current->is_on_surface(right_anchor)) anchor = right_anchor;
             
         }
+        Camera::Instance().center = current->get_transform() * anchor;
     }
 }
 

@@ -60,8 +60,8 @@ Path::Path(Vector trans, Vector rotate, Vector scale){
     * Matrix::roatate(Vector(0,1,0), rotate.y)
     * Matrix::roatate(Vector(0,0,1), rotate.z);
     
-    end = prod * end;
-    start = prod * start;
+//    end = prod * end;
+//    start = prod * start;
     normal = prod * Vector(0,1,0); normal.normalize();
 
     //for a single , it is right for now
@@ -136,6 +136,13 @@ Point Path::get_length_point(){
     return Point::get_mid(vertexs[2], vertexs[3]);
 }
 
+bool Path::is_on_surface(Point p){ //theoretically we can use the one before product...
+    //0 -> 3 is surface
+    
+    return is_num_whithin(p.x, vertexs[0].x, vertexs[2].x)&&
+        is_num_whithin(p.y, vertexs[0].y, vertexs[2].y) &&
+        is_num_whithin(p.z, vertexs[0].z, vertexs[2].z);
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -183,7 +190,7 @@ Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list){
     Path * prev = head;
     
     for (int i = 2; i < trans_list.size(); i += 2) {
-        Point p = prev->get_end();
+        Point p =  prev->get_transform() * prev->get_end();
         Vector next_start(p.x,p.y,p.z);
         //so translate to start first, rotate, then translate back?
         Path * next = new Path(next_start, trans_list[i], trans_list[i+1]);

@@ -76,6 +76,11 @@ void Point::normalize(){
     }
 }
 
+bool Point::is_within_dis(Point dest, float dis){
+    float f = sqrtf( (x - dest.x)*(x - dest.x) + (y -dest.y)*(y -dest.y) + (z - dest.z) * (z - dest.z));
+    return f<=dis;
+}
+
 bool Point::is_whithin(Point a, Point b){
     return is_num_whithin(x, a.x, b.x) && is_num_whithin(y, a.y, b.y) && is_num_whithin(z, a.z, b.z);
 }

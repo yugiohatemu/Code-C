@@ -27,6 +27,7 @@ struct Point{
     void normalize();
     bool is_whithin(Point a, Point b);
     void clamp_angle();
+    bool is_within_dis(Point dest, float dis);
     static Point get_mid(Point a, Point b);
 };
 
