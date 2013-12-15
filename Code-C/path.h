@@ -14,7 +14,7 @@
 #include <vector>
 
 class Path:public Sprite{
-private:
+protected:
     Point start, end;
     Point vertexs[8];
     Vector normals[6];
@@ -22,19 +22,18 @@ private:
     Vector to_next, to_prev;
     Vector normal;
     Matrix prod;
-    
+    //Only used by subclass
+    Path();
 public:
     
     Path(Vector trans, Vector scale, Vector roatate);
     ~Path();
-    void render();
-    void update(SDL_Event event);
+    virtual void render();
+    virtual void update(SDL_Event event);
     
     Path * prev;
     Path * next;
     
-    Vector get_to_next();
-    Vector get_to_prev();
     Vector get_normal();
     Point get_end();
     Point get_start();

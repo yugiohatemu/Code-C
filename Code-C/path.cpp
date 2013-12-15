@@ -37,10 +37,7 @@ int indices[24] = {
     1, 2, 6, 5//right
 };
 
-
-Path::Path(Vector trans, Vector rotate, Vector scale){
-    
-    //seperate scale matrix from directional matrix
+Path::Path(){
     vertexs[0] = Point(0, 0, -0.5);vertexs[1] = Point(0, 0, 0.5); //we force it to be zero to save translation
     vertexs[2] = Point(1, 0, 0.5);vertexs[3] = Point(1, 0, -0.5);
     for (int i = 4; i < 8; i++) {
@@ -50,18 +47,31 @@ Path::Path(Vector trans, Vector rotate, Vector scale){
     normals[2] = Vector(0, 0, 1); normals[3] = Vector(0, 0, -1);
     normals[4] = Vector(1, 0, 0); normals[5] = Vector(-1, 0, 0);
     
+    start = Point::get_mid(vertexs[0], vertexs[1]);
+    end = Point::get_mid(vertexs[2], vertexs[3]);
+    
+    prev = next = NULL;
+}
+
+Path::Path(Vector trans, Vector rotate, Vector scale){
+    
+    vertexs[0] = Point(0, 0, -0.5);vertexs[1] = Point(0, 0, 0.5); //we force it to be zero to save translation
+    vertexs[2] = Point(1, 0, 0.5);vertexs[3] = Point(1, 0, -0.5);
+    for (int i = 4; i < 8; i++) {
+        vertexs[i] = vertexs[i-4]; vertexs[i].y = -0.1;
+    }
+    normals[0] = Vector(0, 1, 0); normals[1] = Vector(0, -1, 0);
+    normals[2] = Vector(0, 0, 1); normals[3] = Vector(0, 0, -1);
+    normals[4] = Vector(1, 0, 0); normals[5] = Vector(-1, 0, 0);
+    
+    //seperate scale from final matrix
     for (int i = 0; i < 8; i++) vertexs[i] = Matrix::scale(scale) * vertexs[i];
     start = Point::get_mid(vertexs[0], vertexs[1]);
     end = Point::get_mid(vertexs[2], vertexs[3]);
     
-    //rotate on the start point
-    prod = Matrix::translate(trans)
-    * Matrix::roatate(Vector(1,0,0), rotate.x)
-    * Matrix::roatate(Vector(0,1,0), rotate.y)
-    * Matrix::roatate(Vector(0,0,1), rotate.z);
-    
-//    end = prod * end;
-//    start = prod * start;
+    prev = next = NULL;
+    prod = Matrix::translate(trans) * Matrix::rotateXYZ(rotate);
+
     normal = prod * Vector(0,1,0); normal.normalize();
 
     //for a single , it is right for now
@@ -69,7 +79,6 @@ Path::Path(Vector trans, Vector rotate, Vector scale){
     to_next.normalize();
     to_prev = -1 * to_next;
     
-    prev = next = NULL;
 }
 
 
@@ -120,14 +129,6 @@ Point Path::get_start(){
     return start;
 }
 
-Vector Path::get_to_next(){
-    return to_next;
-}
-
-Vector Path::get_to_prev(){
-    return to_prev;
-}
-
 Vector Path::get_normal(){
     return normal;
 }
@@ -170,14 +171,12 @@ void Path::render_path(Path * p){
         Path * next = p;
         
         while (prev != NULL) {
-            Path * temp = prev->prev;
             prev->render();
-            prev = temp;
+            prev = prev->prev;
         }
         while (next != NULL) {
-            Path * temp = next->next;
             next->render();
-            next = temp;
+            next = next->next;
         }
     }
 }

@@ -51,6 +51,10 @@ Matrix Matrix::roatate(Vector vec, float angle){
     return Matrix(mat);
 }
 
+Matrix Matrix::rotateXYZ(Vector vec){
+    return Matrix::roatate(Vector(1,0,0), vec.x) * Matrix::roatate(Vector(0,1,0), vec.y) * Matrix::roatate(Vector(0,0,1), vec.z);
+}
+
 Matrix Matrix::scale(Vector vec){
     if (vec.x != 0 && vec.y != 0 && vec.z != 0) {
         return Matrix(Vector(vec.x,0,0), Vector(0,vec.y,0), Vector(0,0,vec.z), Vector(0,0,0));

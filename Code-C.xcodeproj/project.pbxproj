@@ -28,6 +28,7 @@
 		B67D983E185A01C90029AF82 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D983C185A01C90029AF82 /* shader.cpp */; };
 		B67D9844185A03680029AF82 /* loadPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9840185A03680029AF82 /* loadPNG.cpp */; };
 		B67D9845185A03680029AF82 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9842185A03680029AF82 /* texture.cpp */; };
+		B67D9857185D19DE0029AF82 /* flipPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9855185D19DE0029AF82 /* flipPath.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +84,8 @@
 		B67D9842185A03680029AF82 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		B67D9843185A03680029AF82 /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
 		B67D9848185B8F4C0029AF82 /* marble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marble.png; sourceTree = "<group>"; };
+		B67D9855185D19DE0029AF82 /* flipPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = flipPath.cpp; sourceTree = "<group>"; };
+		B67D9856185D19DE0029AF82 /* flipPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flipPath.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,8 @@
 			children = (
 				B61B884F184AB879009F75D5 /* path.cpp */,
 				B61B8850184AB879009F75D5 /* path.h */,
+				B67D9855185D19DE0029AF82 /* flipPath.cpp */,
+				B67D9856185D19DE0029AF82 /* flipPath.h */,
 			);
 			name = path;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */,
 				B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */,
 				B67D983B18594D710029AF82 /* scene.cpp in Sources */,
+				B67D9857185D19DE0029AF82 /* flipPath.cpp in Sources */,
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,
 				B61B88471848FED6009F75D5 /* vector.cpp in Sources */,
 				B65C90581852426F00B9D7E2 /* matrix.cpp in Sources */,
