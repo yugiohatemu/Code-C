@@ -108,16 +108,7 @@ void Path::render(){
     glEnd();
     glPopMatrix();
 
-//    if (prev) prev->render(); //render two times....
-    if (next) next->render(); //thats the problem without using a static class,but how should, cna I just suppose head
-    //unless we are always starting from the root, or we can force ourself to alwasy start form root...
-//    glPushMatrix();
-//    glBegin(GL_LINES);
-//    glColor3f(0, 0, 0);
-//    glVertex3f(start.x, start.y, start.z); glVertex3f(end.x, end.y, end.z);
-//    glEnd();
-//    glPopMatrix();
-
+    if (next) next->render();
 }
 
 void Path::update(SDL_Event event){
@@ -129,6 +120,21 @@ Point Path::get_end(){
 }
 Point Path::get_start(){
     return start;
+}
+
+Path * Path::get_prev_path(){
+    return prev;
+}
+
+Path * Path::get_next_path(){
+    return next;
+}
+
+void Path::set_next_path(Path * p){
+    next = p;
+}
+void Path::set_prev_path(Path * p){
+    prev = p;
 }
 
 Vector Path::get_normal(){
@@ -151,9 +157,9 @@ bool Path::is_on_surface(Point p){ //theoretically we can use the one before pro
 
 void Path::delete_path(Path * root){
     while (root) {
-        Path * next = root->next;
+        Path * temp = root->get_next_path();
         delete root;
-        root = next;
+        root = temp;
     }
 }
 

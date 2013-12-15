@@ -24,6 +24,8 @@ protected:
     Matrix prod;
     //Only used by subclass
     Path();
+    Path * prev;
+    Path * next;
 public:
     
     Path(Vector trans, Vector scale, Vector roatate);
@@ -31,13 +33,15 @@ public:
     virtual void render();
     virtual void update(SDL_Event event);
     
-    Path * prev;
-    Path * next;
-    
-    Vector get_normal();
     Point get_end();
     Point get_start();
-    Matrix get_transform();
+    void set_next_path(Path * p);
+    void set_prev_path(Path * p);
+    
+    virtual Path * get_prev_path();
+    virtual Path * get_next_path();
+    virtual Vector get_normal();
+    virtual Matrix get_transform();
     
     Point get_length_point();
     bool is_on_surface(Point p);

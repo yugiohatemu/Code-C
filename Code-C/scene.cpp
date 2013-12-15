@@ -51,7 +51,7 @@ void Scene::new_scene(){
     std::vector<Vector> rotate_list; rotate_list.push_back(Vector(0, 90, 0)); rotate_list.push_back(Vector(0,-90,0));
     //add two paths
     FlipPath * joint = new FlipPath(Vector(end.x, end.y, end.z), rotate_list);
-    path->next = joint;
+    path->set_next_path(joint);
     std::vector<Point> next_end = joint->get_end_point_list();
 
     for (int i = 0; i < next_end.size(); i++) {
@@ -87,7 +87,7 @@ void Scene::render(){
     glClearColor( 1.f, 1.f, 1.f, 1.f );
     Camera::Instance().set_camera();
     draw_orbit();
-//    if (pro) pro->render();
+    if (pro) pro->render();
     if (path) path->render();
     SDL_GL_SwapBuffers();
 }

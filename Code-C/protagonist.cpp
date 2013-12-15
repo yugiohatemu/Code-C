@@ -79,8 +79,8 @@ void Protagonist::update(SDL_Event event){
             if (current->is_on_surface(next_anchor)) { //if within
                 anchor = next_anchor;
             }
-            if (current->next && next_anchor.is_within_dis(current->get_end(), speed) ) {
-                current = current->next;
+            if (current->get_next_path() && next_anchor.is_within_dis(current->get_end(), speed) ) {
+                current = current->get_next_path();
                 anchor = Point();
         
                 Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
@@ -94,9 +94,9 @@ void Protagonist::update(SDL_Event event){
             if (current->is_on_surface(prev_anchor)) { //this one can use the one before transform...
                 anchor = prev_anchor;
             }
-            if (current->prev && prev_anchor.is_within_dis(current->get_start(), speed) ){ //) {
+            if (current->get_prev_path() && prev_anchor.is_within_dis(current->get_start(), speed) ){ //) {
                     
-                current = current->prev;
+                current = current->get_prev_path();
                 anchor = current->get_length_point();
                     
                 Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();

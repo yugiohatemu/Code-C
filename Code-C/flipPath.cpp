@@ -21,18 +21,18 @@ FlipPath::FlipPath(Vector trans, std::vector<Vector> next_list):Path(){
 }
 
 FlipPath::~FlipPath(){
-    for (int i = 0; i < next_path.size();i++){
+    //delete everything except the cur_prev, if it exists
+    //TODO: glitch through
+    for (int i = 1; i < next_path.size();i++){
         delete_path(next_path[i]);
     }
 }
 
 void FlipPath::add_next_path(Path * p){
     next_path.push_back(p);
+    cur_next = next_path[0];
 }
 
-std::vector<Path *> FlipPath::get_next_path(){
-    return next_path;
-}
 
 std::vector<Point> FlipPath::get_end_point_list(){
     return end_point_list;
@@ -48,27 +48,24 @@ void FlipPath::anime(){
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //Overwrite parent class
-//Vector FlipPath::get_normal(){
-//    return normal;
-//}
-//
-//Point FlipPath::get_end(){
-//    
-//}
-//Point FlipPath::get_start(){
-//    
-//}
-//Matrix FlipPath::get_transform(){
-//    
-//}
-//
-//Point FlipPath::get_length_point(){
-//    
-//}
-//
-//bool FlipPath::is_on_surface(Point p){
-//    
-//}
+
+Matrix FlipPath::get_transform(){
+    return prod * Matrix::rotateXYZ(next_rotate[0]);
+}
+
+Vector FlipPath::get_normal(){
+    Vector norm =prod * Matrix::rotateXYZ(next_rotate[0])* Vector(0,1,0);
+    norm.normalize();
+    return norm;
+}
+
+Path* FlipPath::get_prev_path(){
+    return prev;
+}
+
+Path* FlipPath::get_next_path(){
+    return cur_next;
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface
@@ -84,10 +81,9 @@ int ind[24] = {
 };
 
 void FlipPath::render(){
-   
     
     glColor3f(0, 0, 1);
-    for (int i = 0; i < next_rotate.size(); i++) {
+    for (int i = 0; i < 1; i++) {
         glPushMatrix();
         Matrix final_prod = prod * Matrix::rotateXYZ(next_rotate[i]);
         glMultMatrixf(final_prod.begin());
