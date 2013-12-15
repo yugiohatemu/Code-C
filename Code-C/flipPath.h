@@ -10,8 +10,8 @@
 #define __Code_C__flipPath__
 
 #include "path.h"
-#include "pauseWatch.h"
 #include "stopWatch.h"
+
 class FlipPath:public Path{
     std::vector<Path*> next_path;
     std::vector<Vector> next_rotate;
@@ -38,6 +38,7 @@ public:
     Vector get_normal();
     Path * get_prev_path();
     Path * get_next_path();
+    bool is_on_surface(Point p);
     
     void render();
     void update(SDL_Event event);
