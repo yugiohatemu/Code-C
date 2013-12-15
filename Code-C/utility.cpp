@@ -10,6 +10,18 @@
 #include <fstream>
 #include "SDL/SDL_opengl.h"
 
+//routine for clamping cur to next using step
+float adjust(float cur, float next, float step){
+    if (next >= cur){
+        if(next >= cur + step) cur += step;
+        else cur = next;
+    }else{
+        if (next <= cur - step) cur -= step;
+        else cur = next;
+    }
+    return cur;
+}
+
 std::string readFile(std::string filename){
     std::ifstream file(filename.c_str());
     std::string line;

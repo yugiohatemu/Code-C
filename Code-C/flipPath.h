@@ -10,20 +10,28 @@
 #define __Code_C__flipPath__
 
 #include "path.h"
-
+#include "pauseWatch.h"
+#include "stopWatch.h"
 class FlipPath:public Path{
     std::vector<Path*> next_path;
     std::vector<Vector> next_rotate;
     std::vector<Point> end_point_list;
     Vector cur_rotate;
     Path * cur_next;
+    int cure_indx = 0;
+
+    enum State{
+        STATIC,
+        ANIME
+    };
+    State state;
+    
 public:
     FlipPath(Vector trans, std::vector<Vector> next_list);
     ~FlipPath();
     
     void add_next_path(Path * p);
     std::vector<Point> get_end_point_list();
-    void anime();
     
     //Parent
     Matrix get_transform();
@@ -34,6 +42,7 @@ public:
     void render();
     void update(SDL_Event event);
     
+    StopWatch timer;
 };
 
 #endif /* defined(__Code_C__flipPath__) */

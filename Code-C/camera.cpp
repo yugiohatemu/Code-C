@@ -11,6 +11,7 @@
 #include "camera.h"
 #include "stopWatch.h"
 #include "scene.h"
+#include "utility.h"
 Camera::Camera(){
     
 }
@@ -45,18 +46,6 @@ void Camera::init_camera(){
     eye = center + Vector(-10,3,0);
 }
 
-
-//routine for clamping cur to next using step
-float adjust(float cur, float next, float step){
-    if (next >= cur){
-        if(next >= cur + step) cur += step;
-        else cur = next;
-    }else{
-        if (next <= cur - step) cur -= step;
-        else cur = next;
-    }
-    return cur;
-}
 
 void Camera::anime_camera(Vector new_up, Vector new_eye_to_center){
     if (!anime) {

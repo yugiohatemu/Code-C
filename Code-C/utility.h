@@ -29,7 +29,7 @@ CNUM clamp(CNUM n, CNUM a, CNUM b){
     else return big;
 }
 
-
+float adjust(float cur, float next, float step);
 std::string readFile(std::string filename);
 int printOglError(char *file, int line);
 void printShaderInfoLog(GLuint obj);

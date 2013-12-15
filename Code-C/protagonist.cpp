@@ -103,18 +103,19 @@ void Protagonist::update(SDL_Event event){
                 Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
                 
             }
-        }else if(key_press == SDLK_LEFT){ //need to get z size
-            Point left_anchor = anchor + Vector(0,0,1) * -speed;
-            orien.x -= 10; if (orien.x <= 0) orien.x = 360;
-            
-            if (current->is_on_surface(left_anchor)) anchor = left_anchor;
-            
-        }else if(key_press == SDLK_RIGHT){
-            Point right_anchor = anchor + Vector(0,0,1) * speed;
-            orien.x += 10; if (orien.x >= 360) orien.x = 0;
-            if (current->is_on_surface(right_anchor)) anchor = right_anchor;
-            
         }
+//        else if(key_press == SDLK_LEFT){ //need to get z size
+//            Point left_anchor = anchor + Vector(0,0,1) * -speed;
+//            orien.x -= 10; if (orien.x <= 0) orien.x = 360;
+//            
+//            if (current->is_on_surface(left_anchor)) anchor = left_anchor;
+//            
+//        }else if(key_press == SDLK_RIGHT){
+//            Point right_anchor = anchor + Vector(0,0,1) * speed;
+//            orien.x += 10; if (orien.x >= 360) orien.x = 0;
+//            if (current->is_on_surface(right_anchor)) anchor = right_anchor;
+//            
+//        }
         Camera::Instance().center = current->get_transform() * anchor;
     }
 }

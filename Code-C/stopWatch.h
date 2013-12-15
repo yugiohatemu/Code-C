@@ -11,17 +11,17 @@
 
 class StopWatch{
 private:
-    double time_left;
+    float time_accum;
     int start_tick;
-    double count_down;
+    float count_down;
 public:
     
-    StopWatch(double count_down);
+    StopWatch(float count_down);
     ~StopWatch();
     bool is_timeup();
     void start();
     void reset();
-    
+    float get_accum_time();
 };
 
 

@@ -112,7 +112,7 @@ void Path::render(){
 }
 
 void Path::update(SDL_Event event){
-    
+    if (next) next->update(event);
 }
 
 Point Path::get_end(){

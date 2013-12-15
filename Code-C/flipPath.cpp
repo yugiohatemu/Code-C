@@ -7,10 +7,10 @@
 //
 
 #include "flipPath.h"
-#include "stopWatch.h"
 #include "SDL/SDL_opengl.h"
+#include "utility.h"
 
-FlipPath::FlipPath(Vector trans, std::vector<Vector> next_list):Path(){
+FlipPath::FlipPath(Vector trans, std::vector<Vector> next_list):Path(), timer(1){
     prod = Matrix::translate(trans);
     next_rotate = next_list;
     
@@ -18,19 +18,22 @@ FlipPath::FlipPath(Vector trans, std::vector<Vector> next_list):Path(){
         Matrix final_prod = prod * Matrix::rotateXYZ(next_rotate[i]);
         end_point_list.push_back(final_prod * end);
     }
+    cur_rotate = next_rotate[cure_indx];
+    state = ANIME;
 }
 
 FlipPath::~FlipPath(){
-    //delete everything except the cur_prev, if it exists
-    //TODO: glitch through
-    for (int i = 1; i < next_path.size();i++){
-        delete_path(next_path[i]);
+    
+    for (int i = 0; i < next_path.size();i++){
+        //Avoid double delete since the path connected will be handled be delete_path
+        if (cure_indx != i) delete_path(next_path[i]);
     }
 }
 
 void FlipPath::add_next_path(Path * p){
     next_path.push_back(p);
-    cur_next = next_path[0];
+    cur_next = next_path[cure_indx];
+    next_path[cure_indx]->set_prev_path(this);
 }
 
 
@@ -38,23 +41,15 @@ std::vector<Point> FlipPath::get_end_point_list(){
     return end_point_list;
 }
 
-void FlipPath::anime(){
-    /*
-     In order for the animation to work, we only need the rotation matrix
-     I think this force us to seperate the matrix instead of just using the final product
-    
-     */
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////
 //Overwrite parent class
 
 Matrix FlipPath::get_transform(){
-    return prod * Matrix::rotateXYZ(next_rotate[0]);
+    return prod * Matrix::rotateXYZ(cur_rotate);
 }
 
 Vector FlipPath::get_normal(){
-    Vector norm =prod * Matrix::rotateXYZ(next_rotate[0])* Vector(0,1,0);
+    Vector norm =prod * Matrix::rotateXYZ(cur_rotate)* Vector(0,1,0);
     norm.normalize();
     return norm;
 }
@@ -83,30 +78,62 @@ int ind[24] = {
 void FlipPath::render(){
     
     glColor3f(0, 0, 1);
-    for (int i = 0; i < 1; i++) {
-        glPushMatrix();
-        Matrix final_prod = prod * Matrix::rotateXYZ(next_rotate[i]);
-        glMultMatrixf(final_prod.begin());
-        glBegin(GL_QUADS);
-        
-        for (int i = 0; i < 6; i++) {
-            glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-            for (int j = 0; j < 4; j++) {
-                int index = ind[4*i+j];
-                glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
-            }
-        }
-        glEnd();
-        glPopMatrix();
-    }
     
+    glPushMatrix();
+    Matrix final_prod = prod * Matrix::rotateXYZ(cur_rotate);
+    glMultMatrixf(final_prod.begin());
+    glBegin(GL_QUADS);
+        
+    for (int i = 0; i < 6; i++) {
+        glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+        for (int j = 0; j < 4; j++) {
+            int index = ind[4*i+j];
+            glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
+        }
+    }
+    glEnd();
+    glPopMatrix();
     
     for (int i = 0; i < next_path.size();i++) {
         next_path[i]->render();
     }
+    
 }
 
 
 void FlipPath::update(SDL_Event event){
+    if (state == STATIC) {
+        if (timer.is_timeup()) {
+            state = ANIME;
+            timer.reset();
+        }
+    }else{
     
+    //what about using state matchine?
+    
+    int next_index = cure_indx + 1;
+    if (next_index >= next_rotate.size()) next_index = 0;
+    Vector rot = next_rotate[next_index];
+    
+    cur_rotate.x = adjust(cur_rotate.x, rot.x, 3);
+    cur_rotate.y = adjust(cur_rotate.y, rot.y, 3);
+    cur_rotate.z = adjust(cur_rotate.z, rot.z, 3);
+    
+    if (cur_rotate == rot) {
+        //reset
+        cur_next->set_prev_path(NULL);
+        //update next
+        cure_indx  = next_index;
+        cur_next = next_path[cure_indx];
+        cur_next->set_prev_path(this);
+        
+        state = STATIC;
+        timer.start();
+    }
+    }
+    
+    //Update
+    for (int i = 0; i < next_path.size();i++) {
+        next_path[i]->update(event);
+    }
 }
