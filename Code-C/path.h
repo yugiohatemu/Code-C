@@ -42,8 +42,7 @@ public:
     Point get_length_point();
     bool is_on_surface(Point p);
     
-    static void delete_path(Path * p);
-    static void render_path(Path * p);
+    static void delete_path(Path * root);
     static Path* make_consecutive_path(Vector start, std::vector<Vector> trans_list);
 };
 

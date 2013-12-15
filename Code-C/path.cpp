@@ -108,7 +108,9 @@ void Path::render(){
     glEnd();
     glPopMatrix();
 
-    
+//    if (prev) prev->render(); //render two times....
+    if (next) next->render(); //thats the problem without using a static class,but how should, cna I just suppose head
+    //unless we are always starting from the root, or we can force ourself to alwasy start form root...
 //    glPushMatrix();
 //    glBegin(GL_LINES);
 //    glColor3f(0, 0, 0);
@@ -147,39 +149,14 @@ bool Path::is_on_surface(Point p){ //theoretically we can use the one before pro
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-void Path::delete_path(Path * p){
-    if (p){
-        Path * prev = p->prev;
-        Path * next = p;
-        
-        while (prev != NULL) {
-            Path * temp = prev->prev;
-            delete prev;
-            prev = temp;
-        }
-        while (next != NULL) {
-            Path * temp = next->next;
-            delete next;
-            next = temp;
-        }
+void Path::delete_path(Path * root){
+    while (root) {
+        Path * next = root->next;
+        delete root;
+        root = next;
     }
 }
-void Path::render_path(Path * p){
-    
-    if (p){
-        Path * prev = p->prev;
-        Path * next = p;
-        
-        while (prev != NULL) {
-            prev->render();
-            prev = prev->prev;
-        }
-        while (next != NULL) {
-            next->render();
-            next = next->next;
-        }
-    }
-}
+
 
 Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list){ //in rotate, scale
     ////not enough for a head or not even #

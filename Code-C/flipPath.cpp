@@ -21,7 +21,9 @@ FlipPath::FlipPath(Vector trans, std::vector<Vector> next_list):Path(){
 }
 
 FlipPath::~FlipPath(){
-    
+    for (int i = 0; i < next_path.size();i++){
+        delete_path(next_path[i]);
+    }
 }
 
 void FlipPath::add_next_path(Path * p){

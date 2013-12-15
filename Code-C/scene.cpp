@@ -38,7 +38,6 @@ void Scene::new_scene(){
 //    trans_list.push_back(Vector(0,90,0)); trans_list.push_back(Vector(1,1,1));
 //    trans_list.push_back(Vector(0,135,0)); trans_list.push_back(Vector(1,1,1));
 //    trans_list.push_back(Vector(0,180,0)); trans_list.push_back(Vector(1,1,1));
-//    //the orientation does not seperate
 //    trans_list.push_back(Vector(45,180,0)); trans_list.push_back(Vector(2,1,1));
 //    trans_list.push_back(Vector(60,180,-30)); trans_list.push_back(Vector(1,1,1));
 //    trans_list.push_back(Vector(75,180,-60)); trans_list.push_back(Vector(1,1,1));
@@ -56,8 +55,7 @@ void Scene::new_scene(){
     std::vector<Point> next_end = joint->get_end_point_list();
 
     for (int i = 0; i < next_end.size(); i++) {
-        debug(next_end[i]);
-        std::vector<Vector> temp; temp.push_back(Vector(0,0,0)); temp.push_back(Vector(1,1,1));
+        std::vector<Vector> temp; temp.push_back(Vector(0,0,45)); temp.push_back(Vector(1,1,1));
         Path * child = Path::make_consecutive_path(Vector(next_end[i].x,next_end[i].y,next_end[i].z), temp);
         joint->add_next_path(child);
     }
@@ -90,7 +88,7 @@ void Scene::render(){
     Camera::Instance().set_camera();
     draw_orbit();
 //    if (pro) pro->render();
-    if (path) Path::render_path(path);
+    if (path) path->render();
     SDL_GL_SwapBuffers();
 }
 
