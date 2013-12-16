@@ -49,6 +49,9 @@ public:
     
     static void delete_path(Path * root);
     static Path* make_consecutive_path(Vector start, std::vector<Vector> trans_list);
+    static void link_path(Path * p, Path * n);
+    static void unlink_path(Path * p, Path * n);
+
 };
 
 

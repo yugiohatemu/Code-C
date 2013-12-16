@@ -163,6 +163,16 @@ void Path::delete_path(Path * root){
     }
 }
 
+void Path::link_path(Path * p, Path * n){
+    p->next = n;
+    n->prev = p;
+}
+
+void Path::unlink_path(Path * p, Path * n){
+    p->next = NULL;
+    n->prev = NULL;
+}
+
 
 Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list){ //in rotate, scale
     ////not enough for a head or not even #
@@ -176,9 +186,7 @@ Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list){
         Vector next_start(p.x,p.y,p.z);
         //so translate to start first, rotate, then translate back?
         Path * next = new Path(next_start, trans_list[i], trans_list[i+1]);
-        
-        prev->next = next;
-        next->prev = prev;
+        link_path(prev, next);
         prev = next;
         
     }

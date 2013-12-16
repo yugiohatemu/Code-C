@@ -106,11 +106,10 @@ void FlipPath::update(SDL_Event event){
             timer.reset();
         }
     }else{
-        if (next) {
-            next_path[cur_index]->prev = NULL;
-            next = NULL;
-        }
+        //Disconnect path if needed
+        if (next) unlink_path(this, next);
         
+        //Update index and rotation
         int next_index = cur_index + 1;
         if (next_index >= next_rotate.size()) next_index = 0;
         
@@ -121,10 +120,7 @@ void FlipPath::update(SDL_Event event){
         
         if (cur_rotate == rot) {
             cur_index  = next_index;
-            
-            //connect paths together
-            next = next_path[cur_index];
-            next->prev = this;
+            link_path(this, next_path[cur_index]);
             
             state = STATIC;
             timer.start();
