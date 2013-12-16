@@ -39,6 +39,10 @@ Protagonist::~Protagonist(){
 
 //TODO: test for null situation to avoid crush
 void Protagonist::render(){
+    Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
+    Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
+    Camera::Instance().center = current->get_transform() * anchor;
+    
     glPushMatrix();
    
     Matrix m = current->get_transform();
@@ -78,13 +82,9 @@ void Protagonist::update(SDL_Event event){
             
             if (current->is_on_surface(next_anchor)) { //if within
                 anchor = next_anchor;
-            }else
-            if (current->get_next_path() ) { //&& next_anchor.is_within_dis(current->get_end(), speed)
-                current = current->get_next_path();
+            }else if (current->next ) { //&& next_anchor.is_within_dis(current->get_end(), speed)
+                current = current->next;
                 anchor = Point();
-        
-                Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
-                Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
             }
         }else if(key_press == SDLK_DOWN){
            
@@ -93,15 +93,10 @@ void Protagonist::update(SDL_Event event){
             
             if (current->is_on_surface(prev_anchor)) { //this one can use the one before transform...
                 anchor = prev_anchor;
-            }else
-            if (current->get_prev_path()  ){ //&& prev_anchor.is_within_dis(current->get_start(), speed)
+            }else if (current->prev ){ //&& prev_anchor.is_within_dis(current->get_start(), speed)
                     
-                current = current->get_prev_path();
+                current = current->prev;
                 anchor = current->get_length_point();
-                    
-                Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
-                Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
-                
             }
         }
 //        else if(key_press == SDLK_LEFT){ //need to get z size
@@ -116,7 +111,7 @@ void Protagonist::update(SDL_Event event){
 //            if (current->is_on_surface(right_anchor)) anchor = right_anchor;
 //            
 //        }
-        Camera::Instance().center = current->get_transform() * anchor;
+        
     }
 }
 

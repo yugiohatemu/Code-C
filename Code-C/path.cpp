@@ -122,20 +122,20 @@ Point Path::get_start(){
     return start;
 }
 
-Path * Path::get_prev_path(){
-    return prev;
-}
-
-Path * Path::get_next_path(){
-    return next;
-}
-
-void Path::set_next_path(Path * p){
-    next = p;
-}
-void Path::set_prev_path(Path * p){
-    prev = p;
-}
+//Path * Path::get_prev_path(){
+//    return prev;
+//}
+//
+//Path * Path::get_next_path(){
+//    return next;
+//}
+//
+//void Path::set_next_path(Path * p){
+//    next = p;
+//}
+//void Path::set_prev_path(Path * p){
+//    prev = p;
+//}
 
 Vector Path::get_normal(){
     return normal;
@@ -157,7 +157,7 @@ bool Path::is_on_surface(Point p){ //theoretically we can use the one before pro
 
 void Path::delete_path(Path * root){
     while (root) {
-        Path * temp = root->get_next_path();
+        Path * temp = root->next;
         delete root;
         root = temp;
     }

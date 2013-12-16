@@ -15,10 +15,9 @@
 class FlipPath:public Path{
     std::vector<Path*> next_path;
     std::vector<Vector> next_rotate;
-    std::vector<Point> end_point_list;
+    
     Vector cur_rotate;
-    Path * cur_next;
-    int cure_indx = 0;
+    int cur_index = 0;
 
     enum State{
         STATIC,
@@ -36,8 +35,7 @@ public:
     //Parent
     Matrix get_transform();
     Vector get_normal();
-    Path * get_prev_path();
-    Path * get_next_path();
+
     bool is_on_surface(Point p);
     
     void render();

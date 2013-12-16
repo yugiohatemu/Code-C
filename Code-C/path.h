@@ -24,8 +24,7 @@ protected:
     Matrix prod;
     //Only used by subclass
     Path();
-    Path * prev;
-    Path * next;
+    
 public:
     
     Path(Vector trans, Vector scale, Vector roatate);
@@ -35,11 +34,13 @@ public:
     
     Point get_end();
     Point get_start();
-    void set_next_path(Path * p);
-    void set_prev_path(Path * p);
+//    void set_next_path(Path * p);
+//    void set_prev_path(Path * p);
     
-    virtual Path * get_prev_path();
-    virtual Path * get_next_path();
+    Path * prev;
+    Path * next;
+//    virtual Path * get_prev_path();
+//    virtual Path * get_next_path();
     virtual Vector get_normal();
     virtual Matrix get_transform();
     
