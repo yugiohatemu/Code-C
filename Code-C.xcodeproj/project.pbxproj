@@ -24,6 +24,7 @@
 		B61B8851184AB879009F75D5 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B884F184AB879009F75D5 /* path.cpp */; };
 		B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C9053184D205B00B9D7E2 /* utility.cpp */; };
 		B65C90581852426F00B9D7E2 /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C90561852426F00B9D7E2 /* matrix.cpp */; };
+		B66F2A95185FDFC300317074 /* colorRule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B66F2A93185FDFC300317074 /* colorRule.cpp */; };
 		B67D983B18594D710029AF82 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D983918594D710029AF82 /* scene.cpp */; };
 		B67D983E185A01C90029AF82 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D983C185A01C90029AF82 /* shader.cpp */; };
 		B67D9844185A03680029AF82 /* loadPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9840185A03680029AF82 /* loadPNG.cpp */; };
@@ -75,6 +76,8 @@
 		B65C9054184D205B00B9D7E2 /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
 		B65C90561852426F00B9D7E2 /* matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix.cpp; sourceTree = "<group>"; };
 		B65C90571852426F00B9D7E2 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		B66F2A93185FDFC300317074 /* colorRule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = colorRule.cpp; sourceTree = "<group>"; };
+		B66F2A94185FDFC300317074 /* colorRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorRule.h; sourceTree = "<group>"; };
 		B67D983918594D710029AF82 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scene.cpp; sourceTree = "<group>"; };
 		B67D983A18594D710029AF82 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
 		B67D983C185A01C90029AF82 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
@@ -126,14 +129,13 @@
 		B61B880D1847AD20009F75D5 /* Code-C */ = {
 			isa = PBXGroup;
 			children = (
+				B66F2A92185FDE6000317074 /* color */,
 				B67D9847185B8F410029AF82 /* image */,
-				B61B884B184A6254009F75D5 /* algebra */,
-				B61B8852184ABD94009F75D5 /* path */,
 				B67D983F185A02660029AF82 /* shader */,
-				B61B883518480732009F75D5 /* sprite.h */,
-				B67D983C185A01C90029AF82 /* shader.cpp */,
-				B67D983D185A01C90029AF82 /* shader.h */,
+				B61B884B184A6254009F75D5 /* algebra */,
 				B67D9846185A03A50029AF82 /* texture */,
+				B61B8852184ABD94009F75D5 /* path */,
+				B61B883518480732009F75D5 /* sprite.h */,
 				B61B8836184808F8009F75D5 /* protagonist.cpp */,
 				B61B8837184808F8009F75D5 /* protagonist.h */,
 				B67D983918594D710029AF82 /* scene.cpp */,
@@ -157,8 +159,6 @@
 				B61B884D184A62C1009F75D5 /* algebra.h */,
 				B61B88321847B990009F75D5 /* point.cpp */,
 				B61B88331847B990009F75D5 /* point.h */,
-				B61B88421848E62C009F75D5 /* color.cpp */,
-				B61B88431848E62C009F75D5 /* color.h */,
 				B61B88451848FED6009F75D5 /* vector.cpp */,
 				B61B88461848FED6009F75D5 /* vector.h */,
 				B65C9053184D205B00B9D7E2 /* utility.cpp */,
@@ -180,9 +180,22 @@
 			name = path;
 			sourceTree = "<group>";
 		};
+		B66F2A92185FDE6000317074 /* color */ = {
+			isa = PBXGroup;
+			children = (
+				B61B88421848E62C009F75D5 /* color.cpp */,
+				B61B88431848E62C009F75D5 /* color.h */,
+				B66F2A93185FDFC300317074 /* colorRule.cpp */,
+				B66F2A94185FDFC300317074 /* colorRule.h */,
+			);
+			name = color;
+			sourceTree = "<group>";
+		};
 		B67D983F185A02660029AF82 /* shader */ = {
 			isa = PBXGroup;
 			children = (
+				B67D983C185A01C90029AF82 /* shader.cpp */,
+				B67D983D185A01C90029AF82 /* shader.h */,
 			);
 			name = shader;
 			sourceTree = "<group>";
@@ -267,6 +280,7 @@
 				B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */,
 				B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */,
 				B67D983B18594D710029AF82 /* scene.cpp in Sources */,
+				B66F2A95185FDFC300317074 /* colorRule.cpp in Sources */,
 				B67D9857185D19DE0029AF82 /* flipPath.cpp in Sources */,
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,
 				B61B88471848FED6009F75D5 /* vector.cpp in Sources */,

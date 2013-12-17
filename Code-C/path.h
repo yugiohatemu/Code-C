@@ -12,6 +12,8 @@
 #include "algebra.h"
 #include "sprite.h"
 #include <vector>
+#include "color.h"
+#include "colorRule.h"
 
 class Path:public Sprite{
 protected:
@@ -22,25 +24,26 @@ protected:
     Vector to_next, to_prev;
     Vector normal;
     Matrix prod;
-    //Only used by subclass
+    
+    //Constructor used by subclass only
     Path();
     
 public:
     
     Path(Vector trans, Vector scale, Vector roatate);
+    Color c;
+    ColorRule::State color_state;
+    
     ~Path();
     virtual void render();
     virtual void update(SDL_Event event);
     
     Point get_end();
     Point get_start();
-//    void set_next_path(Path * p);
-//    void set_prev_path(Path * p);
     
     Path * prev;
     Path * next;
-//    virtual Path * get_prev_path();
-//    virtual Path * get_next_path();
+
     virtual Vector get_normal();
     virtual Matrix get_transform();
     
@@ -48,9 +51,12 @@ public:
     virtual bool is_on_surface(Point p);
     
     static void delete_path(Path * root);
-    static Path* make_consecutive_path(Vector start, std::vector<Vector> trans_list);
     static void link_path(Path * p, Path * n);
     static void unlink_path(Path * p, Path * n);
+    
+    static Path* make_consecutive_path(Vector start, std::vector<Vector> trans_list);
+    static Path* make_consecutive_path(Vector start, std::vector<Vector> trans_list, Color color);
+    
 
 };
 

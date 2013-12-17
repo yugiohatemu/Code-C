@@ -11,13 +11,18 @@
 
 #include "sprite.h"
 #include "algebra.h"
+#include "color.h"
+#include "colorRule.h"
 
 class Path;
 
 class Protagonist:public Sprite{
     Point anchor;
     Vector orien;
+    Color c;
+    ColorRule::State color_state;
 public:
+    
     Protagonist();
     ~Protagonist();
     void render();

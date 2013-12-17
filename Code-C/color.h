@@ -16,7 +16,8 @@ struct Color{
     Color(float c);
     Color(const Color & c);
     Color& operator =(const Color& c);
-    //add short cut for black 
+    bool operator== (const Color & c);
+    bool operator!= (const Color & c);
 };
 
 #endif /* defined(__Code_C__color__) */

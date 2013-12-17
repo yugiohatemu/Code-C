@@ -25,12 +25,13 @@ Protagonist::Protagonist(){
     //Making a display list
     mysphereID = glGenLists(1);
     glNewList(mysphereID, GL_COMPILE);
-    gluSphere(sphere, 0.5, 15, 15);
+    gluSphere(sphere, 0.25, 15, 15);
     glEndList();
     gluDeleteQuadric(sphere);
     
     orien.z = 360; orien.x = 360;
 
+    color_state = ColorRule::RED;
 }
 
 Protagonist::~Protagonist(){
@@ -39,36 +40,34 @@ Protagonist::~Protagonist(){
 
 //TODO: test for null situation to avoid crush
 void Protagonist::render(){
-    Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
-    Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
-    Camera::Instance().center = current->get_transform() * anchor;
     
     glPushMatrix();
    
     Matrix m = current->get_transform();
     glMultMatrixf(m.begin());
     glTranslatef(anchor.x, anchor.y, anchor.z);
-    glTranslatef(0, 0.25, 0);
-    //rotate , not important for now
-//    Vector z_cor = m * Vector(0,0,1);
-//    
-//    glBegin(GL_LINES);
-//    glColor3f(1, 0, 0);glVertex3f(0, 0, 0); glVertex3f(0, 0, 1);
-//    glColor3f(0, 0, 1);glVertex3f(0, 0, 0); glVertex3f(z_cor.x, z_cor.y, z_cor.z); //same? not sure
-//    glEnd();
+    glTranslatef(0, 0.125, 0);
     
     glRotatef(orien.x, 1, 0, 0);
-    glRotatef(orien.z, 0 , 0, 1);
+    glRotatef(orien.z, 0 ,0, 1);
     
-    //the distance from center to bottom
-    glBindTexture(GL_TEXTURE_2D, Texture::Instance().get_texture(Texture::MARBLE));
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+    glColor3f(0.8, 0, 0);
     glCallList(mysphereID);
-    glBindTexture(GL_TEXTURE_2D, NULL);
 
     glPopMatrix();
 }
 
+//rotate , not important for now
+//    Vector z_cor = m * Vector(0,0,1);
+//
+//    glBegin(GL_LINES);
+//    glColor3f(1, 0, 0);glVertex3f(0, 0, 0); glVertex3f(0, 0, 1);
+//    glColor3f(0, 0, 1);glVertex3f(0, 0, 0); glVertex3f(z_cor.x, z_cor.y, z_cor.z); //same? not sure
+//    glEnd();
+//the distance from center to bottom
+//    glBindTexture(GL_TEXTURE_2D, Texture::Instance().get_texture(Texture::MARBLE));
+//    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+//    glBindTexture(GL_TEXTURE_2D, NULL);
 
 void Protagonist::update(SDL_Event event){
     float speed = 0.2f;
@@ -99,20 +98,23 @@ void Protagonist::update(SDL_Event event){
                 anchor = current->get_length_point();
             }
         }
+    }
+    
+    //
+    Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
+    Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
+    Camera::Instance().center = current->get_transform() * anchor;
+}
+
 //        else if(key_press == SDLK_LEFT){ //need to get z size
 //            Point left_anchor = anchor + Vector(0,0,1) * -speed;
 //            orien.x -= 10; if (orien.x <= 0) orien.x = 360;
-//            
+//
 //            if (current->is_on_surface(left_anchor)) anchor = left_anchor;
-//            
+//
 //        }else if(key_press == SDLK_RIGHT){
 //            Point right_anchor = anchor + Vector(0,0,1) * speed;
 //            orien.x += 10; if (orien.x >= 360) orien.x = 0;
 //            if (current->is_on_surface(right_anchor)) anchor = right_anchor;
-//            
+//
 //        }
-        
-    }
-}
-
-

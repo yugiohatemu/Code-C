@@ -32,14 +32,11 @@ Camera& Camera::Instance(){
 //////////////////////////////////////////////////////////////////////
 
 void Camera::init_camera(){
-    Vector pos(-10, 3, 0);
     
-    //TODO:pos rotate 90,
-    //now we have matrix, it is much easier to do rotation
-    views[FRONT_VIEW] = Vector(-10, 3, 0);;
-    views[RIGHT_VIEW] = Vector(0, 3, 10);
-    views[BACK_VIEW] = Vector(10, 3, 0);
-    views[LEFT_VIEW] = Vector(0, 3, -10);
+    views[FRONT_VIEW] = Vector(-8, 3, 0);;
+    views[RIGHT_VIEW] = Vector(0, 3, 8);
+    views[BACK_VIEW] = Vector(8, 3, 0);
+    views[LEFT_VIEW] = Vector(0, 3, -8);
     
     eye_to_center =  views[FRONT_VIEW]; //need to applt rotation?
     up = Vector(1, 0, 0);

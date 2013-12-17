@@ -40,3 +40,11 @@ Color& Color::operator=(const Color& c){
     a = c.a;
     return *this;
 }
+
+bool Color::operator== (const Color & c){
+    return r == c.r && g == c.g && b == c.b && a == c.a;
+}
+
+bool Color::operator!= (const Color & c){
+    return r != c.r || g != c.g || b != c.b || a != c.a;
+}

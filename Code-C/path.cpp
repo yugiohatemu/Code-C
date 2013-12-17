@@ -51,6 +51,8 @@ Path::Path(){
     end = Point::get_mid(vertexs[2], vertexs[3]);
     
     prev = next = NULL;
+    
+    color_state = ColorRule::RED;
 }
 
 Path::Path(Vector trans, Vector rotate, Vector scale){
@@ -79,6 +81,7 @@ Path::Path(Vector trans, Vector rotate, Vector scale){
     to_next.normalize();
     to_prev = -1 * to_next;
     
+    color_state = ColorRule::RED;
 }
 
 
@@ -93,7 +96,7 @@ Matrix Path::get_transform(){
 void Path::render(){
     
     glPushMatrix();
-    glColor3f(1, 0, 0);
+    glColor4f(c.r, c.g, c.b, c.a);
     glMultMatrixf(prod.begin());
     glBegin(GL_QUADS);
     
@@ -186,7 +189,33 @@ Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list){
         Vector next_start(p.x,p.y,p.z);
         //so translate to start first, rotate, then translate back?
         Path * next = new Path(next_start, trans_list[i], trans_list[i+1]);
-        link_path(prev, next);
+        link_path(prev,next);
+        prev = next;
+        
+    }
+    
+    return head;
+}
+
+Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list, Color color){
+    if (trans_list.size() < 2 || trans_list.size() % 2 != 0) return NULL;
+    
+    Path * head = new Path(start, trans_list[0], trans_list[1]); head->c = color;
+    Path * prev = head;
+    
+    for (int i = 2; i < trans_list.size(); i += 2) {
+        Point p =  prev->get_transform() * prev->get_end();
+        
+        //so translate to start first, rotate, then translate back?
+        Path * next = new Path(Vector(p.x,p.y,p.z), trans_list[i], trans_list[i+1]); next->c = color;
+        if (color == Color(1, 0, 0)) {
+            next->color_state = ColorRule::RED;
+        }else if (color == Color(0, 0, 1)){
+            next->color_state = ColorRule::BLUE;
+        }
+        
+        
+        link_path(prev,next);
         prev = next;
         
     }

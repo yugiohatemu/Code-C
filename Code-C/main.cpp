@@ -60,7 +60,7 @@ bool initGL(){
     //
     glShadeModel(GL_SMOOTH);
     //
-    GLfloat light_diffuse[] = {1.0, 0.0, 1.0, 1.0};  /* Red diffuse light. */
+    GLfloat light_diffuse[] = {1.0, 1.0, 1.0, 1.0};  /* Red diffuse light. */
     GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};  /* Infinite light location. */
     
     glEnable(GL_LIGHTING);
