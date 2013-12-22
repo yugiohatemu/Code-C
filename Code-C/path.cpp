@@ -94,22 +94,31 @@ Matrix Path::get_transform(){
 }
 
 void Path::render(){
-    
-    glPushMatrix();
-    glColor4f(c.r, c.g, c.b, c.a);
-    glMultMatrixf(prod.begin());
-    glBegin(GL_QUADS);
-    
-    for (int i = 0; i < 6; i++) {
-        glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-        for (int j = 0; j < 4; j++) {
-            int index = indices[4*i+j];
-            glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
+    if (ColorRule::Instance().is_state_global(color_state)) {
+        glPushMatrix();
+        glColor4f(c.r, c.g, c.b, c.a);
+        glMultMatrixf(prod.begin());
+        glBegin(GL_QUADS);
+        
+        for (int i = 0; i < 6; i++) {
+            glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+            for (int j = 0; j < 4; j++) {
+                int index = indices[4*i+j];
+                glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
+            }
         }
+        
+        glEnd();
+        glPopMatrix();
+    }else{
+        glPushMatrix();
+        glMultMatrixf(prod.begin());
+        glColor3f(0, 0, 0);
+        glBegin(GL_LINE_LOOP);
+        for (int i = 0;i < 4; i++) glVertex3f(vertexs[i].x, vertexs[i].y, vertexs[i].z);
+        glEnd();
+        glPopMatrix();
     }
-    
-    glEnd();
-    glPopMatrix();
 
     if (next) next->render();
 }
@@ -121,24 +130,10 @@ void Path::update(SDL_Event event){
 Point Path::get_end(){
     return end;
 }
+
 Point Path::get_start(){
     return start;
 }
-
-//Path * Path::get_prev_path(){
-//    return prev;
-//}
-//
-//Path * Path::get_next_path(){
-//    return next;
-//}
-//
-//void Path::set_next_path(Path * p){
-//    next = p;
-//}
-//void Path::set_prev_path(Path * p){
-//    prev = p;
-//}
 
 Vector Path::get_normal(){
     return normal;
@@ -201,6 +196,12 @@ Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list, 
     if (trans_list.size() < 2 || trans_list.size() % 2 != 0) return NULL;
     
     Path * head = new Path(start, trans_list[0], trans_list[1]); head->c = color;
+    if (color == Color(1, 0, 0)) {
+        head->color_state = ColorRule::RED;
+    }else if (color == Color(0, 0, 1)){
+        head->color_state = ColorRule::BLUE;
+    }
+    
     Path * prev = head;
     
     for (int i = 2; i < trans_list.size(); i += 2) {

@@ -51,7 +51,7 @@ void Protagonist::render(){
     glRotatef(orien.x, 1, 0, 0);
     glRotatef(orien.z, 0 ,0, 1);
     
-    glColor3f(0.8, 0, 0);
+    glColor3f(c.r , c.g , c.b);
     glCallList(mysphereID);
 
     glPopMatrix();
@@ -97,6 +97,15 @@ void Protagonist::update(SDL_Event event){
                 current = current->prev;
                 anchor = current->get_length_point();
             }
+        }else if(key_press == SDLK_c){
+            if (color_state == ColorRule::RED) {
+                color_state = ColorRule::BLUE;
+                c = Color(0, 0, 1);
+            }else{
+                color_state = ColorRule::RED;
+                c = Color(1, 0, 0);
+            }
+            ColorRule::Instance().set_global_state(color_state);
         }
     }
     

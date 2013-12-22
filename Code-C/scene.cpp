@@ -66,7 +66,10 @@ void Scene::new_scene(){
         joint->add_next_path(child);
     }
 
+    ColorRule::Instance().set_global_state(ColorRule::RED);
     //Set it to at the start of path
+    
+    
     pro->current = path;
     
 }

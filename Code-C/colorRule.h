@@ -22,14 +22,14 @@ public:
         TOTAL_STATE
     };
     State global_state;
-    bool is_state_global(State state);
+    bool is_state_global(State state);   //if the state is visible/interactable, return yes
     void set_global_state(State state);
 private:
     Color get_color(State state);
     ColorRule();
     ColorRule(ColorRule const &);
     ColorRule& operator= (ColorRule const &);
-     //if the state is visible/interactable, return yes
+   
 
 };
 

@@ -73,23 +73,34 @@ int ind[24] = {
 };
 
 void FlipPath::render(){
-    
-    glColor3f(0, 0, 1);
-    
-    glPushMatrix();
-    Matrix final_prod = prod * Matrix::rotateXYZ(cur_rotate);
-    glMultMatrixf(final_prod.begin());
-    glBegin(GL_QUADS);
+    if (ColorRule::Instance().is_state_global(color_state)) {
+
+        glColor3f(0, 0, 1);
+        glPushMatrix();
+        Matrix final_prod = prod * Matrix::rotateXYZ(cur_rotate);
+        glMultMatrixf(final_prod.begin());
+        glBegin(GL_QUADS);
         
-    for (int i = 0; i < 6; i++) {
-        glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-        for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < 6; i++) {
+            glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+            for (int j = 0; j < 4; j++) {
             int index = ind[4*i+j];
             glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
+            }
         }
+        glEnd();
+        glPopMatrix();
+    }else{
+        glPushMatrix();
+        Matrix final_prod = prod * Matrix::rotateXYZ(cur_rotate);
+        glMultMatrixf(final_prod.begin());
+        glColor3f(0, 0, 0);
+        glBegin(GL_LINE_LOOP);
+        for (int i = 0;i < 4; i++) glVertex3f(vertexs[i].x, vertexs[i].y, vertexs[i].z);
+
+        glEnd();
+        glPopMatrix();
     }
-    glEnd();
-    glPopMatrix();
     
     for (int i = 0; i < next_path.size();i++) {
         next_path[i]->render();
