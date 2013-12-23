@@ -12,16 +12,19 @@
 #include "path.h"
 
 class FlipColorPath:public Path{
-   //idle -> ball enter -> start animation ->animation done, change ball color -> ball leave
+   //I think maybe we can extend this from flipPath
     enum State{
         IDLE,
-        BALL_ENTER,
         ANIME,
-        BALL_LEAVE,
     };
     State state;
+
+    std::vector<Vector> next_rotate;
+    std::vector<ColorRule::State> next_color_state;
+    Vector cur_rotate;
+    int cur_index = 0;
 public:
-    FlipColorPath();
+    FlipColorPath(Vector trans, std::vector<Vector> rotate_list, std::vector<ColorRule::State> color_list);
     ~FlipColorPath();
     void render();
     void update(SDL_Event event);

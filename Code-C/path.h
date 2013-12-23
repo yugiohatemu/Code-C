@@ -31,10 +31,11 @@ protected:
 public:
     
     Path(Vector trans, Vector scale, Vector roatate);
+    ~Path();
     Color c;
     ColorRule::State color_state;
-    
-    ~Path();
+    bool is_ball_on = false;
+   
     virtual void render();
     virtual void update(SDL_Event event);
     

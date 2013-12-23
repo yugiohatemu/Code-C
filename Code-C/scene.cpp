@@ -71,6 +71,7 @@ void Scene::new_scene(){
     
     
     pro->current = path;
+    path->is_ball_on = true;
     
 }
 

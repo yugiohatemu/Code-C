@@ -82,8 +82,11 @@ void Protagonist::update(SDL_Event event){
             if (current->is_on_surface(next_anchor)) { //if within
                 anchor = next_anchor;
             }else if (current->next && current->next->is_path_color_valid()) { //&& next_anchor.is_within_dis(current->get_end(), speed)
+                current->is_ball_on = false;
                 current = current->next;
                 anchor = Point();
+                current->is_ball_on = true;
+                
             }
         }else if(key_press == SDLK_DOWN){
            
@@ -93,20 +96,22 @@ void Protagonist::update(SDL_Event event){
             if (current->is_on_surface(prev_anchor)) { //this one can use the one before transform...
                 anchor = prev_anchor;
             }else if (current->prev && current->prev->is_path_color_valid()){ 
-                    
+                current->is_ball_on = false;
                 current = current->prev;
                 anchor = current->get_length_point();
+                current->is_ball_on = true;
             }
-        }else if(key_press == SDLK_c){
-            if (color_state == ColorRule::RED) {
-                color_state = ColorRule::BLUE;
-                c = Color(0, 0, 1);
-            }else{
-                color_state = ColorRule::RED;
-                c = Color(1, 0, 0);
-            }
-            ColorRule::Instance().set_global_state(color_state);
         }
+//        else if(key_press == SDLK_c){
+//            if (color_state == ColorRule::RED) {
+//                color_state = ColorRule::BLUE;
+//                c = Color(0, 0, 1);
+//            }else{
+//                color_state = ColorRule::RED;
+//                c = Color(1, 0, 0);
+//            }
+//            ColorRule::Instance().set_global_state(color_state);
+//        }
     }
     
     //
