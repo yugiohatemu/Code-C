@@ -89,42 +89,15 @@ Path::~Path(){
     prev = next = NULL;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Getters
 Matrix Path::get_transform(){
     return prod;
 }
 
-void Path::render(){
-    if (ColorRule::Instance().is_state_global(color_state)) {
-        glPushMatrix();
-        glColor4f(c.r, c.g, c.b, c.a);
-        glMultMatrixf(prod.begin());
-        glBegin(GL_QUADS);
-        
-        for (int i = 0; i < 6; i++) {
-            glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-            for (int j = 0; j < 4; j++) {
-                int index = indices[4*i+j];
-                glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
-            }
-        }
-        
-        glEnd();
-        glPopMatrix();
-    }else{
-        glPushMatrix();
-        glMultMatrixf(prod.begin());
-        glColor3f(0, 0, 0);
-        glBegin(GL_LINE_LOOP);
-        for (int i = 0;i < 4; i++) glVertex3f(vertexs[i].x, vertexs[i].y, vertexs[i].z);
-        glEnd();
-        glPopMatrix();
-    }
 
-    if (next) next->render();
-}
-
-void Path::update(SDL_Event event){
-    if (next) next->update(event);
+bool Path::is_path_color_valid(){
+    return ColorRule::Instance().is_state_global(color_state);
 }
 
 Point Path::get_end(){
@@ -149,6 +122,41 @@ bool Path::is_on_surface(Point p){ //theoretically we can use the one before pro
     return is_num_whithin(p.x, vertexs[0].x, vertexs[2].x)&&
         is_num_whithin(p.y, vertexs[0].y, vertexs[2].y) &&
         is_num_whithin(p.z, vertexs[0].z, vertexs[2].z);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Sprite interface
+void Path::render(){
+    if (is_path_color_valid()) {
+        glPushMatrix();
+        glColor4f(c.r, c.g, c.b, c.a);
+        glMultMatrixf(prod.begin());
+        glBegin(GL_QUADS);
+        
+        for (int i = 0; i < 6; i++) {
+            glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+            for (int j = 0; j < 4; j++) {
+                int index = indices[4*i+j];
+                glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
+            }
+        }
+        
+        glEnd();
+        glPopMatrix();
+    }else{
+        glPushMatrix();
+        glMultMatrixf(prod.begin());
+        glColor3f(0, 0, 0);
+        glBegin(GL_LINE_LOOP);
+        for (int i = 0;i < 4; i++) glVertex3f(vertexs[i].x, vertexs[i].y, vertexs[i].z);
+        glEnd();
+        glPopMatrix();
+    }
+    
+    if (next) next->render();
+}
+
+void Path::update(SDL_Event event){
+    if (next) next->update(event);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

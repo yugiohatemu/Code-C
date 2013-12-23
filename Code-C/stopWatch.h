@@ -15,7 +15,7 @@ private:
     int start_tick;
     float count_down;
 public:
-    
+    StopWatch();
     StopWatch(float count_down);
     ~StopWatch();
     bool is_timeup();

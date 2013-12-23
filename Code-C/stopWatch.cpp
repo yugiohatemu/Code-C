@@ -9,6 +9,10 @@
 #include "stopWatch.h"
 #include "SDL/SDL_timer.h"
 
+StopWatch::StopWatch(){
+    count_down = 0;
+}
+
 StopWatch::StopWatch(float count_down){
     this->count_down = count_down * 1000;
 }

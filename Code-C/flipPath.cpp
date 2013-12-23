@@ -10,6 +10,8 @@
 #include "SDL/SDL_opengl.h"
 #include "utility.h"
 
+FlipPath::FlipPath():Path(){}
+
 FlipPath::FlipPath(Vector trans, std::vector<Vector> next_list):Path(), timer(1){
     prod = Matrix::translate(trans);
     next_rotate = next_list;
@@ -111,7 +113,7 @@ void FlipPath::render(){
 
 
 void FlipPath::update(SDL_Event event){
-    if (state == STATIC) {
+    if (state == IDLE) {
         if (timer.is_timeup()) {
             state = ANIME;
             timer.reset();
@@ -133,7 +135,7 @@ void FlipPath::update(SDL_Event event){
             cur_index  = next_index;
             link_path(this, next_path[cur_index]);
             
-            state = STATIC;
+            state = IDLE;
             timer.start();
         }
     }

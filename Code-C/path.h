@@ -40,6 +40,7 @@ public:
     
     Point get_end();
     Point get_start();
+    bool is_path_color_valid();
     
     Path * prev;
     Path * next;

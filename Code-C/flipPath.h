@@ -13,17 +13,21 @@
 #include "stopWatch.h"
 
 class FlipPath:public Path{
-    std::vector<Path*> next_path;
+    
     std::vector<Vector> next_rotate;
     
     Vector cur_rotate;
     int cur_index = 0;
 
     enum State{
-        STATIC,
+        IDLE,
         ANIME
     };
     State state;
+    
+protected:
+    FlipPath();
+    std::vector<Path*> next_path;
     
 public:
     FlipPath(Vector trans, std::vector<Vector> next_list);

@@ -81,7 +81,7 @@ void Protagonist::update(SDL_Event event){
             
             if (current->is_on_surface(next_anchor)) { //if within
                 anchor = next_anchor;
-            }else if (current->next ) { //&& next_anchor.is_within_dis(current->get_end(), speed)
+            }else if (current->next && current->next->is_path_color_valid()) { //&& next_anchor.is_within_dis(current->get_end(), speed)
                 current = current->next;
                 anchor = Point();
             }
@@ -92,7 +92,7 @@ void Protagonist::update(SDL_Event event){
             
             if (current->is_on_surface(prev_anchor)) { //this one can use the one before transform...
                 anchor = prev_anchor;
-            }else if (current->prev ){ //&& prev_anchor.is_within_dis(current->get_start(), speed)
+            }else if (current->prev && current->prev->is_path_color_valid()){ 
                     
                 current = current->prev;
                 anchor = current->get_length_point();
