@@ -34,7 +34,7 @@ Matrix Matrix::translate(Vector vec){
     return Matrix(Vector(1,0,0), Vector(0,1,0), Vector(0,0,1), vec);
 }
 
-Matrix Matrix::roatate(Vector vec, float angle){
+Matrix Matrix::rotate(Vector vec, float angle){
     vec.normalize();
     
     float c = cosf(angle * 3.1415926 / 180.0);
@@ -52,7 +52,7 @@ Matrix Matrix::roatate(Vector vec, float angle){
 }
 
 Matrix Matrix::rotateXYZ(Vector vec){
-    return Matrix::roatate(Vector(1,0,0), vec.x) * Matrix::roatate(Vector(0,1,0), vec.y) * Matrix::roatate(Vector(0,0,1), vec.z);
+    return Matrix::rotate(Vector(1,0,0), vec.x) * Matrix::rotate(Vector(0,1,0), vec.y) * Matrix::rotate(Vector(0,0,1), vec.z);
 }
 
 Matrix Matrix::scale(Vector vec){

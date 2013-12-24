@@ -21,7 +21,7 @@ public:
     Matrix(float * values);
     Matrix(Vector c1, Vector c2, Vector c3, Vector c4);
     static Matrix translate(Vector vec);
-    static Matrix roatate(Vector vec, float angle);
+    static Matrix rotate(Vector vec, float angle);
     static Matrix scale(Vector vec);
     static Matrix rotateXYZ(Vector vec);
     
