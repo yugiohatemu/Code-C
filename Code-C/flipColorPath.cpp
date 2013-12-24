@@ -7,7 +7,6 @@
 //
 
 #include "flipColorPath.h"
-#include "colorRule.h"
 #include "utility.h"
 #include "SDL/SDL_opengl.h"
 

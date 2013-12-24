@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B60A84F618673554006E26EB /* flyPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84F418673554006E26EB /* flyPath.cpp */; };
 		B60A84F91867A5E9006E26EB /* flipColorPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84F71867A5E9006E26EB /* flipColorPath.cpp */; };
+		B60A84FC186940A3006E26EB /* endPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84FA186940A3006E26EB /* endPath.cpp */; };
 		B61B880F1847AD20009F75D5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B880E1847AD20009F75D5 /* main.cpp */; };
 		B61B88111847AD20009F75D5 /* Code_C.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B61B88101847AD20009F75D5 /* Code_C.1 */; };
 		B61B88261847B321009F75D5 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B61B88251847B321009F75D5 /* SDLMain.m */; };
@@ -52,6 +53,8 @@
 		B60A84F518673554006E26EB /* flyPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flyPath.h; sourceTree = "<group>"; };
 		B60A84F71867A5E9006E26EB /* flipColorPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = flipColorPath.cpp; sourceTree = "<group>"; };
 		B60A84F81867A5E9006E26EB /* flipColorPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flipColorPath.h; sourceTree = "<group>"; };
+		B60A84FA186940A3006E26EB /* endPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = endPath.cpp; sourceTree = "<group>"; };
+		B60A84FB186940A3006E26EB /* endPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = endPath.h; sourceTree = "<group>"; };
 		B61B880B1847AD20009F75D5 /* Code-C */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Code-C"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61B880E1847AD20009F75D5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B61B88101847AD20009F75D5 /* Code_C.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Code_C.1; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 				B60A84F81867A5E9006E26EB /* flipColorPath.h */,
 				B60A84F418673554006E26EB /* flyPath.cpp */,
 				B60A84F518673554006E26EB /* flyPath.h */,
+				B60A84FA186940A3006E26EB /* endPath.cpp */,
+				B60A84FB186940A3006E26EB /* endPath.h */,
 			);
 			name = path;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				B67D983E185A01C90029AF82 /* shader.cpp in Sources */,
 				B67D9844185A03680029AF82 /* loadPNG.cpp in Sources */,
 				B61B88341847B990009F75D5 /* point.cpp in Sources */,
+				B60A84FC186940A3006E26EB /* endPath.cpp in Sources */,
 				B61B88441848E62C009F75D5 /* color.cpp in Sources */,
 				B61B8851184AB879009F75D5 /* path.cpp in Sources */,
 				B61B88261847B321009F75D5 /* SDLMain.m in Sources */,
