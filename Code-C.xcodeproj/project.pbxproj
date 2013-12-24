@@ -10,6 +10,7 @@
 		B60A84F618673554006E26EB /* flyPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84F418673554006E26EB /* flyPath.cpp */; };
 		B60A84F91867A5E9006E26EB /* flipColorPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84F71867A5E9006E26EB /* flipColorPath.cpp */; };
 		B60A84FC186940A3006E26EB /* endPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84FA186940A3006E26EB /* endPath.cpp */; };
+		B60A850118694C1F006E26EB /* screenController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84FF18694C1F006E26EB /* screenController.cpp */; };
 		B61B880F1847AD20009F75D5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B880E1847AD20009F75D5 /* main.cpp */; };
 		B61B88111847AD20009F75D5 /* Code_C.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B61B88101847AD20009F75D5 /* Code_C.1 */; };
 		B61B88261847B321009F75D5 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B61B88251847B321009F75D5 /* SDLMain.m */; };
@@ -55,6 +56,9 @@
 		B60A84F81867A5E9006E26EB /* flipColorPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flipColorPath.h; sourceTree = "<group>"; };
 		B60A84FA186940A3006E26EB /* endPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = endPath.cpp; sourceTree = "<group>"; };
 		B60A84FB186940A3006E26EB /* endPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = endPath.h; sourceTree = "<group>"; };
+		B60A84FE18694BA5006E26EB /* screen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screen.h; sourceTree = "<group>"; };
+		B60A84FF18694C1F006E26EB /* screenController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = screenController.cpp; sourceTree = "<group>"; };
+		B60A850018694C1F006E26EB /* screenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = screenController.h; sourceTree = "<group>"; };
 		B61B880B1847AD20009F75D5 /* Code-C */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Code-C"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61B880E1847AD20009F75D5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B61B88101847AD20009F75D5 /* Code_C.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Code_C.1; sourceTree = "<group>"; };
@@ -115,6 +119,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B60A84FD18694B97006E26EB /* screen */ = {
+			isa = PBXGroup;
+			children = (
+				B60A84FE18694BA5006E26EB /* screen.h */,
+				B60A84FF18694C1F006E26EB /* screenController.cpp */,
+				B60A850018694C1F006E26EB /* screenController.h */,
+			);
+			name = screen;
+			sourceTree = "<group>";
+		};
 		B61B88021847AD20009F75D5 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +160,7 @@
 				B61B8852184ABD94009F75D5 /* path */,
 				B61B883518480732009F75D5 /* sprite.h */,
 				B61B8836184808F8009F75D5 /* protagonist.cpp */,
+				B60A84FD18694B97006E26EB /* screen */,
 				B61B8837184808F8009F75D5 /* protagonist.h */,
 				B67D983918594D710029AF82 /* scene.cpp */,
 				B67D983A18594D710029AF82 /* scene.h */,
@@ -304,6 +319,7 @@
 				B65C90581852426F00B9D7E2 /* matrix.cpp in Sources */,
 				B67D9845185A03680029AF82 /* texture.cpp in Sources */,
 				B60A84F91867A5E9006E26EB /* flipColorPath.cpp in Sources */,
+				B60A850118694C1F006E26EB /* screenController.cpp in Sources */,
 				B61B8838184808F8009F75D5 /* protagonist.cpp in Sources */,
 				B61B88311847B614009F75D5 /* stopWatch.cpp in Sources */,
 			);
