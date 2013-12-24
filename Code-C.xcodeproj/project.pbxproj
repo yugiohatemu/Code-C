@@ -11,7 +11,8 @@
 		B60A84F91867A5E9006E26EB /* flipColorPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84F71867A5E9006E26EB /* flipColorPath.cpp */; };
 		B60A84FC186940A3006E26EB /* endPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84FA186940A3006E26EB /* endPath.cpp */; };
 		B60A850118694C1F006E26EB /* screenController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84FF18694C1F006E26EB /* screenController.cpp */; };
-		B60A8507186A1466006E26EB /* levelScreenController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A8505186A1466006E26EB /* levelScreenController.cpp */; };
+		B60A8507186A1466006E26EB /* levelScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A8505186A1466006E26EB /* levelScreen.cpp */; };
+		B60A850A186A20FA006E26EB /* levelSelectScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A8508186A20FA006E26EB /* levelSelectScreen.cpp */; };
 		B61B880F1847AD20009F75D5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B880E1847AD20009F75D5 /* main.cpp */; };
 		B61B88111847AD20009F75D5 /* Code_C.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B61B88101847AD20009F75D5 /* Code_C.1 */; };
 		B61B88261847B321009F75D5 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B61B88251847B321009F75D5 /* SDLMain.m */; };
@@ -60,8 +61,10 @@
 		B60A84FE18694BA5006E26EB /* screen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screen.h; sourceTree = "<group>"; };
 		B60A84FF18694C1F006E26EB /* screenController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = screenController.cpp; sourceTree = "<group>"; };
 		B60A850018694C1F006E26EB /* screenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = screenController.h; sourceTree = "<group>"; };
-		B60A8505186A1466006E26EB /* levelScreenController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = levelScreenController.cpp; sourceTree = "<group>"; };
-		B60A8506186A1466006E26EB /* levelScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelScreenController.h; sourceTree = "<group>"; };
+		B60A8505186A1466006E26EB /* levelScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = levelScreen.cpp; sourceTree = "<group>"; };
+		B60A8506186A1466006E26EB /* levelScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelScreen.h; sourceTree = "<group>"; };
+		B60A8508186A20FA006E26EB /* levelSelectScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = levelSelectScreen.cpp; sourceTree = "<group>"; };
+		B60A8509186A20FA006E26EB /* levelSelectScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelSelectScreen.h; sourceTree = "<group>"; };
 		B61B880B1847AD20009F75D5 /* Code-C */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Code-C"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61B880E1847AD20009F75D5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B61B88101847AD20009F75D5 /* Code_C.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Code_C.1; sourceTree = "<group>"; };
@@ -128,8 +131,10 @@
 				B60A84FE18694BA5006E26EB /* screen.h */,
 				B60A84FF18694C1F006E26EB /* screenController.cpp */,
 				B60A850018694C1F006E26EB /* screenController.h */,
-				B60A8505186A1466006E26EB /* levelScreenController.cpp */,
-				B60A8506186A1466006E26EB /* levelScreenController.h */,
+				B60A8505186A1466006E26EB /* levelScreen.cpp */,
+				B60A8506186A1466006E26EB /* levelScreen.h */,
+				B60A8508186A20FA006E26EB /* levelSelectScreen.cpp */,
+				B60A8509186A20FA006E26EB /* levelSelectScreen.h */,
 			);
 			name = screen;
 			sourceTree = "<group>";
@@ -311,12 +316,13 @@
 				B60A84FC186940A3006E26EB /* endPath.cpp in Sources */,
 				B61B88441848E62C009F75D5 /* color.cpp in Sources */,
 				B61B8851184AB879009F75D5 /* path.cpp in Sources */,
+				B60A850A186A20FA006E26EB /* levelSelectScreen.cpp in Sources */,
 				B61B88261847B321009F75D5 /* SDLMain.m in Sources */,
 				B61B884A184A5BD3009F75D5 /* camera.cpp in Sources */,
 				B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */,
 				B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */,
 				B67D983B18594D710029AF82 /* scene.cpp in Sources */,
-				B60A8507186A1466006E26EB /* levelScreenController.cpp in Sources */,
+				B60A8507186A1466006E26EB /* levelScreen.cpp in Sources */,
 				B66F2A95185FDFC300317074 /* colorRule.cpp in Sources */,
 				B67D9857185D19DE0029AF82 /* flipPath.cpp in Sources */,
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,

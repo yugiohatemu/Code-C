@@ -6,23 +6,23 @@
 //  Copyright (c) 2013 Yue. All rights reserved.
 //
 
-#include "levelScreenController.h"
+#include "levelScreen.h"
 #include "scene.h"
 
-LevelScreenController::LevelScreenController():Screen(){
+LevelScreen::LevelScreen():Screen(){
     scene = new Scene();
 }
 
-LevelScreenController::~LevelScreenController(){
+LevelScreen::~LevelScreen(){
     delete scene;
 }
 
 //////////////////////////////////////////////////
 //Sprite interface
-void LevelScreenController::render(){
+void LevelScreen::render(){
     scene->render();
 }
 
-void LevelScreenController::update(SDL_Event event){
+void LevelScreen::update(SDL_Event event){
     scene->update(event);
 }

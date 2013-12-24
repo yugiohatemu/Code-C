@@ -9,29 +9,29 @@
 #include "screenController.h"
 
 ScreenController::ScreenController(Screen * s):Screen(){
-    root.push(s);
-    top = root.top();
+    controller_stack.push(s);
+    top = controller_stack.top();
     top->set_controller(this);
 }
 
 ScreenController::~ScreenController(){
     //pop everything
-    while (!root.empty()) {
-        root.pop();
+    while (!controller_stack.empty()) {
+        controller_stack.pop();
     }
     top = NULL;
 }
 
 void ScreenController::push_controller(Screen * next){
-    root.push(next);
+    controller_stack.push(next);
     next->set_controller(this);
     top = next;
 }
 
 void ScreenController::pop_controller(){
-    if (root.size() > 1) {
-        root.pop();
-        top = root.top();
+    if (controller_stack.size() > 1) {
+        controller_stack.pop();
+        top = controller_stack.top();
     }
     //do not allow root to be poped
     //deallocated automatically
@@ -41,7 +41,7 @@ void ScreenController::pop_controller(){
 void ScreenController::pop_controller_to(Screen * s){
     if (s == NULL) return;
     
-    while (root.size()>1){
+    while (controller_stack.size()>1){
         if (top != s) {
             pop_controller();
         }else{

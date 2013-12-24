@@ -110,7 +110,7 @@ void Scene::render(){
     if (pro) pro->render();
     if (path) path->render();
     //maybe put in the main?
-    SDL_GL_SwapBuffers();
+    
 }
 
 void Scene::update(SDL_Event event){

@@ -13,11 +13,11 @@
 
 class Scene;
 
-class LevelScreenController:public Screen{
+class LevelScreen:public Screen{
     Scene * scene;
 public:
-    LevelScreenController();
-    ~LevelScreenController();
+    LevelScreen();
+    ~LevelScreen();
     void render();
     void update(SDL_Event event);
 };

@@ -13,7 +13,7 @@
 #include "screen.h"
 
 class ScreenController:public Screen{
-    std::stack<Screen *> root;
+    std::stack<Screen *> controller_stack;
     Screen * top;
 public:
     ScreenController(Screen * s);

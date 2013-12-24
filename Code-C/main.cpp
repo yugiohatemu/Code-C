@@ -22,8 +22,8 @@
 #include "stopWatch.h"
 #include "texture.h"
 #include "screenController.h"
-#include "levelScreenController.h"
-
+#include "levelScreen.h"
+#include "levelSelectScreen.h"
 //Screen attributes
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -109,7 +109,7 @@ int main( int argc, char *argv[] ){
     Texture::Instance().load_file("/Users/wei/Desktop/Code-C/Code-C/marble.png", 256, 256);
     SDL_Event event;
     
-    ScreenController * root_controller = new ScreenController(new LevelScreenController());
+    ScreenController * root_controller = new ScreenController(new LevelSelectScreen());
     
 	while( !quit ){
         
@@ -124,7 +124,7 @@ int main( int argc, char *argv[] ){
             
             root_controller->render();
             root_controller->update(event);
-            
+            SDL_GL_SwapBuffers();
             fps.start();
         }
 	}
