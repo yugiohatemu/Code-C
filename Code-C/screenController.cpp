@@ -50,3 +50,14 @@ void ScreenController::pop_controller_to(Screen * s){
         }
     }
 }
+
+//////////////////////////////////////////////////////////////////////
+//Sprite
+void ScreenController::render(){
+    top->render();
+}
+
+void ScreenController::update(SDL_Event event){
+    top->update(event);
+}
+
