@@ -7,21 +7,22 @@
 //
 
 #include "levelScreenController.h"
+#include "scene.h"
 
-LevelScreenController::LevelScreenController(){
-    
+LevelScreenController::LevelScreenController():Screen(){
+    scene = new Scene();
 }
 
 LevelScreenController::~LevelScreenController(){
-    
+    delete scene;
 }
 
 //////////////////////////////////////////////////
 //Sprite interface
 void LevelScreenController::render(){
-    
+    scene->render();
 }
 
 void LevelScreenController::update(SDL_Event event){
-    
+    scene->update(event);
 }

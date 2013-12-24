@@ -16,18 +16,17 @@ class Path;
 
 class Scene:public Sprite{
     
-    Scene();
-    Scene(Scene const &);
-    Scene& operator= (Scene const &);
     Protagonist * pro;
     Path * path;
-public:
-    static Scene& Instance();
-    
-    void render();
-    void update(SDL_Event event);
     void new_scene();
     void delete_scene();
+public:
+
+    Scene();
+    ~Scene();
+    void render();
+    void update(SDL_Event event);
+    
 };
 
 

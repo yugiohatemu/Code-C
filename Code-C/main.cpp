@@ -20,8 +20,9 @@
 ///////////////////////////////////////////////////////////////////
 
 #include "stopWatch.h"
-#include "scene.h"
 #include "texture.h"
+#include "screenController.h"
+#include "levelScreenController.h"
 
 //Screen attributes
 const int SCREEN_WIDTH = 640;
@@ -105,9 +106,10 @@ int main( int argc, char *argv[] ){
     StopWatch fps(0.1);
     fps.start();
     
-    Scene::Instance().new_scene();
     Texture::Instance().load_file("/Users/wei/Desktop/Code-C/Code-C/marble.png", 256, 256);
     SDL_Event event;
+    
+    ScreenController * root_controller = new ScreenController(new LevelScreenController());
     
 	while( !quit ){
         
@@ -119,14 +121,18 @@ int main( int argc, char *argv[] ){
 		}
         
         if (fps.is_timeup()){
-            Scene::Instance().render();
-            Scene::Instance().update(event);
+            
+            root_controller->render();
+            root_controller->update(event);
+            
             fps.start();
         }
 	}
     
-    Scene::Instance().delete_scene();
+
     Texture::Instance().clean_texture();
+    delete root_controller;
+    
 	//Clean up
 	SDL_Quit();
 	return 0;

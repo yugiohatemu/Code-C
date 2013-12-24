@@ -11,7 +11,10 @@
 
 #include "screen.h"
 
-class LevelScreenController{
+class Scene;
+
+class LevelScreenController:public Screen{
+    Scene * scene;
 public:
     LevelScreenController();
     ~LevelScreenController();

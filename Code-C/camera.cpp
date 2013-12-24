@@ -63,7 +63,7 @@ void Camera::anime_camera(Vector new_up, Vector new_eye_to_center){
             eye_to_center.y = adjust(eye_to_center.y, new_eye_to_center.y, 0.5f);
             eye_to_center.z = adjust(eye_to_center.z, new_eye_to_center.z, 0.5f);
             
-            Scene::Instance().render(); //force the scene to render
+//            Scene::Instance().render(); //force the scene to render
             timer.start();
         }
     }

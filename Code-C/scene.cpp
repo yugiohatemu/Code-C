@@ -14,17 +14,12 @@
 #include "flipColorPath.h"
 
 #include "utility.h"
-Scene::Scene(){}
-
-Scene::Scene(Scene const &){}
-
-Scene& Scene::operator= (Scene const &){
-    return *this;
+Scene::Scene(){
+    new_scene();
 }
 
-Scene& Scene::Instance(){
-    static Scene m_Instance;
-    return m_Instance;
+Scene::~Scene(){
+    delete_scene();
 }
 
 void Scene::new_scene(){
@@ -114,6 +109,7 @@ void Scene::render(){
     draw_orbit();
     if (pro) pro->render();
     if (path) path->render();
+    //maybe put in the main?
     SDL_GL_SwapBuffers();
 }
 
