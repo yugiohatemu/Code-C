@@ -11,15 +11,18 @@
 
 #include "screen.h"
 
-class Scene;
+class Protagonist;
+class Path;
 
 class LevelScreen:public Screen{
-    Scene * scene;
+    Protagonist * pro;
+    Path * path;
 public:
     LevelScreen();
     ~LevelScreen();
     void render();
     void update(SDL_Event event);
+    void win();
 };
 
 #endif /* defined(__Code_C__levelScreenController__) */

@@ -26,7 +26,7 @@ public:
     ~Scene();
     void render();
     void update(SDL_Event event);
-    
+    void win();
 };
 
 

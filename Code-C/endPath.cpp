@@ -8,10 +8,15 @@
 
 #include "endPath.h"
 #include "SDL/SDL_opengl.h"
+#include "levelScreen.h"
 
 EndPath::EndPath(Vector trans, Vector rotate):Path(){
     prod = Matrix::translate(trans) * Matrix::rotateXYZ(rotate);
     color_state = ColorRule::BLACK;
+    
+    normal = prod * Vector(0,1,0);
+    normal.normalize();
+
 }
 
 EndPath::~EndPath(){
@@ -21,11 +26,11 @@ EndPath::~EndPath(){
 //////////////////////////////////////////////////////////////////////////////////////////
 //Overwrite parent class
 Vector EndPath::get_normal(){
-    return Path::get_normal();
+    return normal;
 }
 
 Matrix EndPath::get_transform(){
-    return Path::get_transform();
+    return prod;
 }
 
 bool EndPath::is_on_surface(Point p){
@@ -45,12 +50,14 @@ void EndPath::render(){
     glVertex3f(1, 0, -0.5); glVertex3f(1, 0, 0.5); glVertex3f(0, 0, -0.5);
     glEnd();
     glPopMatrix();
+    
+    if (next) next->render();
 }
 
 void EndPath::update(SDL_Event event){
     if (is_ball_on) {
-        //call the scene to outstop the current level
-        //
+        screen->win();
     }
     //we don't have a next, haha
+    if (next) next->update(event);
 }

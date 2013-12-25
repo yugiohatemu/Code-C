@@ -11,12 +11,15 @@
 
 #include "path.h"
 
+class LevelScreen;
+
 class EndPath:public Path{
     
 public:
     EndPath(Vector trans, Vector rotate);
     ~EndPath();
     
+    LevelScreen * screen;
     void render();
     void update(SDL_Event event);
     Vector get_normal();

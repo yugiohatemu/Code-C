@@ -60,11 +60,11 @@ void FlyPath::render(){
         glEnd();
         glPopMatrix();
     }
-    next->render();
+    if (next) next->render();
 }
 
 void FlyPath::update(SDL_Event event){
     
     
-    next->update(event);
+    if (next) next->update(event);
 }

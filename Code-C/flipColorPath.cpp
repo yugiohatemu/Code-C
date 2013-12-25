@@ -57,7 +57,7 @@ void FlipColorPath::render(){
     glEnd();
     glPopMatrix();
     
-    next->render();
+    if (next) next->render();
 }
 
 void FlipColorPath::update(SDL_Event event){
@@ -87,6 +87,6 @@ void FlipColorPath::update(SDL_Event event){
         state = IDLE;
     }
     
-    next->update(event);
+    if (next) next->update(event);
 }
 

@@ -40,6 +40,7 @@ void Camera::init_camera(){
     
     eye_to_center =  views[FRONT_VIEW]; //need to applt rotation?
     up = Vector(1, 0, 0);
+    center = Point();
     eye = center + Vector(-10,3,0);
 }
 

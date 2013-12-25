@@ -102,6 +102,14 @@ void Protagonist::update(SDL_Event event){
                 current->is_ball_on = true;
             }
         }
+
+    }
+    
+    Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
+    Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
+    Camera::Instance().center = current->get_transform() * anchor;
+}
+
 //        else if(key_press == SDLK_c){
 //            if (color_state == ColorRule::RED) {
 //                color_state = ColorRule::BLUE;
@@ -112,13 +120,6 @@ void Protagonist::update(SDL_Event event){
 //            }
 //            ColorRule::Instance().set_global_state(color_state);
 //        }
-    }
-    
-    //
-    Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
-    Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
-    Camera::Instance().center = current->get_transform() * anchor;
-}
 
 //        else if(key_press == SDLK_LEFT){ //need to get z size
 //            Point left_anchor = anchor + Vector(0,0,1) * -speed;
