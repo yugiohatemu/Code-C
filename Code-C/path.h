@@ -59,7 +59,7 @@ public:
     static Path* make_consecutive_path(Vector start, std::vector<Vector> trans_list);
     static Path* make_consecutive_path(Vector start, std::vector<Vector> trans_list, Color color);
     
-
+    static Path* make_path_from_string(std::string line);
 };
 
 

@@ -30,3 +30,12 @@ bool ColorRule::is_state_global(State state){
 void ColorRule::set_global_state(State state){
     global_state = state;
 }
+
+ColorRule::State ColorRule::get_state_from_string(std::string s){
+    if (s == "BLACK") return BLACK;
+    else if( s== "RED") return RED;
+    else if( s == "BLUE") return BLUE;
+    else if( s == "WHITE") return WHITE;
+    
+    return ERROR;
+}

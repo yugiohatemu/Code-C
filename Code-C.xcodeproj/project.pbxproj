@@ -13,6 +13,7 @@
 		B60A850118694C1F006E26EB /* screenController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A84FF18694C1F006E26EB /* screenController.cpp */; };
 		B60A8507186A1466006E26EB /* levelScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A8505186A1466006E26EB /* levelScreen.cpp */; };
 		B60A850A186A20FA006E26EB /* levelSelectScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A8508186A20FA006E26EB /* levelSelectScreen.cpp */; };
+		B60A850D186A91E1006E26EB /* pathMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60A850B186A91E1006E26EB /* pathMaker.cpp */; };
 		B61B880F1847AD20009F75D5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B61B880E1847AD20009F75D5 /* main.cpp */; };
 		B61B88111847AD20009F75D5 /* Code_C.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B61B88101847AD20009F75D5 /* Code_C.1 */; };
 		B61B88261847B321009F75D5 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = B61B88251847B321009F75D5 /* SDLMain.m */; };
@@ -65,6 +66,8 @@
 		B60A8506186A1466006E26EB /* levelScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelScreen.h; sourceTree = "<group>"; };
 		B60A8508186A20FA006E26EB /* levelSelectScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = levelSelectScreen.cpp; sourceTree = "<group>"; };
 		B60A8509186A20FA006E26EB /* levelSelectScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelSelectScreen.h; sourceTree = "<group>"; };
+		B60A850B186A91E1006E26EB /* pathMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pathMaker.cpp; sourceTree = "<group>"; };
+		B60A850C186A91E1006E26EB /* pathMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pathMaker.h; sourceTree = "<group>"; };
 		B61B880B1847AD20009F75D5 /* Code-C */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Code-C"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61B880E1847AD20009F75D5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B61B88101847AD20009F75D5 /* Code_C.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Code_C.1; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				B60A84F518673554006E26EB /* flyPath.h */,
 				B60A84FA186940A3006E26EB /* endPath.cpp */,
 				B60A84FB186940A3006E26EB /* endPath.h */,
+				B60A850B186A91E1006E26EB /* pathMaker.cpp */,
+				B60A850C186A91E1006E26EB /* pathMaker.h */,
 			);
 			name = path;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				B67D9845185A03680029AF82 /* texture.cpp in Sources */,
 				B60A84F91867A5E9006E26EB /* flipColorPath.cpp in Sources */,
 				B60A850118694C1F006E26EB /* screenController.cpp in Sources */,
+				B60A850D186A91E1006E26EB /* pathMaker.cpp in Sources */,
 				B61B8838184808F8009F75D5 /* protagonist.cpp in Sources */,
 				B61B88311847B614009F75D5 /* stopWatch.cpp in Sources */,
 			);

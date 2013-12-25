@@ -35,6 +35,7 @@ struct Vector{
     void rotate(char axis, float angel);
     float get_angel_to(Vector vec);
     
+    static Vector get_vector_from_string(std::string s); //what if reading is invalid?
 };
 
 

@@ -160,6 +160,7 @@ void Path::update(SDL_Event event){
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
+//Static methods
 
 void Path::delete_path(Path * root){
     while (root) {
@@ -179,6 +180,31 @@ void Path::unlink_path(Path * p, Path * n){
     n->prev = NULL;
 }
 
+Path* Path::make_path_from_string(std::string line){
+    //get color first, use rule book
+    //I want to seperate by, maybe space or comma so I can handle it nicely onetime
+    //for simplicity, I will assume integer reading for now
+    //the read 3 point, we need to define format
+    
+    //TODO: first split the string
+    
+    std::vector<std::string> list;
+    
+    ColorRule::State color = ColorRule::Instance().get_state_from_string(list[0]);
+    //
+    //check for # first, should be 3 + 2n
+    if (list.size() < 3 || list.size() %2 == 0) return NULL;
+    
+    std::vector<Vector> trans_list;
+    for (int i = 1; i < list.size(); i++) {
+        trans_list.push_back(Vector::get_vector_from_string(list[i]));
+    }
+    
+
+    //TODO: if no error
+    
+    return make_consecutive_path(trans_list, color_state);
+}
 
 Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list){ //in rotate, scale
     ////not enough for a head or not even #

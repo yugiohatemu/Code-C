@@ -121,12 +121,17 @@ float Vector::get_angel_to(Vector vec){
     return angle;
 }
 
-//void compute_angle(){
-//    float r = get_norm();
-//    if (r == 0) return ;
-//    //special case?
-//    int t = atan2f(y, x) * 180 / PI;
-//    int p = acosf(z / r) * 180 / PI;
-//    std::cout<<t<<" "<<p<<std::endl;
-//}
+////////////////////////////////////////////////////////////////////////////////////////
+//Static method
+
+Vector Vector::get_vector_from_string(std::string s){
+    //how do we define one
+    //(1,2,3)
+    //I remeber atoi
+    
+    //Simipar, strip end and start, parse based on ,
+    //and use atoi to get #
+    
+    return Vector();
+}
 

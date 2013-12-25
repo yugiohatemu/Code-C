@@ -10,11 +10,13 @@
 #define __Code_C__colorRule__
 
 #include "color.h"
+#include <string>
 
 class ColorRule{
 public:
     static ColorRule& Instance();
     enum State{
+        ERROR,
         BLACK,
         WHITE,
         BLUE,
@@ -24,12 +26,13 @@ public:
     State global_state;
     bool is_state_global(State state);   //if the state is visible/interactable, return yes
     void set_global_state(State state);
+    State get_state_from_string(std::string s);
 private:
     Color get_color(State state);
     ColorRule();
     ColorRule(ColorRule const &);
     ColorRule& operator= (ColorRule const &);
-   
+    
 
 };
 
