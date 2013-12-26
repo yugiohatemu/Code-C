@@ -180,56 +180,31 @@ void Path::unlink_path(Path * p, Path * n){
     n->prev = NULL;
 }
 
-Path* Path::make_path_from_string(std::string line){
-    //get color first, use rule book
-    //I want to seperate by, maybe space or comma so I can handle it nicely onetime
-    //for simplicity, I will assume integer reading for now
-    //the read 3 point, we need to define format
+Path* Path::make_path_from_string(std::vector<std::string> items){
     
-    //TODO: first split the string
     
-    std::vector<std::string> list;
+    ColorRule::State path_color = ColorRule::Instance().get_state_from_string(items[0]);
+    items.erase(items.begin());
     
-    ColorRule::State color = ColorRule::Instance().get_state_from_string(list[0]);
-    //
-    //check for # first, should be 3 + 2n
-    if (list.size() < 3 || list.size() %2 == 0) return NULL;
+    //After the color, check for # first, should be 3 + 2n
+    if (items.size() < 3 || items.size() %2 == 0) return NULL;
     
     std::vector<Vector> trans_list;
-    for (int i = 1; i < list.size(); i++) {
-        trans_list.push_back(Vector::get_vector_from_string(list[i]));
+    for (int i = 1; i < items.size(); i++) {
+        try {
+            trans_list.push_back(Vector::get_vector_from_string(items[i]));
+        } catch (char c) {
+            debug("sss");
+        }
     }
-    
-
-    //TODO: if no error
-    
-    return make_consecutive_path(trans_list, color_state);
+    return make_consecutive_path(trans_list, path_color);
 }
 
-Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list){ //in rotate, scale
-    ////not enough for a head or not even #
-    if (trans_list.size() < 2 || trans_list.size() % 2 != 0) return NULL;
-    
-    Path * head = new Path(start, trans_list[0], trans_list[1]);
-    Path * prev = head;
-    
-    for (int i = 2; i < trans_list.size(); i += 2) {
-        Point p =  prev->get_transform() * prev->get_end();
-        Vector next_start(p.x,p.y,p.z);
-        //so translate to start first, rotate, then translate back?
-        Path * next = new Path(next_start, trans_list[i], trans_list[i+1]);
-        link_path(prev,next);
-        prev = next;
-        
-    }
-    
-    return head;
-}
 
-Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list, Color color){
+Path* Path::make_consecutive_path( std::vector<Vector> trans_list, Color color){
     if (trans_list.size() < 2 || trans_list.size() % 2 != 0) return NULL;
     
-    Path * head = new Path(start, trans_list[0], trans_list[1]); head->c = color;
+    Path * head = new Path(trans_list[0], trans_list[1], trans_list[2]); head->c = color;
     if (color == Color(1, 0, 0)) {
         head->color_state = ColorRule::RED;
     }else if (color == Color(0, 0, 1)){
@@ -238,7 +213,7 @@ Path* Path::make_consecutive_path(Vector start, std::vector<Vector> trans_list, 
     
     Path * prev = head;
     
-    for (int i = 2; i < trans_list.size(); i += 2) {
+    for (int i = 3; i < trans_list.size(); i += 2) {
         Point p =  prev->get_transform() * prev->get_end();
         
         //so translate to start first, rotate, then translate back?

@@ -8,6 +8,9 @@
 
 #include "vector.h"
 #include <math.h>
+#include <sstream>
+#include "utility.h"
+
 #define PI 3.1415
 
 Vector::Vector(){
@@ -124,13 +127,29 @@ float Vector::get_angel_to(Vector vec){
 ////////////////////////////////////////////////////////////////////////////////////////
 //Static method
 
-Vector Vector::get_vector_from_string(std::string s){
-    //how do we define one
-    //(1,2,3)
-    //I remeber atoi
-    
-    //Simipar, strip end and start, parse based on ,
-    //and use atoi to get #
+//Format (1,2,3)
+//Something like that
+Vector Vector::get_vector_from_string(std::string s) throw (char){
+    if (*s.begin() == '(' && *s.end() == ')') { //end and begin is ok
+        s.erase(s.begin());
+        s.erase(s.end());
+    }
+    //Format is satisfied, now lets strip by comma,
+    std::vector<std::string> nums = split(s, ',');
+    if (nums.size() != 3) {
+        //Throw if # of nums is invalid
+        throw 'n';
+    }else{
+        //Stringstream to handle error case
+        int num[3];
+        for (int i = 0; i < nums.size(); i++) {
+            //Throw if invalid, use istringstream sees works also for float
+            if ( ! (std::istringstream(nums[i]) >> num[i]) ){
+                throw 'i';
+            }
+        }
+        return Vector(num[0],num[1],num[2]);
+    }
     
     return Vector();
 }

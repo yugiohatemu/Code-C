@@ -25,6 +25,8 @@ public:
     Vector get_normal();
     Matrix get_transform();
     bool is_on_surface(Point p);
+    
+    static EndPath* make_path_from_string(std::string,Vector trans);
 
 };
 

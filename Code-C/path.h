@@ -56,10 +56,8 @@ public:
     static void link_path(Path * p, Path * n);
     static void unlink_path(Path * p, Path * n);
     
-    static Path* make_consecutive_path(Vector start, std::vector<Vector> trans_list);
-    static Path* make_consecutive_path(Vector start, std::vector<Vector> trans_list, Color color);
-    
-    static Path* make_path_from_string(std::string line);
+    static Path* make_consecutive_path(std::vector<Vector> trans_list, Color color);
+    static Path* make_path_from_string(std::vector<std::string> items);
 };
 
 

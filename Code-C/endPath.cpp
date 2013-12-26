@@ -9,6 +9,7 @@
 #include "endPath.h"
 #include "SDL/SDL_opengl.h"
 #include "levelScreen.h"
+#include "utility.h"
 
 EndPath::EndPath(Vector trans, Vector rotate):Path(){
     prod = Matrix::translate(trans) * Matrix::rotateXYZ(rotate);
@@ -60,4 +61,15 @@ void EndPath::update(SDL_Event event){
     }
     //we don't have a next, haha
     if (next) next->update(event);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//Static functions
+static EndPath* make_path_from_string(std::string s, Vector trans){
+    std::vector<std::string> list = split(s,' ');
+    if (list.size() != 1) return NULL;
+    
+    Vector rot = Vector::get_vector_from_string(list[0]);
+    return new EndPath(trans,rot);
+    //O...and we need an end point
 }

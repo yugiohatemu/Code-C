@@ -10,6 +10,8 @@
 #define __Code_C__utility__
 #include <iostream>
 #include "SDL/SDL_opengl.h"
+#include <vector>
+
 template<class NUM>
 bool is_num_whithin(NUM n, NUM a, NUM b){
     return (a <= n && n <= b) || (b <= n && n <= a) ;
@@ -34,5 +36,8 @@ std::string readFile(std::string filename);
 int printOglError(char *file, int line);
 void printShaderInfoLog(GLuint obj);
 void printProgramInfoLog(GLuint obj);
+
+//Used for string split
+std::vector<std::string> split(const std::string &s, char delim);
 
 #endif /* defined(__Code_C__utility__) */
