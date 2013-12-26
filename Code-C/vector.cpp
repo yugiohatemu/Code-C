@@ -129,7 +129,7 @@ float Vector::get_angel_to(Vector vec){
 
 //Format (1,2,3)
 //Something like that
-Vector Vector::get_vector_from_string(std::string s) throw (char){
+Vector Vector::get_vector_from_string(std::string s) throw (std::exception){
     if (*s.begin() == '(' && *s.end() == ')') { //end and begin is ok
         s.erase(s.begin());
         s.erase(s.end());
@@ -138,14 +138,14 @@ Vector Vector::get_vector_from_string(std::string s) throw (char){
     std::vector<std::string> nums = split(s, ',');
     if (nums.size() != 3) {
         //Throw if # of nums is invalid
-        throw 'n';
+        throw ParseError("V:Invalid # of parameters");
     }else{
         //Stringstream to handle error case
         int num[3];
         for (int i = 0; i < nums.size(); i++) {
             //Throw if invalid, use istringstream sees works also for float
             if ( ! (std::istringstream(nums[i]) >> num[i]) ){
-                throw 'i';
+                throw ParseError("V:Invalid # format");
             }
         }
         return Vector(num[0],num[1],num[2]);

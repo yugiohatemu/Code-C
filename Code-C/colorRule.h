@@ -11,12 +11,12 @@
 
 #include "color.h"
 #include <string>
+#include "parseError.h"
 
 class ColorRule{
 public:
     static ColorRule& Instance();
     enum State{
-        ERROR,
         BLACK,
         WHITE,
         BLUE,
@@ -26,7 +26,7 @@ public:
     State global_state;
     bool is_state_global(State state);   //if the state is visible/interactable, return yes
     void set_global_state(State state);
-    State get_state_from_string(std::string s);
+    State get_state_from_string(std::string s) throw (std::exception);
 private:
     Color get_color(State state);
     ColorRule();

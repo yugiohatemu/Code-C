@@ -30,7 +30,7 @@ protected:
     
 public:
     
-    Path(Vector trans, Vector scale, Vector roatate);
+    Path(Point trans, Vector scale, Vector roatate);
     ~Path();
     Color c;
     ColorRule::State color_state;
@@ -55,9 +55,8 @@ public:
     static void delete_path(Path * root);
     static void link_path(Path * p, Path * n);
     static void unlink_path(Path * p, Path * n);
-    
-    static Path* make_consecutive_path(std::vector<Vector> trans_list, Color color);
-    static Path* make_path_from_string(std::vector<std::string> items);
+    static Path* end_of_path(Path *p);
+
 };
 
 

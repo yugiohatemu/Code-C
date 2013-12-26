@@ -34,6 +34,10 @@ Matrix Matrix::translate(Vector vec){
     return Matrix(Vector(1,0,0), Vector(0,1,0), Vector(0,0,1), vec);
 }
 
+Matrix Matrix::translate(Point p){
+    return Matrix(Vector(1,0,0), Vector(0,1,0), Vector(0,0,1), Vector(p.x,p.y,p.z));
+}
+
 Matrix Matrix::rotate(Vector vec, float angle){
     vec.normalize();
     

@@ -11,6 +11,7 @@
 #define __Trilight__vector__
 
 #include <iostream>
+#include "parseError.h"
 
 struct Vector{
     float x, y,z;
@@ -35,7 +36,7 @@ struct Vector{
     void rotate(char axis, float angel);
     float get_angel_to(Vector vec);
     
-    static Vector get_vector_from_string(std::string s) throw (char); //what if reading is invalid?
+    static Vector get_vector_from_string(std::string s) throw (std::exception); //what if reading is invalid?
 };
 
 

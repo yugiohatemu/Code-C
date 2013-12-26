@@ -69,6 +69,7 @@
 		B60A850B186A91E1006E26EB /* pathMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pathMaker.cpp; sourceTree = "<group>"; };
 		B60A850C186A91E1006E26EB /* pathMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pathMaker.h; sourceTree = "<group>"; };
 		B60A8510186AA46E006E26EB /* parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		B60A8514186BD22F006E26EB /* parseError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseError.h; sourceTree = "<group>"; };
 		B61B880B1847AD20009F75D5 /* Code-C */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Code-C"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61B880E1847AD20009F75D5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B61B88101847AD20009F75D5 /* Code_C.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Code_C.1; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 			children = (
 				B61B883518480732009F75D5 /* sprite.h */,
 				B60A8510186AA46E006E26EB /* parser.h */,
+				B60A8514186BD22F006E26EB /* parseError.h */,
 			);
 			name = interface;
 			sourceTree = "<group>";

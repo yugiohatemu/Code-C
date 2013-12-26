@@ -16,7 +16,7 @@ class LevelScreen;
 class EndPath:public Path{
     
 public:
-    EndPath(Vector trans, Vector rotate);
+    EndPath(Point trans, Vector rotate);
     ~EndPath();
     
     LevelScreen * screen;
@@ -25,9 +25,7 @@ public:
     Vector get_normal();
     Matrix get_transform();
     bool is_on_surface(Point p);
-    
-    static EndPath* make_path_from_string(std::string,Vector trans);
-
+  
 };
 
 #endif /* defined(__Code_C__endPath__) */

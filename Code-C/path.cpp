@@ -55,7 +55,7 @@ Path::Path(){
     color_state = ColorRule::RED;
 }
 
-Path::Path(Vector trans, Vector rotate, Vector scale){
+Path::Path(Point trans, Vector rotate, Vector scale){
     
     vertexs[0] = Point(0, 0, -0.5);vertexs[1] = Point(0, 0, 0.5); //we force it to be zero to save translation
     vertexs[2] = Point(1, 0, 0.5);vertexs[3] = Point(1, 0, -0.5);
@@ -180,61 +180,14 @@ void Path::unlink_path(Path * p, Path * n){
     n->prev = NULL;
 }
 
-Path* Path::make_path_from_string(std::vector<std::string> items){
-    
-    
-    ColorRule::State path_color = ColorRule::Instance().get_state_from_string(items[0]);
-    items.erase(items.begin());
-    
-    //After the color, check for # first, should be 3 + 2n
-    if (items.size() < 3 || items.size() %2 == 0) return NULL;
-    
-    std::vector<Vector> trans_list;
-    for (int i = 1; i < items.size(); i++) {
-        try {
-            trans_list.push_back(Vector::get_vector_from_string(items[i]));
-        } catch (char c) {
-            debug("sss");
-        }
-    }
-    return make_consecutive_path(trans_list, path_color);
+Path* Path::end_of_path(Path *p){
+    while (p->next)p = p->next;
+    return p;
 }
 
-
-Path* Path::make_consecutive_path( std::vector<Vector> trans_list, Color color){
-    if (trans_list.size() < 2 || trans_list.size() % 2 != 0) return NULL;
-    
-    Path * head = new Path(trans_list[0], trans_list[1], trans_list[2]); head->c = color;
-    if (color == Color(1, 0, 0)) {
-        head->color_state = ColorRule::RED;
-    }else if (color == Color(0, 0, 1)){
-        head->color_state = ColorRule::BLUE;
-    }
-    
-    Path * prev = head;
-    
-    for (int i = 3; i < trans_list.size(); i += 2) {
-        Point p =  prev->get_transform() * prev->get_end();
-        
-        //so translate to start first, rotate, then translate back?
-        Path * next = new Path(Vector(p.x,p.y,p.z), trans_list[i], trans_list[i+1]); next->c = color;
-        if (color == Color(1, 0, 0)) {
-            next->color_state = ColorRule::RED;
-        }else if (color == Color(0, 0, 1)){
-            next->color_state = ColorRule::BLUE;
-        }
-        
-        
-        link_path(prev,next);
-        prev = next;
-        
-    }
-    
-    return head;
-}
 
 //I understand how draw array work..
-//but what about draw element?
+//This comment code will be moved to primitive latter
 
 //GLfloat vertices[] = {
 //    0, 0, -0.5,  0, 0, 0.5,  0, -0.1, -0.5,   0, -0.1, 0.5,   // 0, 1, 4, 5 (front)

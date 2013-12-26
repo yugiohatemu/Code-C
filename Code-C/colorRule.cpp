@@ -31,11 +31,12 @@ void ColorRule::set_global_state(State state){
     global_state = state;
 }
 
-ColorRule::State ColorRule::get_state_from_string(std::string s){
+ColorRule::State ColorRule::get_state_from_string(std::string s) throw (std::exception){
     if (s == "BLACK") return BLACK;
     else if( s== "RED") return RED;
     else if( s == "BLUE") return BLUE;
     else if( s == "WHITE") return WHITE;
+    else throw ParseError("C:Invalid Color");
     
-    return ERROR;
+    return TOTAL_STATE;
 }

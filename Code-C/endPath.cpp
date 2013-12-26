@@ -11,7 +11,7 @@
 #include "levelScreen.h"
 #include "utility.h"
 
-EndPath::EndPath(Vector trans, Vector rotate):Path(){
+EndPath::EndPath(Point trans, Vector rotate):Path(){
     prod = Matrix::translate(trans) * Matrix::rotateXYZ(rotate);
     color_state = ColorRule::BLACK;
     
@@ -63,13 +63,3 @@ void EndPath::update(SDL_Event event){
     if (next) next->update(event);
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////
-//Static functions
-static EndPath* make_path_from_string(std::string s, Vector trans){
-    std::vector<std::string> list = split(s,' ');
-    if (list.size() != 1) return NULL;
-    
-    Vector rot = Vector::get_vector_from_string(list[0]);
-    return new EndPath(trans,rot);
-    //O...and we need an end point
-}

@@ -12,7 +12,7 @@
 //a 4 x 4 matrix with opengl format
 #include "vector.h"
 #include <iostream>
-
+#include "point.h"
 class Matrix{
     float v[16];
 public:
@@ -21,6 +21,7 @@ public:
     Matrix(float * values);
     Matrix(Vector c1, Vector c2, Vector c3, Vector c4);
     static Matrix translate(Vector vec);
+    static Matrix translate(Point p);
     static Matrix rotate(Vector vec, float angle);
     static Matrix scale(Vector vec);
     static Matrix rotateXYZ(Vector vec);
