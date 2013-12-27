@@ -17,6 +17,7 @@ FlipPath::FlipPath(Point trans, std::vector<Vector> next_list):Path(), timer(1){
     next_rotate = next_list;
     cur_rotate = next_rotate[cur_index];
     state = ANIME;
+    next = NULL;
 }
 
 FlipPath::~FlipPath(){
@@ -30,14 +31,14 @@ FlipPath::~FlipPath(){
 
 void FlipPath::add_next_path(Path * p){
     next_path.push_back(p);
-    next = next_path[cur_index];
-    next_path[cur_index]->prev = this;
+//    next = next_path[cur_index];
+//    next_path[cur_index]->prev = this;
 }
 
-
+//Cheat here, to output in reverse order to accomodate stack
 std::vector<Point> FlipPath::get_end_point_list(){
     std::vector<Point> list;
-    for (int i = 0; i < next_rotate.size(); i++) {
+    for (int i = (int)next_rotate.size()-1; i >= 0; i--) {
         list.push_back(prod * Matrix::rotateXYZ(next_rotate[i]) * end);
     }
     return list;

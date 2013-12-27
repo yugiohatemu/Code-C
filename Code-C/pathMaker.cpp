@@ -127,33 +127,34 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
     std::string line;
     Path * root = NULL;
     
-    
     std::stack<Path *> tab_tree;
+    std::stack<Point> multi_end;
     //will things get delted once out of stack?
     if (file.is_open()){
         while ( getline (file,line) ){
             Path * next_path = NULL;
             Path * current_path = NULL;
-            Path * end_of_root = NULL;
+            
             
             int tab = get_tab_count(line);
             
             if(tab > tab_tree.size() + 1){
                 debug("Tab Heirarchy ERROR");
-                //TODO: can we goto their directly?
+                //TODO: goto clean up
             }else{
                 int dif = (int)tab_tree.size() - tab;
-                for (int i = 0; i < dif; i++) {
-                    tab_tree.pop();
-                }
+                for (int i = 0; i < dif; i++) tab_tree.pop();
                 current_path = tab_tree.top();
                 //something like this, so we don't need to worry about heirarch too much
             }
 
             std::vector<std::string> items = split(line, ' ');
-            std::string tag = items[0];
-            items.erase(items.begin());
-            
+            std::string tag = items[0]; items.erase(items.begin());
+            Path * end_of_root = Path::end_of_path(current_path);
+            Point end_point = end_of_root->get_transform()* end_of_root->get_end();
+            //TODO: cast to flipPoint? if so ,we need to use add_link instead of Path::link, we can use a flag to do that
+            //and adjust flipPath
+            //Now it is getting cleaner and bearable
             
             if (tag == "Path") {
                 
@@ -161,8 +162,7 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                     root = make_path_from_string(items, Point());
                     if (!root) break;
                 }else{
-                    end_of_root = Path::end_of_path(current_path);
-                    Path * end_path = make_path_from_string(items, end_of_root->get_transform()* end_of_root->get_end());
+                    Path * end_path = make_path_from_string(items, end_point);
                     next_path = end_path;
                     
                     if(end_path){
@@ -171,11 +171,8 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 }
                 
             }else if(tag == "EndPath"){
-                
-                end_of_root = Path::end_of_path(current_path);
-                Point end = end_of_root->get_transform()* end_of_root->get_end();
                 //Get the actual end from vector
-                EndPath * end_path = make_endpath_from_string(items, end);
+                EndPath * end_path = make_endpath_from_string(items, end_point);
                 next_path = end_path;
                 if(end_path){
                     end_path->screen = level;
@@ -183,14 +180,12 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 }
                 
             }else if(tag == "FlipPath"){
-                //Here comes the pain....
-                end_of_root = Path::end_of_path(current_path);
-                FlipPath * flip_path = make_flippath_from_string(items,end_of_root->get_transform()* end_of_root->get_end());
+                FlipPath * flip_path = make_flippath_from_string(items,end_point);
                 if (flip_path) {
                     Path::link_path(end_of_root, flip_path);
-                    //TODO: Another problem, even though we handle heirarchy, how are we going to link them back?
-                    //So instead of use link_path, what about add_path?
-                    //which means, our counter also need to go up...naturally
+                    std::vector<Point> points = flip_path->get_end_point_list();
+                    for (Point & p : points) multi_end.push(p);
+                    
                 }
                 next_path = flip_path;
             
