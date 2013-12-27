@@ -13,14 +13,17 @@
 #include "pathMaker.h"
 #include "utility.h"
 #include "screenController.h"
+#include <sstream>
 
-LevelScreen::LevelScreen():Screen(){
+LevelScreen::LevelScreen(int selected_level):Screen(){
     Camera::Instance().init_camera();
     Camera::Instance().anime = false;
     
     pro = new Protagonist();
     
-    std::string full_name = get_absolute_path("level2.txt");
+    std::stringstream ss; ss<<"level"<<selected_level<<".txt";
+    
+    std::string full_name = get_absolute_path(ss.str());
     path = PathMaker::make_path_from_file(full_name,this);
 //    debug(full_name);
     

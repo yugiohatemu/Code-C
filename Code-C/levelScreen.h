@@ -18,7 +18,7 @@ class LevelScreen:public Screen{
     Protagonist * pro;
     Path * path;
 public:
-    LevelScreen();
+    LevelScreen(int selected_level = 0);
     ~LevelScreen();
     void render();
     void update(SDL_Event event);

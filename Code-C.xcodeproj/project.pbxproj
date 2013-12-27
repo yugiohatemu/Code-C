@@ -69,7 +69,7 @@
 		B60A850C186A91E1006E26EB /* pathMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pathMaker.h; sourceTree = "<group>"; };
 		B60A8510186AA46E006E26EB /* parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
 		B60A8514186BD22F006E26EB /* parseError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parseError.h; sourceTree = "<group>"; };
-		B60A8515186BEDFB006E26EB /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
+		B60A8515186BEDFB006E26EB /* level0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level0.txt; sourceTree = "<group>"; };
 		B61B880B1847AD20009F75D5 /* Code-C */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Code-C"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61B880E1847AD20009F75D5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B61B88101847AD20009F75D5 /* Code_C.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Code_C.1; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		B67D9848185B8F4C0029AF82 /* marble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marble.png; sourceTree = "<group>"; };
 		B67D9855185D19DE0029AF82 /* flipPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = flipPath.cpp; sourceTree = "<group>"; };
 		B67D9856185D19DE0029AF82 /* flipPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flipPath.h; sourceTree = "<group>"; };
-		B69073E2186E00520097F6C3 /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
+		B69073E2186E00520097F6C3 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +156,8 @@
 		B60A851B186D2A00006E26EB /* level */ = {
 			isa = PBXGroup;
 			children = (
-				B60A8515186BEDFB006E26EB /* level1.txt */,
-				B69073E2186E00520097F6C3 /* level2.txt */,
+				B60A8515186BEDFB006E26EB /* level0.txt */,
+				B69073E2186E00520097F6C3 /* level1.txt */,
 			);
 			name = level;
 			sourceTree = "<group>";

@@ -12,6 +12,9 @@
 #include "screen.h"
 
 class LevelSelectScreen:public Screen{
+    bool * levels;
+    int total_level;
+    int selected_level;
 public:
     LevelSelectScreen();
     ~LevelSelectScreen();
