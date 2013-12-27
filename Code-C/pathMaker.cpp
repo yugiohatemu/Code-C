@@ -135,7 +135,6 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
             Path * next_path = NULL;
             Path * current_path = NULL;
             
-            
             int tab = get_tab_count(line);
             
             if(tab > tab_tree.size() + 1){
@@ -143,46 +142,65 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 //TODO: goto clean up
             }else{
                 int dif = (int)tab_tree.size() - tab;
-                for (int i = 0; i < dif; i++) tab_tree.pop();
-                current_path = tab_tree.top();
+                debug(dif);
+                if (root) {
+                    for (int i = 0; i < dif; i++) tab_tree.pop();
+                    current_path = tab_tree.top();
+                }
                 //something like this, so we don't need to worry about heirarch too much
             }
 
             std::vector<std::string> items = split(line, ' ');
             std::string tag = items[0]; items.erase(items.begin());
+            
+            //
             Path * end_of_root = Path::end_of_path(current_path);
-            Point end_point = end_of_root->get_transform()* end_of_root->get_end();
-            //TODO: cast to flipPoint? if so ,we need to use add_link instead of Path::link, we can use a flag to do that
-            //and adjust flipPath
-            //Now it is getting cleaner and bearable
+            
+            bool flip_flag = false;
+            FlipPath * flip_root = dynamic_cast<FlipPath *>(end_of_root);
+            Point end_point;
+            
+            if (flip_root) {
+                flip_flag = true;
+                end_point = multi_end.top(); multi_end.pop();
+            }else if (end_of_root) {
+                end_point = end_of_root->get_transform()* end_of_root->get_end();
+            }
+            
             
             if (tag == "Path") {
                 
                 if(!root) {
                     root = make_path_from_string(items, Point());
-                    if (!root) break;
+                    next_path = root;
                 }else{
                     Path * end_path = make_path_from_string(items, end_point);
-                    next_path = end_path;
-                    
                     if(end_path){
-                        Path::link_path(end_of_root, end_path);
+                        
+                        
+                        if (flip_flag) flip_root->add_next_path(end_path);
+                        else Path::link_path(end_of_root, end_path);
                     }
+                    next_path = end_path;
                 }
                 
             }else if(tag == "EndPath"){
                 //Get the actual end from vector
                 EndPath * end_path = make_endpath_from_string(items, end_point);
-                next_path = end_path;
+                
                 if(end_path){
                     end_path->screen = level;
-                    Path::link_path(end_of_root, end_path);
+                    if (flip_flag) flip_root->add_next_path(end_path);
+                    else Path::link_path(end_of_root, end_path);
                 }
+                next_path = end_path;
                 
             }else if(tag == "FlipPath"){
                 FlipPath * flip_path = make_flippath_from_string(items,end_point);
                 if (flip_path) {
-                    Path::link_path(end_of_root, flip_path);
+                    if (flip_flag) flip_root->add_next_path(flip_path);
+                    else Path::link_path(end_of_root, flip_path);
+                    
                     std::vector<Point> points = flip_path->get_end_point_list();
                     for (Point & p : points) multi_end.push(p);
                     
@@ -195,6 +213,7 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 Path::delete_path(root);
                 break;
             }else{
+                
                 tab_tree.push(next_path);
             }
             
