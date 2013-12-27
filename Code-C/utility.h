@@ -40,4 +40,7 @@ void printProgramInfoLog(GLuint obj);
 //Used for string split
 std::vector<std::string> split(const std::string &s, char delim);
 
+//Used for loading
+std::string get_absolute_path(std::string filename);
+
 #endif /* defined(__Code_C__utility__) */

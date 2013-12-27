@@ -181,7 +181,9 @@ void Path::unlink_path(Path * p, Path * n){
 }
 
 Path* Path::end_of_path(Path *p){
-    while (p->next)p = p->next;
+    if (p) {
+        while (p->next)p = p->next;
+    }
     return p;
 }
 

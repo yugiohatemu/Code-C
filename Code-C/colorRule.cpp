@@ -40,3 +40,9 @@ ColorRule::State ColorRule::get_state_from_string(std::string s) throw (std::exc
     
     return TOTAL_STATE;
 }
+
+Color ColorRule::get_color(State state){
+    if (state == BLUE) return Color(0,0,1);
+    else if(state == RED) return Color(1,0,0);
+    return Color();
+}

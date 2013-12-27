@@ -10,6 +10,14 @@
 #include <fstream>
 #include <sstream>
 #include "SDL/SDL_opengl.h"
+
+#ifdef _WIN32
+#include <direct.h>
+#define getcwd _getcwd // stupid MSFT "deprecation" warning
+#else
+#include <unistd.h>
+#endif
+
 /////////////////////////////////////////////////////////////////////
 //routine for clamping cur to next using step
 float adjust(float cur, float next, float step){
@@ -104,4 +112,23 @@ std::vector<std::string> split(const std::string &s, char delim) {
     std::vector<std::string> elems;
     split(s, delim, elems);
     return elems;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//Get current working directory
+std::string get_absolute_path(std::string filename){
+    /*char buffer[256];
+    char *answer = getcwd(buffer, sizeof(buffer));
+    std::string s_cwd;
+    if (answer){
+        s_cwd = answer;
+        s_cwd +=  "/";
+        s_cwd += filename;
+        return s_cwd;
+    }*/
+    std::string all = "/Users/wei/Desktop/Code-C/Code-C/" + filename;
+    
+    return all;
 }

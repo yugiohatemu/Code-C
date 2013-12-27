@@ -10,13 +10,8 @@
 #include "camera.h"
 #include "protagonist.h"
 //can be replaced by pathmaker later
-#include "path.h"
-#include "flipPath.h"
-#include "flipColorPath.h"
-#include "endPath.h"
-
+#include "pathMaker.h"
 #include "utility.h"
-
 #include "screenController.h"
 
 LevelScreen::LevelScreen():Screen(){
@@ -24,29 +19,19 @@ LevelScreen::LevelScreen():Screen(){
     Camera::Instance().anime = false;
     
     pro = new Protagonist();
-    std::vector<Vector> trans_list;
-    trans_list.push_back(Vector(0,0,0));trans_list.push_back(Vector(1,1,1));
-    trans_list.push_back(Vector(0,30,45));trans_list.push_back(Vector(1,1,1));
     
-    //need to change the make
-    path  = Path::make_consecutive_path(Vector(0,0,0), trans_list, Color(1,0,0));
+    std::string full_name = get_absolute_path("level1.txt");
+    path = PathMaker::make_path_from_file(full_name,this);
+    debug(full_name);
     
-    //go to the end of path
-    Path * end_of_path = path;
-    while (end_of_path->next) end_of_path = end_of_path->next;
-    
-    //process flip
-    Point end =  end_of_path->get_transform() * end_of_path->get_end();
-    //end flip
-    EndPath * end_path = new EndPath(Vector(end.x, end.y,end.z), Vector(45,45, 0)); end_path->screen = this;
-    Path::link_path(end_of_path,end_path);
+    if (path) {
+        path->is_ball_on = true;
+        pro->current = path;
+    }
     
     //set global state now
     ColorRule::Instance().set_global_state(ColorRule::RED);
     //Set it to at the start of path
-    
-    pro->current = path;
-    path->is_ball_on = true;
 }
 
 LevelScreen::~LevelScreen(){

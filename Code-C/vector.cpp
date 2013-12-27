@@ -130,10 +130,12 @@ float Vector::get_angel_to(Vector vec){
 //Format (1,2,3)
 //Something like that
 Vector Vector::get_vector_from_string(std::string s) throw (std::exception){
-    if (*s.begin() == '(' && *s.end() == ')') { //end and begin is ok
+    
+    if ((*s.begin()) == '(' && *(s.end()-1) == ')') { //end and begin is ok
         s.erase(s.begin());
-        s.erase(s.end());
+        s.erase(s.end()-1);
     }
+  
     //Format is satisfied, now lets strip by comma,
     std::vector<std::string> nums = split(s, ',');
     if (nums.size() != 3) {

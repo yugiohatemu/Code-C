@@ -11,9 +11,11 @@
 
 #include "path.h"
 
+class LevelScreen;
+
 class PathMaker{
 public:
-    static Path* make_path_from_file(std::string fileName);
+    static Path* make_path_from_file(std::string fileName, LevelScreen * level);
 };
 
 #endif /* defined(__Code_C__pathMaker__) */

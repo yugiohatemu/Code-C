@@ -32,6 +32,7 @@ Protagonist::Protagonist(){
     orien.z = 360; orien.x = 360;
 
     color_state = ColorRule::RED;
+    current = NULL;
 }
 
 Protagonist::~Protagonist(){
@@ -42,9 +43,11 @@ Protagonist::~Protagonist(){
 void Protagonist::render(){
     
     glPushMatrix();
+    if (current) {
+        Matrix m = current->get_transform();
+        glMultMatrixf(m.begin());
+    }
    
-    Matrix m = current->get_transform();
-    glMultMatrixf(m.begin());
     glTranslatef(anchor.x, anchor.y, anchor.z);
     glTranslatef(0, 0.125, 0);
     
@@ -71,6 +74,7 @@ void Protagonist::render(){
 
 void Protagonist::update(SDL_Event event){
     float speed = 0.2f;
+    if (!current) return ;
     
     if (event.type == SDL_KEYDOWN) {
         SDLKey key_press = event.key.keysym.sym;

@@ -12,13 +12,13 @@
 #include <iostream>
 #include <exception>
 
-class ParseError:public exception{
+class ParseError:public std::exception{
     std::string reason;
 public:
     ParseError(std::string s):reason(s){};
     
     virtual const char* what() const throw(){
-        return reason;
+        return reason.c_str();
     }
 };
 
