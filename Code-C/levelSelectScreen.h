@@ -11,8 +11,10 @@
 
 #include "screen.h"
 
+class LevelSprite;
+
 class LevelSelectScreen:public Screen{
-    bool * levels;
+    LevelSprite ** levels;
     int total_level;
     int selected_level;
 public:

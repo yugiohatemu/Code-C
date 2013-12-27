@@ -36,6 +36,7 @@
 		B67D9844185A03680029AF82 /* loadPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9840185A03680029AF82 /* loadPNG.cpp */; };
 		B67D9845185A03680029AF82 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9842185A03680029AF82 /* texture.cpp */; };
 		B67D9857185D19DE0029AF82 /* flipPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9855185D19DE0029AF82 /* flipPath.cpp */; };
+		B69073E5186E1BE90097F6C3 /* levelSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B69073E3186E1BE90097F6C3 /* levelSprite.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -112,6 +113,8 @@
 		B67D9855185D19DE0029AF82 /* flipPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = flipPath.cpp; sourceTree = "<group>"; };
 		B67D9856185D19DE0029AF82 /* flipPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flipPath.h; sourceTree = "<group>"; };
 		B69073E2186E00520097F6C3 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
+		B69073E3186E1BE90097F6C3 /* levelSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = levelSprite.cpp; sourceTree = "<group>"; };
+		B69073E4186E1BE90097F6C3 /* levelSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelSprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 			children = (
 				B60A8515186BEDFB006E26EB /* level0.txt */,
 				B69073E2186E00520097F6C3 /* level1.txt */,
+				B69073E3186E1BE90097F6C3 /* levelSprite.cpp */,
+				B69073E4186E1BE90097F6C3 /* levelSprite.h */,
 			);
 			name = level;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 			files = (
 				B67D983E185A01C90029AF82 /* shader.cpp in Sources */,
 				B67D9844185A03680029AF82 /* loadPNG.cpp in Sources */,
+				B69073E5186E1BE90097F6C3 /* levelSprite.cpp in Sources */,
 				B61B88341847B990009F75D5 /* point.cpp in Sources */,
 				B60A84FC186940A3006E26EB /* endPath.cpp in Sources */,
 				B61B88441848E62C009F75D5 /* color.cpp in Sources */,
