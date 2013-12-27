@@ -32,7 +32,6 @@
 		B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C9053184D205B00B9D7E2 /* utility.cpp */; };
 		B65C90581852426F00B9D7E2 /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B65C90561852426F00B9D7E2 /* matrix.cpp */; };
 		B66F2A95185FDFC300317074 /* colorRule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B66F2A93185FDFC300317074 /* colorRule.cpp */; };
-		B67D983B18594D710029AF82 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D983918594D710029AF82 /* scene.cpp */; };
 		B67D983E185A01C90029AF82 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D983C185A01C90029AF82 /* shader.cpp */; };
 		B67D9844185A03680029AF82 /* loadPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9840185A03680029AF82 /* loadPNG.cpp */; };
 		B67D9845185A03680029AF82 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B67D9842185A03680029AF82 /* texture.cpp */; };
@@ -103,8 +102,6 @@
 		B65C90571852426F00B9D7E2 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
 		B66F2A93185FDFC300317074 /* colorRule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = colorRule.cpp; sourceTree = "<group>"; };
 		B66F2A94185FDFC300317074 /* colorRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorRule.h; sourceTree = "<group>"; };
-		B67D983918594D710029AF82 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scene.cpp; sourceTree = "<group>"; };
-		B67D983A18594D710029AF82 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
 		B67D983C185A01C90029AF82 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
 		B67D983D185A01C90029AF82 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
 		B67D9840185A03680029AF82 /* loadPNG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loadPNG.cpp; sourceTree = "<group>"; };
@@ -114,6 +111,7 @@
 		B67D9848185B8F4C0029AF82 /* marble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marble.png; sourceTree = "<group>"; };
 		B67D9855185D19DE0029AF82 /* flipPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = flipPath.cpp; sourceTree = "<group>"; };
 		B67D9856185D19DE0029AF82 /* flipPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flipPath.h; sourceTree = "<group>"; };
+		B69073E2186E00520097F6C3 /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				B60A8515186BEDFB006E26EB /* level1.txt */,
+				B69073E2186E00520097F6C3 /* level2.txt */,
 			);
 			name = level;
 			sourceTree = "<group>";
@@ -197,8 +196,6 @@
 				B60A84FD18694B97006E26EB /* screen */,
 				B61B8837184808F8009F75D5 /* protagonist.h */,
 				B61B8836184808F8009F75D5 /* protagonist.cpp */,
-				B67D983918594D710029AF82 /* scene.cpp */,
-				B67D983A18594D710029AF82 /* scene.h */,
 				B61B882F1847B614009F75D5 /* stopWatch.cpp */,
 				B61B88301847B614009F75D5 /* stopWatch.h */,
 				B61B880E1847AD20009F75D5 /* main.cpp */,
@@ -348,7 +345,6 @@
 				B61B884A184A5BD3009F75D5 /* camera.cpp in Sources */,
 				B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */,
 				B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */,
-				B67D983B18594D710029AF82 /* scene.cpp in Sources */,
 				B60A8507186A1466006E26EB /* levelScreen.cpp in Sources */,
 				B66F2A95185FDFC300317074 /* colorRule.cpp in Sources */,
 				B67D9857185D19DE0029AF82 /* flipPath.cpp in Sources */,

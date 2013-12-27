@@ -20,7 +20,7 @@ LevelScreen::LevelScreen():Screen(){
     
     pro = new Protagonist();
     
-    std::string full_name = get_absolute_path("level1.txt");
+    std::string full_name = get_absolute_path("level2.txt");
     path = PathMaker::make_path_from_file(full_name,this);
 //    debug(full_name);
     

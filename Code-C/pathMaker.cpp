@@ -142,7 +142,7 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 //TODO: goto clean up
             }else{
                 int dif = (int)tab_tree.size() - tab;
-                debug(dif);
+//                debug(dif);
                 if (root) {
                     for (int i = 0; i < dif; i++) tab_tree.pop();
                     current_path = tab_tree.top();
@@ -176,8 +176,6 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 }else{
                     Path * end_path = make_path_from_string(items, end_point);
                     if(end_path){
-                        
-                        
                         if (flip_flag) flip_root->add_next_path(end_path);
                         else Path::link_path(end_of_root, end_path);
                     }
@@ -207,6 +205,9 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 }
                 next_path = flip_path;
             
+            }else if(tag == "FlipColorPath"){
+                //Define colors and something else
+                //Do we want to make a selet level screen first
             }
             
             if (next_path == NULL) {
@@ -220,7 +221,9 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
         }
         file.close();
     }
-    
+    if (!multi_end.empty()) {
+        debug("Missing path hierarchy");
+    }
     
     return root;
 }

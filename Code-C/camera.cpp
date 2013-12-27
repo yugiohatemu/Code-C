@@ -10,7 +10,6 @@
 #include "SDL/SDL_thread.h"
 #include "camera.h"
 #include "stopWatch.h"
-#include "scene.h"
 #include "utility.h"
 Camera::Camera(){
     
