@@ -155,6 +155,14 @@
 			name = interface;
 			sourceTree = "<group>";
 		};
+		B60A851B186D2A00006E26EB /* level */ = {
+			isa = PBXGroup;
+			children = (
+				B60A8515186BEDFB006E26EB /* level1.txt */,
+			);
+			name = level;
+			sourceTree = "<group>";
+		};
 		B61B88021847AD20009F75D5 = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +186,7 @@
 		B61B880D1847AD20009F75D5 /* Code-C */ = {
 			isa = PBXGroup;
 			children = (
+				B60A851B186D2A00006E26EB /* level */,
 				B66F2A92185FDE6000317074 /* color */,
 				B67D9847185B8F410029AF82 /* image */,
 				B67D983F185A02660029AF82 /* shader */,
@@ -234,7 +243,6 @@
 				B60A84FB186940A3006E26EB /* endPath.h */,
 				B60A850B186A91E1006E26EB /* pathMaker.cpp */,
 				B60A850C186A91E1006E26EB /* pathMaker.h */,
-				B60A8515186BEDFB006E26EB /* level1.txt */,
 			);
 			name = path;
 			sourceTree = "<group>";

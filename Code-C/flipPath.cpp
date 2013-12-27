@@ -12,7 +12,7 @@
 
 FlipPath::FlipPath():Path(){}
 
-FlipPath::FlipPath(Vector trans, std::vector<Vector> next_list):Path(), timer(1){
+FlipPath::FlipPath(Point trans, std::vector<Vector> next_list):Path(), timer(1){
     prod = Matrix::translate(trans);
     next_rotate = next_list;
     cur_rotate = next_rotate[cur_index];

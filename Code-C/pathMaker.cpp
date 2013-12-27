@@ -14,12 +14,12 @@
 #include "endPath.h"
 #include "utility.h"
 #include "levelScreen.h"
+#include <stack>
 //Simpleset
 //Path (x,x,x) (x,x,x) (x,x,x)....
 //EndPath (x,x,x)
 
 Path* make_consecutive_path(Point trans, std::vector<Vector> trans_list, ColorRule::State color_state){
-    if (trans_list.size() < 2 || trans_list.size() % 2 != 0) return NULL;
     
     Color color = ColorRule::Instance().get_color(color_state);
     Path * head = new Path(trans, trans_list[1], trans_list[2]); head->c = color;
@@ -71,7 +71,7 @@ Path* make_path_from_string(std::vector<std::string>& items, Point trans){
 }
 
 
-EndPath* make_end_path_from_string(std::vector<std::string>& items, Point trans){
+EndPath* make_endpath_from_string(std::vector<std::string>& items, Point trans){
     
     if (items.size() != 1) return NULL;
     
@@ -86,55 +86,121 @@ EndPath* make_end_path_from_string(std::vector<std::string>& items, Point trans)
     return new EndPath(trans,rot);
 }
 
+//color, (rotate)+
+FlipPath* make_flippath_from_string(std::vector<std::string>& items, Point trans){
+    ColorRule::State path_color;
+    try {
+        path_color = ColorRule::Instance().get_state_from_string(items[0]);
+        items.erase(items.begin());
+    } catch (std::exception & e) {
+        debug(e.what());
+        return NULL;
+    }
+    //After color, get rotate
+    if (items.size() < 1) return NULL;
+    
+    //Now parse colors
+    std::vector<Vector> rotate_list;
+    for (int i = 0; i < items.size(); i++) {
+        try {
+            rotate_list.push_back(Vector::get_vector_from_string(items[i]));
+        } catch (std::exception &e) {
+            debug(e.what());
+            return NULL;
+        }
+    }
+    
+    return new FlipPath(trans, rotate_list);
+}
+
+//check for tab count to determine heirarchy, assume 4 space tab
+int get_tab_count(std::string s){
+    int i = 0;
+    while (s[i] == ' ') i += 1;
+    i /= 4;
+    return  i;
+}
+
 
 Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
     std::ifstream file(fileName.c_str());
     std::string line;
     Path * root = NULL;
-    Path * end_of_root = NULL;
+    
+    
+    std::stack<Path *> tab_tree;
+    //will things get delted once out of stack?
     if (file.is_open()){
         while ( getline (file,line) ){
-            //1st we need to check the tag
+            Path * next_path = NULL;
+            Path * current_path = NULL;
+            Path * end_of_root = NULL;
+            
+            int tab = get_tab_count(line);
+            
+            if(tab > tab_tree.size() + 1){
+                debug("Tab Heirarchy ERROR");
+                //TODO: can we goto their directly?
+            }else{
+                int dif = (int)tab_tree.size() - tab;
+                for (int i = 0; i < dif; i++) {
+                    tab_tree.pop();
+                }
+                current_path = tab_tree.top();
+                //something like this, so we don't need to worry about heirarch too much
+            }
+
             std::vector<std::string> items = split(line, ' ');
             std::string tag = items[0];
             items.erase(items.begin());
             
+            
             if (tag == "Path") {
-                //TODO: we should get to the end of root first
+                
                 if(!root) {
                     root = make_path_from_string(items, Point());
                     if (!root) break;
                 }else{
-                    end_of_root = Path::end_of_path(root);
-                    Point end = end_of_root->get_transform()* end_of_root->get_end();
-                    Path * end_path = make_path_from_string(items, end);
-                    //TODO: need to change how we handle path parsing
+                    end_of_root = Path::end_of_path(current_path);
+                    Path * end_path = make_path_from_string(items, end_of_root->get_transform()* end_of_root->get_end());
+                    next_path = end_path;
+                    
                     if(end_path){
                         Path::link_path(end_of_root, end_path);
-                    }else{
-                        Path::delete_path(root);
-                        break;
                     }
                 }
-                //After that
                 
             }else if(tag == "EndPath"){
                 
-                end_of_root = Path::end_of_path(root);
+                end_of_root = Path::end_of_path(current_path);
                 Point end = end_of_root->get_transform()* end_of_root->get_end();
                 //Get the actual end from vector
-                EndPath * end_path = make_end_path_from_string(items, end);
-                end_path->screen = level;
+                EndPath * end_path = make_endpath_from_string(items, end);
+                next_path = end_path;
                 if(end_path){
+                    end_path->screen = level;
                     Path::link_path(end_of_root, end_path);
-                }else{
-                    Path::delete_path(root);
-                    break;
                 }
-            }else{
-                //Do clean up of current path
+                
+            }else if(tag == "FlipPath"){
+                //Here comes the pain....
+                end_of_root = Path::end_of_path(current_path);
+                FlipPath * flip_path = make_flippath_from_string(items,end_of_root->get_transform()* end_of_root->get_end());
+                if (flip_path) {
+                    Path::link_path(end_of_root, flip_path);
+                    //TODO: Another problem, even though we handle heirarchy, how are we going to link them back?
+                    //So instead of use link_path, what about add_path?
+                    //which means, our counter also need to go up...naturally
+                }
+                next_path = flip_path;
+            
+            }
+            
+            if (next_path == NULL) {
                 Path::delete_path(root);
                 break;
+            }else{
+                tab_tree.push(next_path);
             }
             
         }

@@ -22,7 +22,7 @@ LevelScreen::LevelScreen():Screen(){
     
     std::string full_name = get_absolute_path("level1.txt");
     path = PathMaker::make_path_from_file(full_name,this);
-    debug(full_name);
+//    debug(full_name);
     
     if (path) {
         path->is_ball_on = true;

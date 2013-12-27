@@ -30,7 +30,7 @@ protected:
     std::vector<Path*> next_path;
     
 public:
-    FlipPath(Vector trans, std::vector<Vector> next_list);
+    FlipPath(Point trans, std::vector<Vector> next_list);
     ~FlipPath();
     
     void add_next_path(Path * p);

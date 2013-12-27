@@ -17,6 +17,8 @@ ScreenController::ScreenController(Screen * s):Screen(){
 ScreenController::~ScreenController(){
     //pop everything
     while (!controller_stack.empty()) {
+        top = controller_stack.top();
+        delete top;
         controller_stack.pop();
     }
     top = NULL;
@@ -30,11 +32,10 @@ void ScreenController::push_controller(Screen * next){
 
 void ScreenController::pop_controller(){
     if (controller_stack.size() > 1) {
+        delete top;
         controller_stack.pop();
         top = controller_stack.top();
     }
-    //do not allow root to be poped
-    //deallocated automatically
 }
 
 //keeps pop the controller so that s is the top
