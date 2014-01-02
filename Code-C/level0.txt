@@ -1,2 +1,3 @@
 Path RED (0,0,0) (1,1,1) (60,0,0) (1,1,1)
+    FlipColorPath 2 RED BLUE 0 180 (0,45,0)
     EndPath (45,0,0)

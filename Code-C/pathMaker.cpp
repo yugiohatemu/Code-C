@@ -70,6 +70,7 @@ Path* make_path_from_string(std::vector<std::string>& items, Point trans){
     return make_consecutive_path(trans, trans_list, path_color);
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 EndPath* make_endpath_from_string(std::vector<std::string>& items, Point trans){
     
@@ -85,6 +86,8 @@ EndPath* make_endpath_from_string(std::vector<std::string>& items, Point trans){
     
     return new EndPath(trans,rot);
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //color, (rotate)+
 FlipPath* make_flippath_from_string(std::vector<std::string>& items, Point trans){
@@ -113,6 +116,58 @@ FlipPath* make_flippath_from_string(std::vector<std::string>& items, Point trans
     return new FlipPath(trans, rotate_list);
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//FlipColorPath, n, (color)^n , (orien)^n, rotate
+FlipColorPath * make_flipcolorpath(std::vector<std::string>& items, Point trans){
+    //maybe a # to indicate how much?, since we should avoid use try & catch
+    if(items.size() < 6 || items.size() % 2 == 1) return NULL;
+    //need at leats two color/match with two orien so 2n + 2, the least should be 6 elements
+    int count = 0;
+    try{
+        count = get_int(items[0]);
+    }catch(std::exception & e) {
+        debug(e.what());
+        return NULL;
+    }
+    if (count < 2) return NULL;
+    
+    //now based on count, get expected color and orien
+    std::vector<ColorRule::State> next_color;
+    for(int i = 1; i <= count ; i ++){
+        try{
+            next_color.push_back(ColorRule::Instance().get_state_from_string(items[i]));
+        }catch(std::exception & e) {
+            debug(e.what());
+            return NULL;
+        }
+    }
+    //get orien, eg,
+    std::vector<float> next_orien;
+    for(int i = 1; i <= count ; i ++){
+        try{
+            next_orien.push_back(get_int(items[count + i]));
+        }catch(std::exception & e) {
+            debug(e.what());
+            return NULL;
+        }
+    }
+    
+    //now we have one vector left
+    Vector rotate;
+    try{
+        rotate = Vector::get_vector_from_string(items[1 + 2 * count]);
+    }catch(std::exception & e) {
+        debug(e.what());
+        return NULL;
+    }
+    
+    //TODO: test things afterwards? or just ignore?
+    
+    return new FlipColorPath(trans, rotate, next_color, next_orien);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //check for tab count to determine heirarchy, assume 4 space tab
 int get_tab_count(std::string s){
     int i = 0;
@@ -151,6 +206,7 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
             }
 
             std::vector<std::string> items = split(line, ' ');
+            //stripe the tag
             std::string tag = items[0]; items.erase(items.begin());
             
             //
@@ -183,7 +239,7 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 }
                 
             }else if(tag == "EndPath"){
-                //Get the actual end from vector
+                
                 EndPath * end_path = make_endpath_from_string(items, end_point);
                 
                 if(end_path){
@@ -206,8 +262,13 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 next_path = flip_path;
             
             }else if(tag == "FlipColorPath"){
-                //Define colors and something else
-                //Do we want to make a selet level screen first
+                FlipColorPath * flipcolor_path = make_flipcolorpath(items, end_point);
+                if(flipcolor_path){
+                    if (flip_flag) flip_root->add_next_path(flipcolor_path);
+                    else Path::link_path(end_of_root, flipcolor_path);
+                }
+                next_path = flipcolor_path;
+
             }
             
             if (next_path == NULL) {

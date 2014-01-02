@@ -132,3 +132,12 @@ std::string get_absolute_path(std::string filename){
     
     return all;
 }
+
+int get_int(std::string s) throw (std::exception){
+    int i = 0;
+   
+    if (!(std::istringstream(s)>>i)){
+        throw ParseError("Invalid integer format");
+    }
+    return i;
+}

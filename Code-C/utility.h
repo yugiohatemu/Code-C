@@ -9,8 +9,9 @@
 #ifndef __Code_C__utility__
 #define __Code_C__utility__
 #include <iostream>
-#include "SDL/SDL_opengl.h"
 #include <vector>
+#include "SDL/SDL_opengl.h"
+#include "parseError.h"
 
 template<class NUM>
 bool is_num_whithin(NUM n, NUM a, NUM b){
@@ -42,5 +43,8 @@ std::vector<std::string> split(const std::string &s, char delim);
 
 //Used for loading
 std::string get_absolute_path(std::string filename);
+
+//used for base number
+int get_int(std::string s) throw (std::exception);
 
 #endif /* defined(__Code_C__utility__) */

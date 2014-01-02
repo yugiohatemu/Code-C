@@ -20,10 +20,14 @@ class FlipColorPath:public Path{
     };
     State state;
     
+    int cur_index, next_index;
     Vector axis;
-    float orien;
+    float cur_orien;
+    
+    std::vector<ColorRule::State> next_color;
+    std::vector<float> next_orien;
 public:
-    FlipColorPath(Vector trans, Vector rotate); 
+    FlipColorPath(Point trans, Vector rotate, std::vector<ColorRule::State> next_color, std::vector<float> next_orien);
     ~FlipColorPath();
     void render();
     void update(SDL_Event event);
