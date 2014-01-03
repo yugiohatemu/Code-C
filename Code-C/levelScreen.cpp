@@ -9,6 +9,7 @@
 #include "levelScreen.h"
 #include "camera.h"
 #include "protagonist.h"
+#include "skybox.h"
 //can be replaced by pathmaker later
 #include "pathMaker.h"
 #include "utility.h"
@@ -32,6 +33,7 @@ LevelScreen::LevelScreen(int selected_level):Screen(){
         pro->current = path;
     }
     
+    sky = new Skybox();
     //set global state now
     ColorRule::Instance().set_global_state(ColorRule::RED);
     //Set it to at the start of path
@@ -40,6 +42,7 @@ LevelScreen::LevelScreen(int selected_level):Screen(){
 LevelScreen::~LevelScreen(){
     if (pro) delete pro;
     if (path) Path::delete_path(path);
+    if (sky) delete sky;
 }
 
 //////////////////////////////////////////////////
@@ -69,6 +72,7 @@ void LevelScreen::render(){
     draw_orbit();
     if (pro) pro->render();
     if (path) path->render();
+    if (sky) sky->render();
 }
 
 void LevelScreen::update(SDL_Event event){
@@ -78,4 +82,5 @@ void LevelScreen::update(SDL_Event event){
     
     if (pro) pro->update(event);
     if (path) path->update(event);
+    if (sky) sky->update(event);
 }

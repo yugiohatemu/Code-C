@@ -13,10 +13,12 @@
 
 class Protagonist;
 class Path;
+class Skybox;
 
 class LevelScreen:public Screen{
     Protagonist * pro;
     Path * path;
+    Skybox * sky;
 public:
     LevelScreen(int selected_level = 0);
     ~LevelScreen();
