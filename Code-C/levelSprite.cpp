@@ -8,10 +8,12 @@
 
 #include "levelSprite.h"
 #include "SDL/SDL_opengl.h"
+#include "arrowShape.h"
 
 LevelSprite::LevelSprite(){
     selected = false;
     orien = 0;
+    shape = new ArrowShape();
 }
 
 LevelSprite::~LevelSprite(){
@@ -27,11 +29,8 @@ void LevelSprite::render(){
     else glColor3f(0, 0, 0);
     
     glPushMatrix();
-    glRotatef(orien, 1, 0, 0);
-    glBegin(GL_QUADS);
-    glNormal3f(0, 1, 0);
-    glVertex3f(0, 0, -0.5); glVertex3f(0, 0, 0.5); glVertex3f(1, 0, 0.5); glVertex3f(1, 0, -0.5);
-    glEnd();
+    glRotatef(orien, 0, 0, 1);
+    shape->render();
     glPopMatrix();
 }
 

@@ -12,9 +12,10 @@
 #include "shape.h"
 
 class ArrowShape:public Shape {
-    
+    Point vertexs[4]; //just a surface for now?
+    //use a vector for now
 public:
-    //or using a string ID?
+    
     ArrowShape();
     ~ArrowShape();
     void render();

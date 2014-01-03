@@ -7,22 +7,12 @@
 //
 
 #include "shape.h"
-#include "SDL/SDL_opengl.h"
 
 Shape::Shape(){
     
 }
 
 Shape::~Shape(){
-    
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////
-//Sprite interface
-void Shape::render(){
-    
-}
-void Shape::update(SDL_Event event){
     
 }
 

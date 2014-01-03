@@ -11,6 +11,7 @@
 
 #include "sprite.h"
 #include <string>
+#include "algebra.h"
 
 class Shape{
    //actually, shape is only concerned with
@@ -20,8 +21,8 @@ class Shape{
 public:
     Shape();
     ~Shape();
-    virtual void render();
-    virtual void update(SDL_Event event);
+    virtual void render() = 0;
+    virtual void update(SDL_Event event) = 0;
     typedef std::string ShapeType;
     ShapeType get_shape_type();
 protected:
