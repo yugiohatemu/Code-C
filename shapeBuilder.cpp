@@ -29,47 +29,44 @@ ShapeBuilder& ShapeBuilder::Instance(){
 
 //////////////////////////////////////////////////////////////////////////////
 
+
+
 void ShapeBuilder::init(){
     
-    std::ifstream file(get_absolute_path("filename"));
     
-   
-    //will things get delted once out of stack?
-    Shape::ShapeType name;
-    if (file.is_open()){
-        if(getline (file,name)){
-            std::vector<Point> vertexs;
-            //Q:is this necessary to do that?
-            std::string line;
-            while ( getline (file,line) ){
-                std::vector<std::string> items = split(line, ' ');
-                //use a tag, like start or end to mark , even though I think we should count?
-                if(items.size()== 4){
-                    for (int i = 0; i < 4; i++) {
-                        try {
-                            vertexs.push_back(Point::get_point_from_string(items[i]));
-                        }catch (std::exception & e) {
-                            debug(e.what());
-                            //TODO：set a flag?
-                        }
-                    }
-                }else{
-                    //something is wrong
-                    debug("Shape file format error");
-                    //TODO: set flag?
+    std::fstream file;
+    file.open("/Users/wei/Desktop/stlreader/test.stl", std::ios::in | std::ios::out | std::ios::binary);
+    if (file.fail()) debug("File open error");
+    //based on stl, we ignore the 1st 80 byte?
+    uint8_t header[80];
+    file.read(reinterpret_cast<char *>(&header), sizeof(header));
+    
+    //
+    do {
+        //triangle num
+        uint32_t tri_count;
+        file.read(reinterpret_cast<char*>(&tri_count), sizeof(tri_count));
+        std::cout<<tri_count<<std::endl;
+        for (uint32_t i = 0; i < tri_count; i++) {
+            //twelve 32-bit-floating point numbers
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 3; j++) {
+                    float n;
+                    file.read(reinterpret_cast<char *>(&n), sizeof(n));
+                    std::cout<<n<<" ";
                 }
+                std::cout<<std::endl;
             }
+            //ignored infact
+            uint16_t attr;
+            file.read(reinterpret_cast<char *>(&attr), sizeof(attr));
         }
-        file.close();
-    }
-    //start parsing file
+        
+        //end
+    } while (!file.eof());
     
-    //name
-    //then 1 normal and 3 points loop until we get another name
-    //store it in vector, and then clean it
-    //it is just easier for me to read, if everything is not in one line
-    
-    
+    file.close();
+   
     //create a list of display list
 //    glGenLists(1) continuously
    
