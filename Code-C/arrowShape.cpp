@@ -38,5 +38,12 @@ void ArrowShape::render(){
 }
 
 void ArrowShape::update(SDL_Event event){
+    //rotate around its own axis?
+    //what should we update?
+    //My prime idea is actually
+    //we just create a shape, get an ID something, and then the shape_factory will draw
+    //or call the list that based on our request
+    //if so , we need to have a master loader to care about all the shapes
+    // which should be shape itself?
     
 }

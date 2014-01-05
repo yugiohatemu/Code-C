@@ -40,6 +40,7 @@
 		B6E1D5341875F61F0057D0B5 /* skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6E1D5321875F61F0057D0B5 /* skybox.cpp */; };
 		B6E1D5391877280E0057D0B5 /* shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6E1D5371877280E0057D0B5 /* shape.cpp */; };
 		B6E1D53C187738690057D0B5 /* arrowShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6E1D53A187738690057D0B5 /* arrowShape.cpp */; };
+		B6E1D53F18777EA90057D0B5 /* shapeBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6E1D53D18777EA90057D0B5 /* shapeBuilder.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -124,6 +125,8 @@
 		B6E1D5381877280E0057D0B5 /* shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
 		B6E1D53A187738690057D0B5 /* arrowShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arrowShape.cpp; sourceTree = "<group>"; };
 		B6E1D53B187738690057D0B5 /* arrowShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arrowShape.h; sourceTree = "<group>"; };
+		B6E1D53D18777EA90057D0B5 /* shapeBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shapeBuilder.cpp; path = ../shapeBuilder.cpp; sourceTree = "<group>"; };
+		B6E1D53E18777EA90057D0B5 /* shapeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shapeBuilder.h; path = ../shapeBuilder.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +217,8 @@
 				B61B880E1847AD20009F75D5 /* main.cpp */,
 				B6E1D5371877280E0057D0B5 /* shape.cpp */,
 				B6E1D5381877280E0057D0B5 /* shape.h */,
+				B6E1D53D18777EA90057D0B5 /* shapeBuilder.cpp */,
+				B6E1D53E18777EA90057D0B5 /* shapeBuilder.h */,
 				B6E1D53A187738690057D0B5 /* arrowShape.cpp */,
 				B6E1D53B187738690057D0B5 /* arrowShape.h */,
 				B61B88101847AD20009F75D5 /* Code_C.1 */,
@@ -380,6 +385,7 @@
 				B66F2A95185FDFC300317074 /* colorRule.cpp in Sources */,
 				B67D9857185D19DE0029AF82 /* flipPath.cpp in Sources */,
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,
+				B6E1D53F18777EA90057D0B5 /* shapeBuilder.cpp in Sources */,
 				B61B88471848FED6009F75D5 /* vector.cpp in Sources */,
 				B60A84F618673554006E26EB /* flyPath.cpp in Sources */,
 				B6E1D5391877280E0057D0B5 /* shape.cpp in Sources */,

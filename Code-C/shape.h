@@ -12,12 +12,14 @@
 #include "sprite.h"
 #include <string>
 #include "algebra.h"
-
+#include "SDL/SDL_opengl.h"
 class Shape{
    //actually, shape is only concerned with
     //which gldisplay list we should call
     //and how are we going to animate it?
-
+    Vector rotate, scale, trans;
+    float orien;
+    GLuint call_list;
 public:
     Shape();
     ~Shape();

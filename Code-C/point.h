@@ -9,6 +9,7 @@
 #ifndef __Trilight__point__
 #define __Trilight__point__
 #include <iostream>
+#include "parseError.h"
 
 struct Point{
     float x,y,z;
@@ -29,6 +30,8 @@ struct Point{
     void clamp_angle();
     bool is_within_dis(Point dest, float dis);
     static Point get_mid(Point a, Point b);
+    
+    static Point get_point_from_string(std::string s) throw (std::exception);
 };
 
 #endif /* defined(__Trilight__point__) */

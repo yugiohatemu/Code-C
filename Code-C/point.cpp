@@ -8,6 +8,7 @@
 
 #include "point.h"
 #include <math.h>
+#include <sstream>
 #include "utility.h"
 
 Point::Point() {
@@ -94,4 +95,30 @@ void Point::clamp_angle(){
 
 Point Point::get_mid(Point a, Point b){
     return Point(a.x + b.x, a.y + b.y, a.z + b.z) * 0.5f;
+}
+
+Point Point::get_point_from_string(std::string s) throw (std::exception){
+    if ((*s.begin()) == '(' && *(s.end()-1) == ')') { //end and begin is ok
+        s.erase(s.begin());
+        s.erase(s.end()-1);
+    }
+    
+    //Format is satisfied, now lets strip by comma,
+    std::vector<std::string> nums = split(s, ',');
+    if (nums.size() != 3) {
+        //Throw if # of nums is invalid
+        throw ParseError("P:Invalid # of parameters");
+    }else{
+        //Stringstream to handle error case
+        int num[3];
+        for (int i = 0; i < nums.size(); i++) {
+            //Throw if invalid, use istringstream sees works also for float
+            if ( ! (std::istringstream(nums[i]) >> num[i]) ){
+                throw ParseError("P:Invalid # format");
+            }
+        }
+        return Point(num[0],num[1],num[2]);
+    }
+    
+    return Point();
 }
