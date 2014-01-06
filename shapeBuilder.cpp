@@ -33,50 +33,60 @@ ShapeBuilder& ShapeBuilder::Instance(){
 
 void ShapeBuilder::init(){
     
-    
+    Shape::ShapeType s = "rect";
     std::fstream file;
-    file.open("/Users/wei/Desktop/stlreader/test.stl", std::ios::in | std::ios::out | std::ios::binary);
-    if (file.fail()) debug("File open error");
-    //based on stl, we ignore the 1st 80 byte?
+    file.open(get_absolute_path(s) + ".stl", std::ios::in | std::ios::out | std::ios::binary);
+    if (file.fail()) {
+        debug("File open error");
+        return;
+    }
+   
+    //based on stl format, we ignore the 1st 80 byte generally
     uint8_t header[80];
     file.read(reinterpret_cast<char *>(&header), sizeof(header));
     
-    //
-    do {
-        //triangle num
-        uint32_t tri_count;
-        file.read(reinterpret_cast<char*>(&tri_count), sizeof(tri_count));
-        std::cout<<tri_count<<std::endl;
-        for (uint32_t i = 0; i < tri_count; i++) {
-            //twelve 32-bit-floating point numbers
-            for (int i = 0; i < 4; i++) {
-                for (int j = 0; j < 3; j++) {
-                    float n;
-                    file.read(reinterpret_cast<char *>(&n), sizeof(n));
-                    std::cout<<n<<" ";
-                }
-                std::cout<<std::endl;
-            }
-            //ignored infact
-            uint16_t attr;
-            file.read(reinterpret_cast<char *>(&attr), sizeof(attr));
+    uint32_t tri_count;
+    file.read(reinterpret_cast<char*>(&tri_count), sizeof(tri_count));
+ 
+    glGenLists(1);
+    GLuint id = 0;
+    glNewList(id, GL_COMPILE);
+    glBegin(GL_TRIANGLES);
+    
+    for (uint32_t tri = 0; tri < tri_count; tri++) {
+        //For every triangle, 1 normal and 3 vertex and 1 attr
+        float normal[3];
+        for (int i = 0; i < 3; i++) file.read(reinterpret_cast<char *>(&normal[i]), sizeof(normal[i]));
+        glNormal3fv(normal);
+        
+        for (int i = 0; i < 3; i++) {
+            float vertex[3];
+            for (int j = 0; j < 3; j++) file.read(reinterpret_cast<char *>(&vertex[j]), sizeof(vertex[j]));
+            glVertex3fv(vertex);
         }
         
-        //end
-    } while (!file.eof());
+        //ignored for now,might be color
+        uint16_t attr;
+        file.read(reinterpret_cast<char *>(&attr), sizeof(attr));
+    }
+    
+    glEnd();
+    glEndList();
+    
+    shape_map[s] = id;
     
     file.close();
-   
-    //create a list of display list
-//    glGenLists(1) continuously
-   
-    //already have arrow(1/2), star(1), rectangle/square(1),diamond,hexagon, triangles
-//    glNewList(mysphereID, GL_COMPILE);
-//    do something
-//    glEndList();
-
 }
 
 void ShapeBuilder::clear(){
-    //delte all the call list
+    for (std::map<Shape::ShapeType, GLuint>::iterator it; it != shape_map.end(); it++) {
+        glDeleteLists((*it).second, 1);
+    }
+}
+
+GLuint ShapeBuilder::get_list_id(Shape::ShapeType type){
+    if(shape_map.find(type) != shape_map.end()){
+        return shape_map[type];
+    }
+    return 0;
 }

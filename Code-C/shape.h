@@ -23,8 +23,8 @@ class Shape{
 public:
     Shape();
     ~Shape();
-    virtual void render() = 0;
-    virtual void update(SDL_Event event) = 0;
+    virtual void render();
+    virtual void update(SDL_Event event);
     typedef std::string ShapeType;
     ShapeType get_shape_type();
 protected:

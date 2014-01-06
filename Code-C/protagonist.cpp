@@ -36,6 +36,7 @@ Protagonist::Protagonist(){
 }
 
 Protagonist::~Protagonist(){
+    glDeleteLists(mysphereID, 1);
     current = NULL;
 }
 

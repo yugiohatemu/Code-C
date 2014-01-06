@@ -24,6 +24,7 @@ public:
     //...I am thinking whether I can just make a base singelton class...for all of them
     void init();
     void clear(); //or call delete
+    GLuint get_list_id(Shape::ShapeType type);
 };
 
 #endif /* defined(__Code_C__shapeBuilder__) */
