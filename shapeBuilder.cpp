@@ -48,9 +48,9 @@ void ShapeBuilder::init(){
     uint32_t tri_count;
     file.read(reinterpret_cast<char*>(&tri_count), sizeof(tri_count));
  
-    glGenLists(1);
-    GLuint id = 0;
+    GLuint id = glGenLists(1);
     glNewList(id, GL_COMPILE);
+
     glBegin(GL_TRIANGLES);
     
     for (uint32_t tri = 0; tri < tri_count; tri++) {
@@ -74,12 +74,11 @@ void ShapeBuilder::init(){
     glEndList();
     
     shape_map[s] = id;
-    
     file.close();
 }
 
 void ShapeBuilder::clear(){
-    for (std::map<Shape::ShapeType, GLuint>::iterator it; it != shape_map.end(); it++) {
+    for (std::map<Shape::ShapeType, GLuint>::iterator it = shape_map.begin(); it != shape_map.end(); it++) {
         glDeleteLists((*it).second, 1);
     }
 }

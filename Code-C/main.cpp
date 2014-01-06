@@ -24,6 +24,8 @@
 #include "screenController.h"
 #include "levelScreen.h"
 #include "levelSelectScreen.h"
+#include "shapeBuilder.h"
+
 //Screen attributes
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -107,6 +109,7 @@ int main( int argc, char *argv[] ){
     fps.start();
     
     Texture::Instance().load_file("/Users/wei/Desktop/Code-C/Code-C/marble.png", 256, 256);
+    ShapeBuilder::Instance().init();
     SDL_Event event;
     
     ScreenController * root_controller = new ScreenController(new LevelSelectScreen());
@@ -131,6 +134,7 @@ int main( int argc, char *argv[] ){
     
 
     Texture::Instance().clean_texture();
+    ShapeBuilder::Instance().clear();
     delete root_controller;
     
 	//Clean up

@@ -127,7 +127,7 @@
 		B6E1D53B187738690057D0B5 /* arrowShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arrowShape.h; sourceTree = "<group>"; };
 		B6E1D53D18777EA90057D0B5 /* shapeBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shapeBuilder.cpp; path = ../shapeBuilder.cpp; sourceTree = "<group>"; };
 		B6E1D53E18777EA90057D0B5 /* shapeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shapeBuilder.h; path = ../shapeBuilder.h; sourceTree = "<group>"; };
-		B6FCE35A187A456300344F3A /* rect.stl */ = {isa = PBXFileReference; lastKnownFileType = file; path = rect.stl; sourceTree = "<group>"; };
+		B6FCE35B187A50C200344F3A /* rect.stl */ = {isa = PBXFileReference; lastKnownFileType = file; path = rect.stl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,11 +317,11 @@
 		B6FCE359187A453800344F3A /* shapes */ = {
 			isa = PBXGroup;
 			children = (
+				B6FCE35B187A50C200344F3A /* rect.stl */,
 				B6E1D5371877280E0057D0B5 /* shape.cpp */,
 				B6E1D5381877280E0057D0B5 /* shape.h */,
 				B6E1D53D18777EA90057D0B5 /* shapeBuilder.cpp */,
 				B6E1D53E18777EA90057D0B5 /* shapeBuilder.h */,
-				B6FCE35A187A456300344F3A /* rect.stl */,
 			);
 			name = shapes;
 			sourceTree = "<group>";

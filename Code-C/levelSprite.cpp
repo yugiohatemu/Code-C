@@ -8,12 +8,12 @@
 
 #include "levelSprite.h"
 #include "SDL/SDL_opengl.h"
-#include "arrowShape.h"
+#include "shape.h"
 
 LevelSprite::LevelSprite(){
     selected = false;
     orien = 0;
-    shape = new ArrowShape();
+    shape = new Shape();
 }
 
 LevelSprite::~LevelSprite(){

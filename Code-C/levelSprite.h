@@ -11,12 +11,12 @@
 
 #include "sprite.h"
 
-class ArrowShape;
+class Shape;
 
 class LevelSprite:public Sprite{
     bool selected;
     float orien;
-    ArrowShape * shape;
+    Shape * shape;
 public:
     LevelSprite();
     ~LevelSprite();
