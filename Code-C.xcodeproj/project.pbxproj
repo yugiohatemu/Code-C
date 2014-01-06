@@ -39,8 +39,7 @@
 		B69073E5186E1BE90097F6C3 /* levelSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B69073E3186E1BE90097F6C3 /* levelSprite.cpp */; };
 		B6E1D5341875F61F0057D0B5 /* skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6E1D5321875F61F0057D0B5 /* skybox.cpp */; };
 		B6E1D5391877280E0057D0B5 /* shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6E1D5371877280E0057D0B5 /* shape.cpp */; };
-		B6E1D53C187738690057D0B5 /* arrowShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6E1D53A187738690057D0B5 /* arrowShape.cpp */; };
-		B6E1D53F18777EA90057D0B5 /* shapeBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6E1D53D18777EA90057D0B5 /* shapeBuilder.cpp */; };
+		B6FCE35E187A6AB300344F3A /* shapeBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6FCE35C187A6AB300344F3A /* shapeBuilder.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,11 +122,9 @@
 		B6E1D5331875F61F0057D0B5 /* skybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skybox.h; sourceTree = "<group>"; };
 		B6E1D5371877280E0057D0B5 /* shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shape.cpp; sourceTree = "<group>"; };
 		B6E1D5381877280E0057D0B5 /* shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
-		B6E1D53A187738690057D0B5 /* arrowShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arrowShape.cpp; sourceTree = "<group>"; };
-		B6E1D53B187738690057D0B5 /* arrowShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arrowShape.h; sourceTree = "<group>"; };
-		B6E1D53D18777EA90057D0B5 /* shapeBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shapeBuilder.cpp; path = ../shapeBuilder.cpp; sourceTree = "<group>"; };
-		B6E1D53E18777EA90057D0B5 /* shapeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shapeBuilder.h; path = ../shapeBuilder.h; sourceTree = "<group>"; };
 		B6FCE35B187A50C200344F3A /* rect.stl */ = {isa = PBXFileReference; lastKnownFileType = file; path = rect.stl; sourceTree = "<group>"; };
+		B6FCE35C187A6AB300344F3A /* shapeBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shapeBuilder.cpp; sourceTree = "<group>"; };
+		B6FCE35D187A6AB300344F3A /* shapeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shapeBuilder.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,8 +214,6 @@
 				B61B88301847B614009F75D5 /* stopWatch.h */,
 				B61B880E1847AD20009F75D5 /* main.cpp */,
 				B6FCE359187A453800344F3A /* shapes */,
-				B6E1D53A187738690057D0B5 /* arrowShape.cpp */,
-				B6E1D53B187738690057D0B5 /* arrowShape.h */,
 				B61B88101847AD20009F75D5 /* Code_C.1 */,
 				B61B88241847B321009F75D5 /* SDLMain.h */,
 				B61B88251847B321009F75D5 /* SDLMain.m */,
@@ -317,11 +312,11 @@
 		B6FCE359187A453800344F3A /* shapes */ = {
 			isa = PBXGroup;
 			children = (
+				B6FCE35C187A6AB300344F3A /* shapeBuilder.cpp */,
+				B6FCE35D187A6AB300344F3A /* shapeBuilder.h */,
 				B6FCE35B187A50C200344F3A /* rect.stl */,
 				B6E1D5371877280E0057D0B5 /* shape.cpp */,
 				B6E1D5381877280E0057D0B5 /* shape.h */,
-				B6E1D53D18777EA90057D0B5 /* shapeBuilder.cpp */,
-				B6E1D53E18777EA90057D0B5 /* shapeBuilder.h */,
 			);
 			name = shapes;
 			sourceTree = "<group>";
@@ -388,14 +383,13 @@
 				B61B88261847B321009F75D5 /* SDLMain.m in Sources */,
 				B61B884A184A5BD3009F75D5 /* camera.cpp in Sources */,
 				B65C9055184D205B00B9D7E2 /* utility.cpp in Sources */,
-				B6E1D53C187738690057D0B5 /* arrowShape.cpp in Sources */,
 				B6E1D5341875F61F0057D0B5 /* skybox.cpp in Sources */,
 				B61B884E184A62C1009F75D5 /* algebra.cpp in Sources */,
 				B60A8507186A1466006E26EB /* levelScreen.cpp in Sources */,
 				B66F2A95185FDFC300317074 /* colorRule.cpp in Sources */,
 				B67D9857185D19DE0029AF82 /* flipPath.cpp in Sources */,
 				B61B880F1847AD20009F75D5 /* main.cpp in Sources */,
-				B6E1D53F18777EA90057D0B5 /* shapeBuilder.cpp in Sources */,
+				B6FCE35E187A6AB300344F3A /* shapeBuilder.cpp in Sources */,
 				B61B88471848FED6009F75D5 /* vector.cpp in Sources */,
 				B60A84F618673554006E26EB /* flyPath.cpp in Sources */,
 				B6E1D5391877280E0057D0B5 /* shape.cpp in Sources */,
