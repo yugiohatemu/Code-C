@@ -18,7 +18,7 @@ class ShapeBuilder{
     ShapeBuilder(ShapeBuilder const &);
     ShapeBuilder& operator= (ShapeBuilder const &);
     std::map<Shape::ShapeType, GLuint> shape_map;
-    
+    void load_stl(Shape::ShapeType type);
 public:
     static ShapeBuilder& Instance();
     //...I am thinking whether I can just make a base singelton class...for all of them

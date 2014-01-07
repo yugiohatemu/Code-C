@@ -55,10 +55,11 @@ void FlipColorPath::render(){
     glMultMatrixf(get_transform().begin());
     glColor4f(c.r, c.g, c.b ,c.a);
     //use two color for that
-    glBegin(GL_TRIANGLES);
-    glNormal3f(0, 1, 0);
-    glVertex3f(0, 0, -0.5); glVertex3f(0, 0, 0.5); glVertex3f(1, 0, 0);
-    glEnd();
+//    glBegin(GL_TRIANGLES);
+//    glNormal3f(0, 1, 0);
+//    glVertex3f(0, 0, -0.5); glVertex3f(0, 0, 0.5); glVertex3f(1, 0, 0);
+//    glEnd();
+    glCallList(2);
     glPopMatrix();
     
     if (next) next->render();

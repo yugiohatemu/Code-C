@@ -82,16 +82,17 @@ void FlipPath::render(){
         glPushMatrix();
         Matrix final_prod = prod * Matrix::rotateXYZ(cur_rotate);
         glMultMatrixf(final_prod.begin());
-        glBegin(GL_QUADS);
-        
-        for (int i = 0; i < 6; i++) {
-            glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-            for (int j = 0; j < 4; j++) {
-            int index = ind[4*i+j];
-            glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
-            }
-        }
-        glEnd();
+//        glBegin(GL_QUADS);
+//        
+//        for (int i = 0; i < 6; i++) {
+//            glNormal3f(normals[i].x, normals[i].y, normals[i].z);
+//            for (int j = 0; j < 4; j++) {
+//            int index = ind[4*i+j];
+//            glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
+//            }
+//        }
+//        glEnd();
+        glCallList(4);
         glPopMatrix();
     }else{
         glPushMatrix();

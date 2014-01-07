@@ -82,5 +82,5 @@ void LevelScreen::update(SDL_Event event){
     
     if (pro) pro->update(event);
     if (path) path->update(event);
-    if (sky) sky->update(event);
+//    if (sky) sky->update(event);
 }

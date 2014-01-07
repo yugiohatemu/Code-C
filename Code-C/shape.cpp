@@ -11,7 +11,7 @@
 
 Shape::Shape(){
     //get id
-    call_list = ShapeBuilder::Instance().get_list_id("rect");
+    call_list = ShapeBuilder::Instance().get_list_id("Rect");
     if (call_list == 0) {
         //we get a wrong type
     }
