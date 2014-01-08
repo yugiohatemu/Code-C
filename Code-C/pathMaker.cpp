@@ -22,7 +22,8 @@
 Path* make_consecutive_path(Point trans, std::vector<Vector> trans_list, ColorRule::State color_state){
     
     Color color = ColorRule::Instance().get_color(color_state);
-    Path * head = new Path(trans, trans_list[1], trans_list[2]); head->c = color;
+    Path * head = new Path(trans, trans_list[1], trans_list[2]);
+    head->c = color; head->color_state = color_state;
     
     Path * prev = head;
     
@@ -113,7 +114,9 @@ FlipPath* make_flippath_from_string(std::vector<std::string>& items, Point trans
         }
     }
     
-    return new FlipPath(trans, rotate_list);
+    FlipPath * p =  new FlipPath(trans, rotate_list);
+    p->color_state = path_color; p->c = ColorRule::Instance().get_color(path_color);
+    return p;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

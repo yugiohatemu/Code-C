@@ -72,12 +72,13 @@ void LevelScreen::render(){
     draw_orbit();
     if (pro) pro->render();
     if (path) path->render();
-    if (sky) sky->render();
+//    if (sky) sky->render();
 }
 
 void LevelScreen::update(SDL_Event event){
     if (event.type == SDL_KEYDOWN) {
         if(event.key.keysym.sym == SDLK_TAB) Camera::Instance().switch_view();
+        else if(event.key.keysym.sym == SDLK_ESCAPE) win();
     }
     
     if (pro) pro->update(event);

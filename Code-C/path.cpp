@@ -130,17 +130,6 @@ void Path::render(){
         glPushMatrix();
         glColor4f(c.r, c.g, c.b, c.a);
         glMultMatrixf(prod.begin());
-//        glBegin(GL_QUADS);
-//        
-//        for (int i = 0; i < 6; i++) {
-//            glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-//            for (int j = 0; j < 4; j++) {
-//                int index = indices[4*i+j];
-//                glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
-//            }
-//        }
-//        
-//        glEnd();
         glCallList(3);
         glPopMatrix();
     }else{
