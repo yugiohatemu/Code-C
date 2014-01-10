@@ -40,8 +40,6 @@ public:
     Matrix get_transform();
     Vector get_normal();
 
-    bool is_on_surface(Point p);
-    
     void render();
     void update(SDL_Event event);
     

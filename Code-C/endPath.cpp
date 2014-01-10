@@ -34,10 +34,6 @@ Matrix EndPath::get_transform(){
     return prod;
 }
 
-bool EndPath::is_on_surface(Point p){
-    return Path::is_on_surface(p);
-}
-
 /////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface
 

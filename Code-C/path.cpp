@@ -10,33 +10,6 @@
 #include "SDL/SDL_opengl.h"
 #include "utility.h"
 
-//    v3----- v2
-//   /|      /|
-//  v0------v1|
-//  | |     | |
-//  | |v7---|-|v6
-//  |/      |/
-//  v4------v5
-
-//v0 0, 0, -0.5
-//v1 0, 0, 0.5
-//v2 1, 0, 0.5
-//v3 1, 0, -0.5
-//v4 0, -0.1, -0.5
-//v5 0, -0.1, 0.5
-//v6 1, -0.1, 0.5
-//v7 1, -0.1, -0.5
-
-//Glitch
-int indices[24] = {
-    0, 1, 2, 3,//top
-    4 ,5, 6, 7,//bot
-    0, 1, 5, 4,//front
-    3, 2, 6, 7,//back
-    0, 3, 7, 4,//left
-    1, 2, 6, 5//right
-};
-
 Path::Path(){
     vertexs[0] = Point(0, 0, -0.5);vertexs[1] = Point(0, 0, 0.5); //we force it to be zero to save translation
     vertexs[2] = Point(1, 0, 0.5);vertexs[3] = Point(1, 0, -0.5);

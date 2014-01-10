@@ -17,7 +17,6 @@ FlipPath::FlipPath(Point trans, std::vector<Vector> next_list):Path(), timer(1){
     next_rotate = next_list;
     cur_rotate = next_rotate[cur_index];
     state = ANIME;
-    next = NULL;
 }
 
 FlipPath::~FlipPath(){
@@ -31,8 +30,6 @@ FlipPath::~FlipPath(){
 
 void FlipPath::add_next_path(Path * p){
     next_path.push_back(p);
-//    next = next_path[cur_index];
-//    next_path[cur_index]->prev = this;
 }
 
 //Cheat here, to output in reverse order to accomodate stack
@@ -57,23 +54,9 @@ Vector FlipPath::get_normal(){
     return norm;
 }
 
-bool FlipPath::is_on_surface(Point p){
-    
-    return Path::is_on_surface(p);
-}
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface
-
-//TODO: Glitch, remeber to delte and replace with call list or other things later
-int ind[24] = {
-    0, 1, 2, 3,//top
-    4 ,5, 6, 7,//bot
-    0, 1, 5, 4,//front
-    3, 2, 6, 7,//back
-    0, 3, 7, 4,//left
-    1, 2, 6, 5//right
-};
 
 void FlipPath::render(){
     if (ColorRule::Instance().is_state_global(color_state)) {
@@ -82,16 +65,6 @@ void FlipPath::render(){
         glPushMatrix();
         Matrix final_prod = prod * Matrix::rotateXYZ(cur_rotate);
         glMultMatrixf(final_prod.begin());
-//        glBegin(GL_QUADS);
-//        
-//        for (int i = 0; i < 6; i++) {
-//            glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-//            for (int j = 0; j < 4; j++) {
-//            int index = ind[4*i+j];
-//            glVertex3f(vertexs[index].x, vertexs[index].y, vertexs[index].z);
-//            }
-//        }
-//        glEnd();
         glCallList(4);
         glPopMatrix();
     }else{

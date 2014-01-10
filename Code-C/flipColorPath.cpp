@@ -41,11 +41,6 @@ Matrix FlipColorPath::get_transform(){
     return prod * Matrix::rotate(axis, cur_orien);
 }
 
-bool FlipColorPath::is_on_surface(Point p){
-    return Path::is_on_surface(p);
-}
-
-
 /////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface
 void FlipColorPath::render(){

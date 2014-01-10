@@ -50,7 +50,7 @@ public:
     virtual Matrix get_transform();
     
     Point get_length_point();
-    virtual bool is_on_surface(Point p);
+    bool is_on_surface(Point p);
     
     static void delete_path(Path * root);
     static void link_path(Path * p, Path * n);

@@ -24,8 +24,7 @@ public:
     void update(SDL_Event event);
     Vector get_normal();
     Matrix get_transform();
-    bool is_on_surface(Point p);
-  
+   
 };
 
 #endif /* defined(__Code_C__endPath__) */

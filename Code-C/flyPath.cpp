@@ -31,9 +31,6 @@ Matrix FlyPath::get_transform(){
     return prod * Matrix::translate(cur_trans);
 }
 
-bool FlyPath::is_on_surface(Point p){
-    return Path::is_on_surface(p);
-}
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface
