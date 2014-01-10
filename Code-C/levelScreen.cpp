@@ -10,7 +10,6 @@
 #include "camera.h"
 #include "protagonist.h"
 #include "skybox.h"
-//can be replaced by pathmaker later
 #include "pathMaker.h"
 #include "utility.h"
 #include "screenController.h"
@@ -26,7 +25,6 @@ LevelScreen::LevelScreen(int selected_level):Screen(){
     
     std::string full_name = get_absolute_path(ss.str());
     path = PathMaker::make_path_from_file(full_name,this);
-//    debug(full_name);
     
     if (path) {
         path->is_ball_on = true;
@@ -78,7 +76,10 @@ void LevelScreen::render(){
 void LevelScreen::update(SDL_Event event){
     if (event.type == SDL_KEYDOWN) {
         if(event.key.keysym.sym == SDLK_TAB) Camera::Instance().switch_view();
-        else if(event.key.keysym.sym == SDLK_ESCAPE) win();
+        if(event.key.keysym.sym == SDLK_z) {
+            win();
+            return ;
+        }
     }
     
     if (pro) pro->update(event);

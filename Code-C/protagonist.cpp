@@ -55,7 +55,7 @@ void Protagonist::render(){
     glRotatef(orien.x, 1, 0, 0);
     glRotatef(orien.z, 0 ,0, 1);
     
-    glColor3f(c.r , c.g , c.b);
+    glColor4f(c.r , c.g , c.b, c.a);
     glCallList(mysphereID);
 
     glPopMatrix();
@@ -113,6 +113,8 @@ void Protagonist::update(SDL_Event event){
     Vector new_eye_dis = current->get_transform() * Camera::Instance().get_eye_to_center();
     Camera::Instance().anime_camera(current->get_normal(), new_eye_dis);
     Camera::Instance().center = current->get_transform() * anchor;
+    
+    c = ColorRule::Instance().get_color(ColorRule::Instance().global_state);
 }
 
 //        else if(key_press == SDLK_c){

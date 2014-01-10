@@ -44,5 +44,7 @@ ColorRule::State ColorRule::get_state_from_string(std::string s) throw (std::exc
 Color ColorRule::get_color(State state){
     if (state == BLUE) return Color(0,0,1);
     else if(state == RED) return Color(1,0,0);
+    else if(state == BLACK) return Color(0,0,0);
+    else if(state == WHITE) return Color(1,1,1);
     return Color();
 }
