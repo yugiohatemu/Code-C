@@ -83,7 +83,8 @@ void ShapeBuilder::init(){
     load_stl("Hexagon");//3
     load_stl("Arrow"); //4
     load_stl("Triangle"); //5
-    
+//    load_stl("heart"); //6
+//    load_stl("stickman"); //7
 }
 
 void ShapeBuilder::clear(){

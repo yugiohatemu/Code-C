@@ -42,7 +42,7 @@ Path::PathType EndPath::get_path_type(){
 
 void EndPath::render(){
     glPushMatrix();
-    glMultMatrixf(get_transform().begin());
+    glMultMatrixf(prod.begin());
     glBegin(GL_TRIANGLES);
     glColor3f(1, 0, 0); glNormal3f(0, 1, 0);
     glVertex3f(0, 0, -0.5); glVertex3f(0, 0, 0.5); glVertex3f(1, 0, 0.5);

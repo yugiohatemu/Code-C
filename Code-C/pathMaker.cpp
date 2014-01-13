@@ -283,9 +283,7 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 }
                 
             }else if(tag == "EndPath"){
-                
                 EndPath * end_path = make_endpath_from_string(items, end_point);
-                
                 if(end_path){
                     end_path->screen = level;
                     if (flip_flag) flip_root->add_next_path(end_path);
@@ -322,11 +320,12 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 next_path = dye_path;
             }
             
+            //Check if we can proceed to process next path
             if (next_path == NULL) {
                 Path::delete_path(root);
+                root = NULL;
                 break;
             }else{
-                
                 tab_tree.push(next_path);
             }
             
