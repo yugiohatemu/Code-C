@@ -96,6 +96,10 @@ bool Path::is_on_surface(Point p){ //theoretically we can use the one before pro
         is_num_whithin(p.y, vertexs[0].y, vertexs[2].y) &&
         is_num_whithin(p.z, vertexs[0].z, vertexs[2].z);
 }
+
+Path::PathType Path::get_path_type(){
+    return "Path";
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface
 void Path::render(){

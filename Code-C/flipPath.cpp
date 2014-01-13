@@ -54,6 +54,9 @@ Vector FlipPath::get_normal(){
     return norm;
 }
 
+Path::PathType FlipPath::get_path_type(){
+    return "FlipPath";
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface

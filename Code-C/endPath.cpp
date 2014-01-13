@@ -34,6 +34,9 @@ Matrix EndPath::get_transform(){
     return prod;
 }
 
+Path::PathType EndPath::get_path_type(){
+    return "EndPath";
+}
 /////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface
 

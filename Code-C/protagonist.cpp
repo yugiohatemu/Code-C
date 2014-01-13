@@ -13,6 +13,8 @@
 #include "path.h"
 #include "utility.h"
 #include "texture.h"
+#include "dye.h"
+#include "dyePath.h"
 
 GLuint mysphereID;
 
@@ -33,11 +35,14 @@ Protagonist::Protagonist(){
 
     color_state = ColorRule::RED;
     current = NULL;
+    
+    dye = NULL;
 }
 
 Protagonist::~Protagonist(){
     glDeleteLists(mysphereID, 1);
     current = NULL;
+    if (dye) delete dye;
 }
 
 //TODO: test for null situation to avoid crush
@@ -58,6 +63,7 @@ void Protagonist::render(){
     glColor4f(c.r , c.g , c.b, c.a);
     glCallList(mysphereID);
 
+    if (dye) dye->render();
     glPopMatrix();
 }
 
@@ -79,7 +85,7 @@ void Protagonist::update(SDL_Event event){
     
     if (event.type == SDL_KEYDOWN) {
         SDLKey key_press = event.key.keysym.sym;
-        if(key_press == SDLK_UP){
+        if(key_press == SDLK_UP){ //forward
 
             Point next_anchor = anchor + Vector(1,0,0) * speed;
             orien.z -= 10; if (orien.z <= 0) orien.z = 360;
@@ -93,7 +99,7 @@ void Protagonist::update(SDL_Event event){
                 current->is_ball_on = true;
                 
             }
-        }else if(key_press == SDLK_DOWN){
+        }else if(key_press == SDLK_DOWN){ //backward
            
             Point prev_anchor =  anchor + Vector(1,0,0) * -speed;
             orien.z += 10; if (orien.z >= 360) orien.z = 0;
@@ -105,6 +111,24 @@ void Protagonist::update(SDL_Event event){
                 current = current->prev;
                 anchor = current->get_length_point();
                 current->is_ball_on = true;
+            }
+        }else if(key_press == SDLK_e){ //Interact with others
+            //check what interaction using pathID
+            //if match, the we cast it directly, and ask for functions
+            if (current->get_path_type() == "DyePath") { //->get_path_type
+                DyePath * dye_path = dynamic_cast<DyePath *>(current);
+                if (!dye){
+                    //or get it from dyePath?
+                    dye = dye_path->get_dye();
+                    
+                }
+            }else if(dye){ //release on current path
+            
+                if (current->color_state != ColorRule::BLACK) {
+                    current->color_state = dye->color_state;
+                    delete dye;
+                    dye = NULL;
+                }
             }
         }
 

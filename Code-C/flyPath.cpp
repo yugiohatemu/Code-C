@@ -31,6 +31,9 @@ Matrix FlyPath::get_transform(){
     return prod * Matrix::translate(cur_trans);
 }
 
+Path::PathType FlyPath::get_path_type(){
+    return "FlyPath";
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface

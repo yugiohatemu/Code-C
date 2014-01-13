@@ -15,6 +15,7 @@
 #include "colorRule.h"
 
 class Path;
+class Dye;
 
 class Protagonist:public Sprite{
     Point anchor;
@@ -28,6 +29,7 @@ public:
     void render();
     void update(SDL_Event event);
     Path * current;
+    Dye * dye;
 };
 
 #endif /* defined(__Code_C__protagonist__) */

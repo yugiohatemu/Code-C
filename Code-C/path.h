@@ -48,6 +48,8 @@ public:
 
     virtual Vector get_normal();
     virtual Matrix get_transform();
+    typedef std::string PathType;
+    virtual PathType get_path_type();
     
     Point get_length_point();
     bool is_on_surface(Point p);

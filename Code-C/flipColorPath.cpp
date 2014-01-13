@@ -41,6 +41,11 @@ Matrix FlipColorPath::get_transform(){
     return prod * Matrix::rotate(axis, cur_orien);
 }
 
+Path::PathType FlipColorPath::get_path_type(){
+    return "FlipColorPath";
+}
+
+
 /////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface
 void FlipColorPath::render(){

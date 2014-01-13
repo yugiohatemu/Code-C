@@ -39,7 +39,8 @@ public:
     //Parent
     Matrix get_transform();
     Vector get_normal();
-
+    PathType get_path_type();
+    
     void render();
     void update(SDL_Event event);
     

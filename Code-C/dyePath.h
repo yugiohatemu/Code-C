@@ -11,15 +11,24 @@
 
 #include "path.h"
 
+class LevelScreen;
+class Dye;
+
 class DyePath:public Path{
+    Dye * dye;
 public:
     DyePath(Point trans, Vector rotate); //add color? and dye color?
     ~DyePath();
-    Vector get_normal();
-    Matrix get_transform();
+    Dye * get_dye();
+    
     void render();
     void update(SDL_Event event);
     
+    Vector get_normal();
+    Matrix get_transform();
+    PathType get_path_type();
+    
+    LevelScreen * level;
 };
 
 #endif /* defined(__Code_C__dyePath__) */

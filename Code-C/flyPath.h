@@ -22,6 +22,7 @@ public:
     
     Vector get_normal();
     Matrix get_transform();
+    PathType get_path_type();
 };
 
 #endif /* defined(__Code_C__flyPath__) */
