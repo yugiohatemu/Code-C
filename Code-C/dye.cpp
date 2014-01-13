@@ -29,16 +29,16 @@ void Dye::render(){
     //draw a small triangle now?
     glPushMatrix();
     glTranslatef(0, 0.5, 0);
-    if(ColorRule::Instance().is_state_global(color_state)){
-        glColor3f(c.a, c.g, c.b);
+//    if(ColorRule::Instance().is_state_global(color_state)){
+        glColor4f(c.a, c.g, c.b,c.a);
         glBegin(GL_TRIANGLES);
         glNormal3f(0, 1, 0);
-    }else{
-        glColor3f(0, 0, 0);
-        glBegin(GL_LINE_LOOP);
-    }
-    
-    glVertex3f(0, 0, -1); glVertex3f(0, 0, 1); glVertex3f(1, 0, 0);
+//    }else{
+//        glColor3f(0, 0, 0);
+//        glBegin(GL_LINE_LOOP);
+//    }
+//    
+    glVertex3f(0, 0, -0.3); glVertex3f(0, 0, 0.3); glVertex3f(0.3, 0, 0);
     glEnd();
     glPopMatrix();
 }

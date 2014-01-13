@@ -55,7 +55,7 @@ void LevelSelectScreen::update(SDL_Event event){
     if (event.type == SDL_KEYDOWN) {
         if(event.key.keysym.sym == SDLK_RETURN){
             ScreenController * root_controller = dynamic_cast<ScreenController *>(root);
-            root_controller->push_controller(new LevelScreen(selected_level % 2));
+            root_controller->push_controller(new LevelScreen(selected_level % 3));
         }else if(event.key.keysym.sym == SDLK_RIGHT){
             levels[selected_level]->set_selected( false);
             selected_level += 1; if(selected_level == total_level) selected_level = 0;

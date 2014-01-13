@@ -11,10 +11,12 @@
 #include "dye.h"
 #include "SDL/SDL_opengl.h"
 
-DyePath::DyePath(Point trans, Vector rotate):Path(){
+DyePath::DyePath(Point trans, Vector rotate, ColorRule::State dye_color):Path(){
     prod = Matrix::translate(trans) * Matrix::rotateXYZ(rotate);
+    normal = prod * Vector(0,1,0);
+    normal.normalize();
     //depends on color state
-    
+    dye = new Dye(dye_color);
 }
 
 DyePath::~DyePath(){
@@ -32,11 +34,11 @@ Dye* DyePath::get_dye(){
 //////////////////////////////////////////////////////////////////////////////////////////
 //Overwrite parent class
 Vector DyePath::get_normal(){
-    return Path::get_normal();
+    return normal;
 }
 
 Matrix DyePath::get_transform(){
-    return Path::get_transform();
+    return prod;
 }
 
 Path::PathType DyePath::get_path_type(){
@@ -52,8 +54,10 @@ void DyePath::render(){
     glCallList(3);
     dye->render();
     glPopMatrix();
+    next->render();
 }
 
 void DyePath::update(SDL_Event event){
     //already has a dye, give a clone/copy to protagonist?
+    next->update(event);
 }

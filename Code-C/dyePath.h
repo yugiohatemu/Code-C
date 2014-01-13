@@ -17,7 +17,7 @@ class Dye;
 class DyePath:public Path{
     Dye * dye;
 public:
-    DyePath(Point trans, Vector rotate); //add color? and dye color?
+    DyePath(Point trans, Vector rotate, ColorRule::State dye_color); //add color? and dye color?
     ~DyePath();
     Dye * get_dye();
     

@@ -56,6 +56,8 @@ void Protagonist::render(){
    
     glTranslatef(anchor.x, anchor.y, anchor.z);
     glTranslatef(0, 0.125, 0);
+    //Draw linked item before orien
+    if (dye) dye->render();
     
     glRotatef(orien.x, 1, 0, 0);
     glRotatef(orien.z, 0 ,0, 1);
@@ -63,7 +65,7 @@ void Protagonist::render(){
     glColor4f(c.r , c.g , c.b, c.a);
     glCallList(mysphereID);
 
-    if (dye) dye->render();
+    
     glPopMatrix();
 }
 
@@ -118,14 +120,12 @@ void Protagonist::update(SDL_Event event){
             if (current->get_path_type() == "DyePath") { //->get_path_type
                 DyePath * dye_path = dynamic_cast<DyePath *>(current);
                 if (!dye){
-                    //or get it from dyePath?
                     dye = dye_path->get_dye();
-                    
                 }
             }else if(dye){ //release on current path
             
                 if (current->color_state != ColorRule::BLACK) {
-                    current->color_state = dye->color_state;
+                    current->set_color_state(dye->color_state);
                     delete dye;
                     dye = NULL;
                 }

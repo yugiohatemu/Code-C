@@ -12,6 +12,7 @@
 #include "flipColorPath.h"
 #include "flyPath.h"
 #include "endPath.h"
+#include "dyePath.h"
 #include "utility.h"
 #include "levelScreen.h"
 #include <stack>
@@ -171,6 +172,46 @@ FlipColorPath * make_flipcolorpath(std::vector<std::string>& items, Point trans)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//DyePath
+
+DyePath* make_dyepath(std::vector<std::string>& items, Point trans){
+    //color， rotate , color(ball)
+    if (items.size() > 3) return NULL;
+    
+    ColorRule::State path_color;
+    try {
+        path_color = ColorRule::Instance().get_state_from_string(items[0]);
+    } catch (std::exception & e) {
+        debug(e.what());
+        return NULL;
+    }
+    
+    Vector rot;
+    try {
+        rot = Vector::get_vector_from_string(items[1]);
+    } catch (std::exception & e) {
+        debug(e.what());
+        return NULL;
+    }
+
+    //Dye info
+    ColorRule::State dye_color;
+    try {
+        dye_color = ColorRule::Instance().get_state_from_string(items[2]);
+    } catch (std::exception & e) {
+        debug(e.what());
+        return NULL;
+    }
+    
+    DyePath * path = new DyePath(trans,rot,dye_color);
+    path->color_state = path_color;
+    path->c = ColorRule::Instance().get_color(path_color);
+    
+    return path;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //check for tab count to determine heirarchy, assume 4 space tab
 int get_tab_count(std::string s){
     int i = 0;
@@ -272,6 +313,13 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                 }
                 next_path = flipcolor_path;
 
+            }else if (tag == "DyePath"){
+                DyePath * dye_path = make_dyepath(items, end_point);
+                if(dye_path){
+                    if (flip_flag) flip_root->add_next_path(dye_path);
+                    else Path::link_path(end_of_root, dye_path);
+                }
+                next_path = dye_path;
             }
             
             if (next_path == NULL) {

@@ -42,6 +42,7 @@ public:
     Point get_end();
     Point get_start();
     bool is_path_color_valid();
+    void set_color_state(ColorRule::State s);
     
     Path * prev;
     Path * next;

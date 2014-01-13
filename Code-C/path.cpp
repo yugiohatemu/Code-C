@@ -68,7 +68,6 @@ Matrix Path::get_transform(){
     return prod;
 }
 
-
 bool Path::is_path_color_valid(){
     return ColorRule::Instance().is_state_global(color_state);
 }
@@ -99,6 +98,11 @@ bool Path::is_on_surface(Point p){ //theoretically we can use the one before pro
 
 Path::PathType Path::get_path_type(){
     return "Path";
+}
+
+void Path::set_color_state(ColorRule::State s){
+    color_state = s;
+    c = ColorRule::Instance().get_color(s);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Sprite interface
