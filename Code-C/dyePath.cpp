@@ -7,7 +7,6 @@
 //
 
 #include "dyePath.h"
-#include "levelScreen.h"
 #include "dye.h"
 #include "SDL/SDL_opengl.h"
 

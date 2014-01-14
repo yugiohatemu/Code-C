@@ -11,7 +11,6 @@
 
 #include "path.h"
 
-class LevelScreen;
 class Dye;
 
 class DyePath:public Path{
@@ -28,7 +27,6 @@ public:
     Matrix get_transform();
     PathType get_path_type();
     
-    LevelScreen * level;
 };
 
 #endif /* defined(__Code_C__dyePath__) */
