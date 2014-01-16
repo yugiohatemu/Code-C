@@ -60,6 +60,8 @@ bool initGL(){
     //enable texture
     glEnable( GL_TEXTURE_2D );
     glEnable(GL_DEPTH_TEST);
+    //enable lines
+    glEnable(GL_LINE_SMOOTH);
     //
     glShadeModel(GL_SMOOTH);
     //
