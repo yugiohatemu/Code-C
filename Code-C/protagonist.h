@@ -29,7 +29,7 @@ public:
     void render();
     void update(SDL_Event event);
     Path * current;
-    Dye * dye;
+    Sprite * sprite_item;
 };
 
 #endif /* defined(__Code_C__protagonist__) */

@@ -1,0 +1,3 @@
+Path RED (0,0,0) (1,1,1) (60,0,0) (1,1,1)
+    SpritePath RED (0,0,0) (1,1,1) Heart
+        EndPath (0,0,0)

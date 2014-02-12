@@ -13,6 +13,7 @@
 #include "flyPath.h"
 #include "endPath.h"
 #include "dyePath.h"
+#include "spritePath.h"
 #include "utility.h"
 #include "levelScreen.h"
 #include <stack>
@@ -209,6 +210,34 @@ DyePath* make_dyepath(std::vector<std::string>& items, Point trans){
     
     return path;
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Sprite Path
+
+SpritePath * make_spritepath(std::vector<std::string>& items, Point trans){
+    if (items.size() < 3) return NULL;
+    ColorRule::State path_color;
+    try {
+        path_color = ColorRule::Instance().get_state_from_string(items[0]);
+    } catch (std::exception & e) {
+        debug(e.what());
+        return NULL;
+    }
+    
+    Vector rot;
+    try {
+        rot = Vector::get_vector_from_string(items[1]);
+    } catch (std::exception & e) {
+        debug(e.what());
+        return NULL;
+    }
+    
+    //WARNING:this is just cheating now
+    SpritePath * path = new SpritePath(trans,rot);
+    path->color_state = path_color;
+    path->c = ColorRule::Instance().get_color(path_color);
+    
+    return path;
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -318,6 +347,13 @@ Path* PathMaker::make_path_from_file(std::string fileName, LevelScreen * level){
                     else Path::link_path(end_of_root, dye_path);
                 }
                 next_path = dye_path;
+            }else if (tag == "SpritePath"){
+                SpritePath * sprite_path = make_spritepath(items, end_point);
+                if (sprite_path) {
+                    if (flip_flag) flip_root->add_next_path(sprite_path);
+                    else Path::link_path(end_of_root, sprite_path);
+                }
+                next_path = sprite_path;
             }
             
             //Check if we can proceed to process next path

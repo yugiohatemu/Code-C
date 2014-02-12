@@ -16,7 +16,7 @@
 class Shape{
    //actually, shape is only concerned with
     //which gldisplay list we should call
-    //and how are we going to animate it?
+    //and we should not care about others?
     Vector rotate, scale, trans;
     float orien;
     GLuint call_list;

@@ -10,10 +10,10 @@
 #include "dye.h"
 #include "SDL/SDL_opengl.h"
 
-DyePath::DyePath(Point trans, Vector rotate, ColorRule::State dye_color):Path(){
-    prod = Matrix::translate(trans) * Matrix::rotateXYZ(rotate);
-    normal = prod * Vector(0,1,0);
-    normal.normalize();
+DyePath::DyePath(Point trans, Vector rotate, ColorRule::State dye_color):SpritePath(trans,rotate){
+//    prod = Matrix::translate(trans) * Matrix::rotateXYZ(rotate);
+//    normal = prod * Vector(0,1,0);
+//    normal.normalize();
     //depends on color state
     dye = new Dye(dye_color);
 }
@@ -24,8 +24,7 @@ DyePath::~DyePath(){
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-Dye* DyePath::get_dye(){
-    //give a copy of the current dye?
+Sprite* DyePath::give_sprite(){
     return dye->copy();
 }
 
@@ -51,12 +50,12 @@ void DyePath::render(){
     glColor4f(c.r, c.g, c.b, c.a);
     glMultMatrixf(prod.begin());
     glCallList(3);
-    dye->render();
+    if(dye) dye->render();
     glPopMatrix();
-    next->render();
+    if(next) next->render();
 }
 
 void DyePath::update(SDL_Event event){
     //already has a dye, give a clone/copy to protagonist?
-    next->update(event);
+    if(next) next->update(event);
 }

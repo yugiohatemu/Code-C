@@ -9,16 +9,17 @@
 #ifndef __Code_C__dyePath__
 #define __Code_C__dyePath__
 
-#include "path.h"
+#include "spritePath.h"
 
 class Dye;
 
-class DyePath:public Path{
+class DyePath:public SpritePath{
     Dye * dye;
 public:
     DyePath(Point trans, Vector rotate, ColorRule::State dye_color); //add color? and dye color?
     ~DyePath();
-    Dye * get_dye();
+//    Dye * get_dye();
+    Sprite * give_sprite();
     
     void render();
     void update(SDL_Event event);

@@ -64,7 +64,7 @@ Path::PathType FlipPath::get_path_type(){
 void FlipPath::render(){
     if (ColorRule::Instance().is_state_global(color_state)) {
 
-        glColor3f(0, 0, 1);
+        glColor3f(c.a, c.b, c.b);
         glPushMatrix();
         Matrix final_prod = prod * Matrix::rotateXYZ(cur_rotate);
         glMultMatrixf(final_prod.begin());

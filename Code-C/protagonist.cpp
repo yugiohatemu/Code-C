@@ -15,6 +15,8 @@
 #include "texture.h"
 #include "dye.h"
 #include "dyePath.h"
+#include "heart.h"
+#include "spritePath.h"
 
 GLuint mysphereID;
 
@@ -36,13 +38,13 @@ Protagonist::Protagonist(){
     color_state = ColorRule::RED;
     current = NULL;
     
-    dye = NULL;
+    sprite_item = NULL;
 }
 
 Protagonist::~Protagonist(){
     glDeleteLists(mysphereID, 1);
     current = NULL;
-    if (dye) delete dye;
+    if (sprite_item) delete sprite_item;
 }
 
 //TODO: test for null situation to avoid crush
@@ -57,8 +59,8 @@ void Protagonist::render(){
     glTranslatef(anchor.x, anchor.y, anchor.z);
     glTranslatef(0, 0.125, 0);
     //Draw linked item before orien
-    if (dye) dye->render();
     
+    if (sprite_item) sprite_item->render();
     glRotatef(orien.x, 1, 0, 0);
     glRotatef(orien.z, 0 ,0, 1);
     
@@ -119,16 +121,31 @@ void Protagonist::update(SDL_Event event){
             //if match, the we cast it directly, and ask for functions
             if (current->get_path_type() == "DyePath") { //->get_path_type
                 DyePath * dye_path = dynamic_cast<DyePath *>(current);
-                if (!dye){
-                    dye = dye_path->get_dye();
+                if (!sprite_item){
+                    sprite_item = dynamic_cast<Dye*> (dye_path->give_sprite());
                 }
-            }else if(dye){ //release on current path
-            
-                if (current->color_state != ColorRule::BLACK) {
-                    current->set_color_state(dye->color_state);
-                    delete dye;
-                    dye = NULL;
+            }if (current->get_path_type()== "SpritePath") {
+                SpritePath * sprite_path = dynamic_cast<SpritePath *>(current);
+                if (!sprite_item) {
+                    sprite_item = sprite_path->give_sprite(); //more like give sprite instead of get_sprite
+                    Heart * h = dynamic_cast<Heart *>(sprite_item);
+                    h->set_owner(this);
                 }
+                //Hold a sprite
+                //and transfer ownership when holding it
+            }
+            else if(sprite_item){ //release on current path
+                Dye * dye = dynamic_cast<Dye *>(sprite_item);
+                if (dye) {
+                    if (current->color_state != ColorRule::BLACK) {
+                        current->set_color_state(dye->color_state);
+                        delete dye;
+                        dye = NULL;
+                    }
+                }else{
+                    //hand ownership of thing on the current path
+                }
+                
             }
         }
 
@@ -164,3 +181,4 @@ void Protagonist::update(SDL_Event event){
 //            if (current->is_on_surface(right_anchor)) anchor = right_anchor;
 //
 //        }
+

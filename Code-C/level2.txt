@@ -1,4 +1,4 @@
 Path RED (0,0,0) (1,1,1) (60,0,0) (1,1,1)
-    DyePath BLACK (45,0,0) BLACK
+    DyePath BLACK (45,0,0) WHITE
         Path RED (0,0,0) (1,1,1)
             EndPath (0,0,0)

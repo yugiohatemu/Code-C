@@ -12,8 +12,9 @@
 #include "path.h"
 
 class SpritePath:public Path{
+    Sprite * sprite;
 public:
-    SpritePath();
+    SpritePath(Point trans, Vector rotate);
     ~SpritePath();
     
     void render();
@@ -22,6 +23,9 @@ public:
     Vector get_normal();
     Matrix get_transform();
     PathType get_path_type();
+    
+    virtual Sprite * give_sprite();
+    void set_sprite(Sprite * s);
 };
 
 #endif /* defined(__Code_C__spritePath__) */
